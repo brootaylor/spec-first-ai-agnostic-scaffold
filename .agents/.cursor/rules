@@ -1,0 +1,20 @@
+Read docs/ai-context.md before doing anything else.
+All project conventions, workflow rules, and context live there.
+This file only contains additions specific to Cursor.
+
+---
+
+Setup note:
+Cursor expects its rules file at .cursor/rules. It lives here instead at
+.agents/cursor/rules as part of this project's agent-agnostic structure.
+Symlink it when setting up: ln -s .agents/cursor/rules .cursor/rules
+
+---
+
+Cursor-specific notes:
+
+Spec files for components live in docs/specs/components/.
+Always read the relevant *.spec.md before generating or editing a component.
+
+Co-located *.spec.md files in src/components/ are copies — the
+docs/specs/components/ version is the source of truth if they ever differ.

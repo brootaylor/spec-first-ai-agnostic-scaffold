@@ -1,0 +1,16 @@
+{
+  "model": "claude-sonnet-4-5",
+
+  "context_files": [
+    "docs/ai-context.md",
+    "docs/architecture.md",
+    "src/types/index.ts"
+  ],
+
+  "ignore": [
+    "node_modules/**",
+    "dist/**",
+    "src/generated/**",
+    "*.lock"
+  ]
+}
