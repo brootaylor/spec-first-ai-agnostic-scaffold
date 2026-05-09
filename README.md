@@ -1,6 +1,10 @@
 # Starter Project: Agnostic LLM Agent Scaffold
 
-This is a starter project template for building web applications with AI agents using any large language model (LLM). It provides a spec-first development workflow, where component specifications are written before implementation. AI agents can then generate code based on these specs, ensuring alignment with requirements and test cases from the outset.
+This is a starter project template for building web applications with AI agents using any large language model (LLM).
+
+It provides a spec-first development workflow, where component specifications are written before implementation.
+
+AI agents can then generate code based on these specs, ensuring alignment with requirements and test cases from the outset.
 
 ---
 
