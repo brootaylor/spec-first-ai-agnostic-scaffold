@@ -114,7 +114,7 @@ The generated code will appear in `src/` under the relevant directory *(see the 
 
 If something is wrong, update the spec first — then ask the agent to fix the implementation.
 
-> ***NB**: Don't edit the implementation directly without updating the spec, or the two will drift apart.* The spec is the source of truth, and the agent relies on it to generate the correct code. If they get out of sync, the agent's output becomes unpredictable.
+> ***NB**: Don't edit the implementation directly without updating the spec, or the two will drift apart. The spec is the source of truth, and the agent relies on it to generate the correct code. If they get out of sync, the agent's output becomes unpredictable.*
 
 ---
 
