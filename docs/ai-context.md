@@ -25,46 +25,46 @@ Mark exactly one option per category as `[active]`. Leave all others blank.
 
 The core framework for this project. Pick one.
 
-| Framework                  | Active     |
-|----------------------------|------------|
-| Eleventy (11ty)            |            |
-| Astro                      |            |
-| Vanilla *(no framework)*   | `[active]` |
+| Framework | Active |
+|-----------|--------|
+| Eleventy (11ty) | |
+| Astro | |
+| Vanilla *(no framework)* | `[active]` |
 
 ### Language
 
-| Language                   | Active     |
-|----------------------------|------------|
-| TypeScript                 |            |
-| JavaScript                 | `[active]` |
+| Language | Active |
+|----------|--------|
+| TypeScript | |
+| JavaScript | `[active]` |
 
 ### Styles
 
-| Approach                   | Active     |
-|----------------------------|------------|
-| Plain CSS                  | `[active]` |
-| Sass                       |            |
+| Approach | Active |
+|----------|--------|
+| Plain CSS | `[active]` |
+| Sass / SCSS | |
 
 ### Unit testing
 
-| Tool                       | Active     |
-|----------------------------|------------|
-| Jest                       | `[active]` |
-| None                       |            |
+| Tool | Active |
+|------|--------|
+| Jest | `[active]` |
+| None | |
 
 ### E2E testing
 
-| Tool                       | Active     |
-|----------------------------|------------|
-| Playwright                 |            |
-| None                       | `[active]` |
+| Tool | Active |
+|------|--------|
+| Playwright | |
+| None | `[active]` |
 
 ### Build
 
-| Tool                       | Active     |
-|----------------------------|------------|
-| Vite                       | `[active]` |
-| None *(uses framework)*    |            |
+| Tool | Active |
+|------|--------|
+| Vite | `[active]` |
+| None *(framework handles it)* | |
 
 ### Constraints
 
@@ -126,16 +126,27 @@ src/
       <ComponentName>.test.{js|ts}  # ← unit tests
       <ComponentName>.{css|scss}    # ← styles
       <ComponentName>.spec.md       # ← co-located spec
+  pages/
+    <PageName>/
+      <PageName>.{js|ts}            # ← implementation
+      <PageName>.test.{js|ts}       # ← unit tests
+      <PageName>.{css|scss}         # ← styles
+      <PageName>.spec.md            # ← co-located spec
+  layouts/
+    <LayoutName>/
+      <LayoutName>.{js|ts}          # ← implementation
+      <LayoutName>.{css|scss}       # ← styles
+      <LayoutName>.spec.md          # ← co-located spec
   lib/                              # ← shared utilities
   types/                            # ← global types (TypeScript only)
 docs/
-  ai-context.md                     # ← this file
-  features/                         # ← user-facing feature specs
+  ai-context.md                   # ← this file
+  features/                       # ← user-facing feature specs
   specs/
-    _component-template.spec.md     # ← spec template
-    components/                     # ← authoritative component specs
-    pages/                          # ← page / view specs
-    layouts/                        # ← layout specs
+    _component-template.spec.md   # ← spec template
+    components/                   # ← authoritative component specs
+    pages/                        # ← page / view specs
+    layouts/                      # ← layout specs
 ```
 
 ---

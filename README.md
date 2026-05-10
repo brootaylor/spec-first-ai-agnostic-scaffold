@@ -1,8 +1,8 @@
-# Starter Project: Agnostic LLM Agent 'Scaffold'
+# Spec-First Scaffold for Any AI Agent
 
-This is my attempt at creating a starter project template *(scaffolding)* for building web applications with "Ai" agents using any large language model (LLM).
+A starter template for building web applications with "Ai" agents using any large language model (LLM).
 
-The idea is for it to be as agnostic as possible and not tied to any specific LLM or agent framework. Instead, focus on the overall architecture and workflow for spec-first development with "Ai" agents.
+It is agnostic to any specific LLM or agent — the focus is on the architecture and workflow for spec-first development, not the tool you use to build it.
 
 **NOTE:** *This is a work in progress and will be updated over time as I learn more about what works best.*
 
@@ -40,6 +40,7 @@ These are real specs that follow the same conventions you would use in a product
 ```bash
 my-project/
 ├── README.md                             # ← you are here
+├── WORKFLOW.md                           # ← step-by-step guide to using this scaffold
 ├── SETUP.md                              # ← "Ai" agent setup and conventions
 │
 ├── docs/
@@ -61,18 +62,9 @@ my-project/
 
 ## How it works
 
-Before anything is built, a spec is written that defines its interface, behaviour, states, and test cases. An "Ai" coding agent then uses that spec to generate the implementation.
+This scaffold follows a spec-first workflow — specs are written before any code is generated. Each spec defines the interface, behaviour, states, and test cases for what's being built. The agent uses the spec to generate the implementation.
 
-This scaffold supports specs for features, components, pages, and layouts. Each type lives in its own directory under `docs/specs/`. See `docs/ai-context.md` for an explanation of each type and when to use it.
-
-The sequence for any new spec is:
-
-1. Write a spec using `docs/specs/_component-template.spec.md` as a starting point
-2. Run the agent command to scaffold the implementation (see `SETUP.md`)
-3. Review the generated tests and implementation
-4. Iterate
-
-Feature requirements live in `docs/features/`. Each feature doc links to the specs it depends on, giving the agent the full picture before it writes a line of code.
+See `WORKFLOW.md` for the full step-by-step guide.
 
 ---
 
