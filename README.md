@@ -13,7 +13,7 @@ The idea is for it to be agnostic to any specific LLM or agent framework, and in
 ```bash
 my-project/
 ├── README.md               # ← you are here
-├── SETUP.md               # ← "Ai" agent setup and conventions
+├── SETUP.md                # ← "Ai" agent setup and conventions
 │
 ├── docs/
 │   ├── ai-context.md       # ← single source of truth for "Ai" agents
