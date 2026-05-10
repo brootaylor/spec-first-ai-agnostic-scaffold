@@ -4,7 +4,7 @@ A starter template for building web applications with "Ai" agents using any larg
 
 It is agnostic to any specific LLM or agent — the focus is on the architecture and workflow for spec-first development, not the tool you use to build it.
 
-**NOTE:** *This is a work in progress and will be updated over time as I learn more about what works best.*
+> **NOTE:** *This is a work in progress and will be updated over time as I learn more about what works best.*
 
 ---
 
