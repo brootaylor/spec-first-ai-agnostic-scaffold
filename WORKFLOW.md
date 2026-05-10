@@ -15,7 +15,7 @@ Before you begin, make sure you have the following installed:
 | [Git](https://git-scm.com) | Version control |
 | [Node.js](https://nodejs.org) | Required by most tooling — install the LTS version |
 | [npm](https://www.npmjs.com) | Comes with Node.js |
-| A code editor | [VS Code](https://code.visualstudio.com) is good option |
+| A code editor | [VS Code](https://code.visualstudio.com) is recommended |
 
 **Agent-specific:**
 
@@ -47,6 +47,10 @@ src/layouts/
 .agents/cursor/
 .agents/copilot/
 ```
+
+You'll notice `package.json` is intentionally minimal — it contains only the project name and version.
+
+Once you've chosen your stack in `docs/ai-context.md` *(Step 3)*, the agent will populate it with the correct dependencies and generate any required config files (e.g. `vite.config.js`, `jest.config.js`) before writing any code.
 
 Commit everything to Git before you do anything else. This gives you a clean baseline to return to.
 
@@ -170,7 +174,7 @@ npm install
 npx @11ty/eleventy --serve
 ```
 
-> For deployment, [Netlify](https://www.netlify.com) works well with all three. Connect your Git repository, set the build command and output directory for your stack, and Netlify handles the rest. Refer to your chosen framework's documentation for the exact build settings.
+For deployment, [Netlify](https://www.netlify.com) works well with all three. Connect your Git repository, set the build command and output directory for your stack, and Netlify handles the rest. Refer to your chosen framework's documentation for the exact build settings.
 
 ---
 

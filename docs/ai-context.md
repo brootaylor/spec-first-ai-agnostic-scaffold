@@ -29,7 +29,7 @@ The core framework for this project. Pick one.
 |-----------|--------|
 | Eleventy (11ty) | |
 | Astro | |
-| Vanilla *(no framework)* | `[active]` |
+| Vanilla (no framework) | `[active]` |
 
 ### Language
 
@@ -43,7 +43,7 @@ The core framework for this project. Pick one.
 | Approach | Active |
 |----------|--------|
 | Plain CSS | `[active]` |
-| Sass / SCSS | |
+| Sass | |
 
 ### Unit testing
 
@@ -64,7 +64,7 @@ The core framework for this project. Pick one.
 | Tool | Active |
 |------|--------|
 | Vite | `[active]` |
-| None *(framework handles it)* | |
+| None (framework handles it) | |
 
 ### Constraints
 
@@ -72,6 +72,14 @@ Notes on combinations that don't make sense together.
 
 - **Astro** includes its own build pipeline — set Build to `None` when using Astro
 - **Eleventy** includes its own build pipeline — set Build to `None` when using Eleventy
+
+### Agent instructions
+
+When the stack selection is read, the agent must complete the following before writing any implementation code:
+
+1. Populate `package.json` with the correct scripts and dependencies for the active stack
+2. Generate any required config files (e.g. `vite.config.js`, `jest.config.js`, `astro.config.mjs`) based on the active selections
+3. Do not install any dependencies not directly required by the active stack selections
 
 ---
 
