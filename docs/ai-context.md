@@ -1,6 +1,6 @@
 # AI Context
 
-This file is the single source of truth for "AI" agent context.
+This file is the single source of truth for "Ai" agent context.
 
 It is agent-agnostic &mdash; do not add anything here that is specific to Claude Code, Cursor, Copilot, or any other agent/tool.
 
