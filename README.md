@@ -2,9 +2,36 @@
 
 This is my attempt at creating a starter project template *(scaffolding)* for building web applications with "Ai" agents using any large language model (LLM).
 
-The idea is for it to be agnostic to any specific LLM or agent framework, and instead focus on the overall architecture and workflow for spec-first development with "Ai" agents.
+The idea is for it to be as agnostic as possible and not tied to any specific LLM or agent framework. Instead, focus on the overall architecture and workflow for spec-first development with "Ai" agents.
 
 **NOTE:** *This is a work in progress and will be updated over time as I learn more about what works best.*
+
+---
+
+## Why spec-first?
+
+Writing specs before code forces clarity. Before an agent writes a single line of implementation, it knows exactly what a component should do, what states it has, how it should behave, and what tests it needs to pass. This reduces guesswork, prevents scope creep, and makes it easier to review what the agent produces.
+
+It also means the spec becomes the shared language between you and the agent — if the output isn't right, the spec is the first place to look.
+
+---
+
+## Choosing your stack
+
+`docs/ai-context.md` includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool. The agent reads this before doing anything and uses it to make the right implementation decisions. Switching stack is as simple as changing the active selection.
+
+---
+
+## Examples included
+
+The scaffold comes with a small set of working examples to illustrate the patterns:
+
+- **Feature:** Dark mode (`docs/features/dark-mode.md`)
+- **Components:** Button, ThemeToggle (`docs/specs/components/`)
+- **Page:** Dashboard (`docs/specs/pages/`)
+- **Layout:** MainLayout (`docs/specs/layouts/`)
+
+These are real specs that follow the same conventions you would use in a production project. Use them as reference or replace them with your own.
 
 ---
 

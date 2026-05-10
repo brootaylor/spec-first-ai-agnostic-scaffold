@@ -2,6 +2,9 @@
 
 **Status:** Draft
 
+> *Type annotations in this spec apply when TypeScript is the active language.
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+
 ---
 
 ## Purpose

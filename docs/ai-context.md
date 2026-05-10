@@ -16,6 +16,65 @@ Agent-specific configs live in `.agents/`.
 
 ---
 
+## Stack
+
+This section defines the framework and tooling the agent must use.
+Mark exactly one option per category as `[active]`. Leave all others blank.
+
+### Framework
+
+The core framework for this project. Pick one.
+
+| Framework | Active |
+|-----------|--------|
+| Eleventy (11ty) | |
+| Astro | |
+| Vanilla *(no framework)* | `[active]` |
+
+### Language
+
+| Language | Active |
+|----------|--------|
+| TypeScript | |
+| JavaScript | `[active]` |
+
+### Styles
+
+| Approach | Active |
+|----------|--------|
+| Plain CSS | `[active]` |
+| Sass | |
+
+### Unit testing
+
+| Tool | Active |
+|------|--------|
+| Jest | `[active]` |
+| None | |
+
+### E2E testing
+
+| Tool | Active |
+|------|--------|
+| Playwright | |
+| None | `[active]` |
+
+### Build
+
+| Tool | Active |
+|------|--------|
+| Vite | `[active]` |
+| None *(framework handles it)* | |
+
+### Constraints
+
+Notes on combinations that don't make sense together.
+
+- **Astro** includes its own build pipeline — set Build to `None` when using Astro
+- **Eleventy** includes its own build pipeline — set Build to `None` when using Eleventy
+
+---
+
 ## Features and components
 
 Understanding the difference between features and components is important for
@@ -57,25 +116,26 @@ than specs:
 
 ## File & folder conventions
 
+File extensions follow the active stack selection in the Stack section above.
+
 ```bash
 src/
   components/
     <ComponentName>/
-      <ComponentName>.ts          # ← implementation
-      <ComponentName>.test.ts     # ← unit tests
-      <ComponentName>.module.css  # ← scoped styles
-      <ComponentName>.spec.md     # ← co-located spec
-  lib/                            # ← shared utilities
-  types/
-    index.ts                      # ← global TypeScript types
+      <ComponentName>.{js|ts}       # ← implementation
+      <ComponentName>.test.{js|ts}  # ← unit tests
+      <ComponentName>.{css|scss}    # ← styles
+      <ComponentName>.spec.md       # ← co-located spec
+  lib/                              # ← shared utilities
+  types/                            # ← global types (TypeScript only)
 docs/
-  ai-context.md                   # ← this file
-  features/                       # ← user-facing feature specs
+  ai-context.md                     # ← this file
+  features/                         # ← user-facing feature specs
   specs/
-    _component-template.spec.md   # ← spec template
-    components/                   # ← authoritative component specs
-    pages/                        # ← page / view specs
-    layouts/                      # ← layout specs
+    _component-template.spec.md     # ← spec template
+    components/                     # ← authoritative component specs
+    pages/                          # ← page / view specs
+    layouts/                        # ← layout specs
 ```
 
 ---

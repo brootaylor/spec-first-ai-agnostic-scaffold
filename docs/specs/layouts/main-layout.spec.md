@@ -2,6 +2,9 @@
 
 **Status:** Draft
 
+> *Type annotations in this spec apply when TypeScript is the active language.
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+
 ---
 
 ## Purpose
@@ -18,12 +21,13 @@ only need to concern themselves with their own content.
 ## Interface
 
 The props that define how this layout is used.
+The agent will derive the interface directly from this section.
 
 ### Props / Parameters
 
 | Prop | Type | Required | Default | Description |
 |------|------|:--------:|---------|-------------|
-| `children` | `HTMLElement` | ✓ | — | The page content to render in the main content area |
+| `children` | element | ✓ | — | The page content to render in the main content area |
 | `pageTitle` | `string` | ✓ | — | Sets the page `<title>` and main heading |
 
 ---
@@ -56,7 +60,6 @@ The components this layout depends on. Each must have a spec in
 How the layout behaves on first render and in response to user interaction.
 
 ### Default / initial state
-
 Renders the header, main content area containing `children`, and footer.
 The `pageTitle` is applied to the document `<title>` and rendered as the
 main `<h1>` on the page.
@@ -78,6 +81,5 @@ The accessibility requirements this layout must meet.
 Additional context, constraints, and implementation guidance that the agent
 should be aware of before writing any code.
 
-- The skip navigation link should point to `#main-content` and be visually hidden
-  until focused
-- CSS Modules: import from `./MainLayout.module.css`
+- The skip navigation link should point to `#main-content` and be visually hidden until focused
+- CSS: import from `./MainLayout.css` or `./MainLayout.scss` depending on active styles selection in `docs/ai-context.md`

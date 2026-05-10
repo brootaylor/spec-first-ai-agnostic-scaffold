@@ -2,19 +2,26 @@
 
 **Status:** Ready
 
+> *Type annotations in this spec apply when TypeScript is the active language.
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+
 ---
 
 ## Purpose
 
-> *A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.*
+A single paragraph describing what problem this component solves, who uses it,
+and when. Avoid describing how it works — describe why it exists.
 
-A reusable, accessible button covering every interactive call-to-action across the application. Must support loading and disabled states and be usable by any team without additional configuration.
+A reusable, accessible button covering every interactive call-to-action across the
+application. Must support loading and disabled states and be usable by any team
+without additional configuration.
 
 ---
 
 ## Interface
 
-The props, events, and public methods that define how this component is used. The agent will derive the TypeScript interface directly from this section.
+The props, events, and public methods that define how this component is used.
+The agent will derive the interface directly from this section.
 
 ### Props
 
@@ -26,24 +33,26 @@ The props, events, and public methods that define how this component is used. Th
 | `disabled` | `boolean` | | `false` | Prevents interaction |
 | `loading` | `boolean` | | `false` | Shows spinner; prevents interaction |
 | `type` | `'button' \| 'submit' \| 'reset'` | | `'button'` | HTML button type |
-| `onClick` | `(event: MouseEvent) => void` | | — | Click handler |
+| `onClick` | function | | — | Click handler; receives the click event |
 | `ariaLabel` | `string` | | — | Overrides the accessible label |
 
 ### Events / Callbacks
 
-| Event | Payload | Fires when |
-|-------|---------|-----------|
-| `onClick` | `MouseEvent` | User clicks and button is neither disabled nor loading |
+| Event | Fires when |
+|-------|-----------|
+| `onClick` | User clicks and button is neither disabled nor loading |
 
 ---
 
 ## Behaviour
 
-How the component behaves on first render, across its different states, and in response to user interaction.
+How the component behaves on first render, across its different states, and in
+response to user interaction.
 
 ### Default / initial state
 
-Renders as a native `<button>` with `type="button"`, the `primary` variant class, and the `md` size class. Fully interactive.
+Renders as a native `<button>` with `type="button"`, the `primary` variant class,
+and the `md` size class. Fully interactive.
 
 ### States
 
@@ -65,7 +74,8 @@ Renders as a native `<button>` with `type="button"`, the `primary` variant class
 
 ## Accessibility
 
-The accessibility requirements this component must meet. The agent must not consider the component complete until all of these are satisfied.
+The accessibility requirements this component must meet. The agent must not
+consider the component complete until all of these are satisfied.
 
 - Must use a native `<button>` — never a `<div>` or `<span>`
 - `disabled`: set both the HTML attribute AND `aria-disabled="true"`
@@ -86,7 +96,8 @@ How the component should behave when something goes wrong.
 
 ## Test cases
 
-The agent will generate one test function per entry. IDs must be unique within this spec and must match the test file exactly.
+The agent will generate one test function per entry. IDs must be unique within
+this spec and must match the test file exactly.
 
 - [ ] **TC-01** — Renders a `<button>` with only the required `label` prop
 - [ ] **TC-02** — Applies the correct CSS class for each `variant` value
@@ -103,7 +114,8 @@ The agent will generate one test function per entry. IDs must be unique within t
 
 ## Out of scope
 
-Explicitly listing what this component does NOT cover prevents scope creep and helps the agent avoid building more than is required.
+Explicitly listing what this component does NOT cover prevents scope creep and
+helps the agent avoid building more than is required.
 
 - Icon-only buttons → use `IconButton` component
 - Navigation / anchor behaviour → use `LinkButton` component
@@ -115,7 +127,7 @@ Explicitly listing what this component does NOT cover prevents scope creep and h
 
 A short code example showing how the component is used in practice.
 
-```ts
+```js
 import { Button } from './Button';
 
 const saveBtn = new Button({
@@ -134,8 +146,9 @@ const deleteBtn = new Button({
 
 ## Notes for AI implementation
 
-Additional context, constraints, and implementation guidance that the agent should be aware of before writing any code.
+Additional context, constraints, and implementation guidance that the agent
+should be aware of before writing any code.
 
-- CSS Modules: import from `./Button.module.css`
+- CSS: import from `./Button.css` or `./Button.scss` depending on active styles selection in `docs/ai-context.md`
 - Spinner: `src/assets/spinner.svg` — import and inline; do not use `<img>`
 - No animation libraries — CSS only

@@ -2,19 +2,26 @@
 
 **Status:** Draft
 
+> *Type annotations in this spec apply when TypeScript is the active language.
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+
 ---
 
 ## Purpose
 
-> *A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.*
+A single paragraph describing what problem this component solves, who uses it,
+and when. Avoid describing how it works — describe why it exists.
 
-A toggle control that allows users to switch between light and dark colour schemes. It reflects the current scheme and updates it immediately when activated. Used in the main navigation so it is accessible from every page.
+A toggle control that allows users to switch between light and dark colour
+schemes. It reflects the current scheme and updates it immediately when
+activated. Used in the main navigation so it is accessible from every page.
 
 ---
 
 ## Interface
 
-The props, events, and public methods that define how this component is used. The agent will derive the TypeScript interface directly from this section.
+The props, events, and public methods that define how this component is used.
+The agent will derive the interface directly from this section.
 
 ### Props / Parameters
 
@@ -24,19 +31,23 @@ The props, events, and public methods that define how this component is used. Th
 
 ### Events / Callbacks
 
-| Event | Payload type | Fires when |
-|-------|-------------|------------|
+| Event | Payload | Fires when |
+|-------|---------|------------|
 | `onChange` | `'light' \| 'dark'` | The user activates the toggle |
 
 ---
 
 ## Behaviour
 
-How the component behaves on first render, across its different states, and in response to user interaction.
+How the component behaves on first render, across its different states, and in
+response to user interaction.
 
 ### Default / initial state
 
-On first render, the component checks `localStorage` for a stored `color-scheme` preference. If found, it applies that. If not, it checks the OS preference via `prefers-color-scheme`. If neither is set, it falls back to `initialTheme`. The current scheme is reflected visually in the toggle.
+On first render, the component checks `localStorage` for a stored `color-scheme`
+preference. If found, it applies that. If not, it checks the OS preference via
+`prefers-color-scheme`. If neither is set, it falls back to `initialTheme`.
+The current scheme is reflected visually in the toggle.
 
 ### States
 
@@ -56,7 +67,8 @@ On first render, the component checks `localStorage` for a stored `color-scheme`
 
 ## Accessibility
 
-The accessibility requirements this component must meet. The agent must not consider the component complete until all of these are satisfied.
+The accessibility requirements this component must meet. The agent must not
+consider the component complete until all of these are satisfied.
 
 - Must use a native `<button>` element
 - Must have an `aria-label` that reflects the current state, e.g. `"Switch to dark mode"` or `"Switch to light mode"`
@@ -77,7 +89,8 @@ How the component should behave when something goes wrong.
 
 ## Test cases
 
-The agent will generate one test function per entry. IDs must be unique within this spec and must match the test file exactly.
+The agent will generate one test function per entry. IDs must be unique within
+this spec and must match the test file exactly.
 
 - [ ] **TC-01** — Renders with no props and defaults to `initialTheme`
 - [ ] **TC-02** — Applies stored `localStorage` preference on first render
@@ -93,7 +106,8 @@ The agent will generate one test function per entry. IDs must be unique within t
 
 ## Out of scope
 
-Explicitly listing what this component does NOT cover prevents scope creep and helps the agent avoid building more than is required.
+Explicitly listing what this component does NOT cover prevents scope creep and
+helps the agent avoid building more than is required.
 
 - Displaying a text label alongside the toggle — icon only
 - Animating the theme transition
@@ -105,7 +119,7 @@ Explicitly listing what this component does NOT cover prevents scope creep and h
 
 A short code example showing how the component is used in practice.
 
-```ts
+```js
 import { ThemeToggle } from './ThemeToggle';
 
 const toggle = new ThemeToggle({
@@ -118,10 +132,11 @@ const toggle = new ThemeToggle({
 
 ## Notes for AI implementation
 
-Additional context, constraints, and implementation guidance that the agent should be aware of before writing any code.
+Additional context, constraints, and implementation guidance that the agent
+should be aware of before writing any code.
 
 - Read `docs/features/dark-mode.md` for full feature context before implementing
 - Apply the theme by setting `document.documentElement.setAttribute('data-theme', theme)`
 - All colour values in the app use CSS custom properties scoped to `[data-theme="light"]` and `[data-theme="dark"]` — this component only needs to toggle the attribute
-- CSS Modules: import from `./ThemeToggle.module.css`
+- CSS: import from `./ThemeToggle.css` or `./ThemeToggle.scss` depending on active styles selection in `docs/ai-context.md`
 - No animation libraries — CSS transitions only
