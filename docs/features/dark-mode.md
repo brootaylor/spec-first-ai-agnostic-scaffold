@@ -1,0 +1,86 @@
+# Feature: Dark Mode
+
+**Status:** Draft
+
+---
+
+## Overview
+
+A brief description of the feature and its purpose.
+
+Allow users to switch between light and dark colour schemes. The preference should persist across sessions and respect the user's operating system setting by default.
+
+---
+
+## Key
+
+A reference for the prefixes used throughout this document.
+
+| Prefix | Stands for | Description |
+|--------|------------|-------------|
+| `US-##` | User Story | A feature requirement from the user's perspective |
+| `AC-##` | Acceptance Criteria | A condition that must be met for the story to be complete |
+
+---
+
+## User stories
+
+Each user story describes a requirement from the user's perspective, followed by the acceptance criteria that must be met for it to be considered complete.
+
+### US-01 — System preference
+
+> As a user, I want the application to match my operating system colour scheme
+> by default, so I don't have to configure it manually.
+
+- [ ] **AC-01** — On first visit, the application detects the OS colour scheme via `prefers-color-scheme` and applies it automatically
+- [ ] **AC-02** — No preference is stored until the user makes a manual selection
+
+### US-02 — Manual toggle
+
+> As a user, I want to manually switch between light and dark mode, so I can
+> override my OS setting when I choose to.
+
+- [ ] **AC-01** — A toggle is accessible from every page
+- [ ] **AC-02** — Switching applies immediately without a page reload
+- [ ] **AC-03** — The selected preference is saved and restored on return visits
+
+### US-03 — Persistence
+
+> As a returning user, I want my colour scheme preference to be remembered, so
+> I don't have to set it every time I visit.
+
+- [ ] **AC-01** — Preference is stored in `localStorage` under the key `color-scheme`
+- [ ] **AC-02** — Stored preference takes priority over the OS setting on return visits
+- [ ] **AC-03** — Clearing browser storage resets the preference to OS default
+
+---
+
+## Out of scope
+
+Explicitly listing what this feature does NOT cover prevents scope creep and helps the agent avoid building more than is required.
+
+- Per-page or per-component colour scheme overrides
+- High contrast mode
+- Custom colour themes beyond light and dark
+
+---
+
+## Components required
+
+The following components must have a spec in `docs/specs/components/` before an agent can begin implementation.
+
+| Component | Spec |
+|-----------|------|
+| `ThemeToggle` | `docs/specs/components/theme-toggle.spec.md` |
+
+---
+
+## Notes for AI agents
+
+Additional context, constraints, and implementation guidance that the agent should be aware of before writing any code.
+
+- Colour scheme should be applied via a `data-theme` attribute on the root
+  `<html>` element, toggled between `"light"` and `"dark"`
+- All colour values should reference CSS custom properties — no hardcoded
+  colours anywhere in the codebase
+- The toggle must be keyboard accessible and meet WCAG 2.1 AA contrast requirements

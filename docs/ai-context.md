@@ -33,7 +33,7 @@ docs/
   ai-context.md                   # ← this file
   features/                       # ← user-facing feature specs
   specs/
-    _template.spec.md
+    _component-template.spec.md
     components/                   # ← authoritative component specs
 ```
 

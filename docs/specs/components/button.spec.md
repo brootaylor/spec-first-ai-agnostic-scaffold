@@ -1,19 +1,20 @@
 # Component Spec: Button
 
-**Status:** Ready for implementation
-**Last updated:** 2025-01
+**Status:** Ready
 
 ---
 
 ## Purpose
 
-A reusable, accessible button covering every interactive call-to-action across the
-application. Must support loading and disabled states and be usable by any team
-without additional configuration.
+A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.
+
+A reusable, accessible button covering every interactive call-to-action across the application. Must support loading and disabled states and be usable by any team without additional configuration.
 
 ---
 
 ## Interface
+
+The props, events, and public methods that define how this component is used. The agent will derive the TypeScript interface directly from this section.
 
 ### Props
 
@@ -28,7 +29,7 @@ without additional configuration.
 | `onClick` | `(event: MouseEvent) => void` | | — | Click handler |
 | `ariaLabel` | `string` | | — | Overrides the accessible label |
 
-### Events
+### Events / Callbacks
 
 | Event | Payload | Fires when |
 |-------|---------|-----------|
@@ -38,9 +39,11 @@ without additional configuration.
 
 ## Behaviour
 
+How the component behaves on first render, across its different states, and in response to user interaction.
+
 ### Default / initial state
-Renders as a native `<button>` with `type="button"`, the `primary` variant class,
-and the `md` size class. Fully interactive.
+
+Renders as a native `<button>` with `type="button"`, the `primary` variant class, and the `md` size class. Fully interactive.
 
 ### States
 
@@ -53,6 +56,7 @@ and the `md` size class. Fully interactive.
 | loading | `loading={true}` | Spinner inline; `aria-busy="true"`; click blocked |
 
 ### Interaction rules
+
 - When `loading` is `true` → spinner shown; label remains visible but muted
 - When `disabled` OR `loading` → `onClick` must never fire
 - `type="submit"` inside a `<form>` → form submits normally via the browser
@@ -60,6 +64,8 @@ and the `md` size class. Fully interactive.
 ---
 
 ## Accessibility
+
+The accessibility requirements this component must meet. The agent must not consider the component complete until all of these are satisfied.
 
 - Must use a native `<button>` — never a `<div>` or `<span>`
 - `disabled`: set both the HTML attribute AND `aria-disabled="true"`
@@ -71,12 +77,16 @@ and the `md` size class. Fully interactive.
 
 ## Error handling
 
+How the component should behave when something goes wrong.
+
 - If `onClick` throws, do not catch — let the error bubble
 - Invalid `variant` falls back to `'primary'` with a `console.warn` in dev only
 
 ---
 
 ## Test cases
+
+The agent will generate one test function per entry. IDs must be unique within this spec and must match the test file exactly.
 
 - [ ] **TC-01** — Renders a `<button>` with only the required `label` prop
 - [ ] **TC-02** — Applies the correct CSS class for each `variant` value
@@ -93,6 +103,8 @@ and the `md` size class. Fully interactive.
 
 ## Out of scope
 
+Explicitly listing what this component does NOT cover prevents scope creep and helps the agent avoid building more than is required.
+
 - Icon-only buttons → use `IconButton` component
 - Navigation / anchor behaviour → use `LinkButton` component
 - Button groups → use `ButtonGroup` component
@@ -100,6 +112,8 @@ and the `md` size class. Fully interactive.
 ---
 
 ## Example usage
+
+A short code example showing how the component is used in practice.
 
 ```ts
 import { Button } from './Button';
@@ -120,8 +134,8 @@ const deleteBtn = new Button({
 
 ## Notes for AI implementation
 
+Additional context, constraints, and implementation guidance that the agent should be aware of before writing any code.
+
 - CSS Modules: import from `./Button.module.css`
 - Spinner: `src/assets/spinner.svg` — import and inline; do not use `<img>`
 - No animation libraries — CSS only
-- Class names must match design tokens exactly:
-  `btn`, `btn--primary`, `btn--loading`, etc. (see `docs/design-tokens.md`)
