@@ -4,6 +4,33 @@ A step-by-step guide to using this scaffold to build a web project with an "Ai" 
 
 ---
 
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+**Always required:**
+
+| Tool | Notes |
+|------|-------|
+| [Git](https://git-scm.com) | Version control |
+| [Node.js](https://nodejs.org) | Required by most tooling — install the LTS version |
+| [npm](https://www.npmjs.com) | Comes with Node.js |
+| A code editor | [VS Code](https://code.visualstudio.com) is good option |
+
+**Agent-specific:**
+
+| Agent | Prerequisites |
+|-------|--------------|
+| Claude Code | Node.js + an [Anthropic API key](https://console.anthropic.com) |
+| Cursor | Download the [Cursor app](https://cursor.sh) |
+| GitHub Copilot | A GitHub account with [Copilot access](https://github.com/features/copilot) + the VS Code extension |
+
+**Stack-specific:**
+
+All stack dependencies are installed via `npm install`. Refer to your chosen tool's documentation for any additional setup.
+
+---
+
 ## Step 1 — Set up the scaffold
 
 Copy the scaffold into your project directory. Create any directories that don't exist yet:

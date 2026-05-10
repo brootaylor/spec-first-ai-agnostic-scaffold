@@ -66,7 +66,7 @@ my-project/
 
 This scaffold follows a spec-first workflow — specs are written before any code is generated. Each spec defines the interface, behaviour, states, and test cases for what's being built. The agent uses the spec to generate the implementation.
 
-See [WORKFLOW.md](./WORKFLOW.md) for the full step-by-step guide.
+See [WORKFLOW.md](./WORKFLOW.md) for prerequisites and the full step-by-step guide.
 
 ---
 
