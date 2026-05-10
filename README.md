@@ -13,7 +13,7 @@ The idea is for it to be agnostic to any specific LLM or agent framework, and in
 ```bash
 my-project/
 ├── README.md               # ← you are here
-├── AGENTS.md               # ← "Ai" agent setup and conventions
+├── SETUP.md               # ← "Ai" agent setup and conventions
 │
 ├── docs/
 │   ├── ai-context.md       # ← single source of truth for "Ai" agents
@@ -22,7 +22,7 @@ my-project/
 │       ├── _template.spec.md
 │       └── components/     # ← authoritative component specs
 │
-└── .agents/                # ← "Ai" agent config (see AGENTS.md)
+└── .agents/                # ← "Ai" agent config (see SETUP.md)
     ├── claude/
     ├── cursor/
     └── copilot/
@@ -37,7 +37,7 @@ Before any component is built, a spec is written that defines its interface, beh
 The sequence for any new component is:
 
 1. Write a spec in `docs/specs/components/` using `docs/specs/_template.spec.md`
-2. Run the agent command to scaffold the component (see `AGENTS.md`)
+2. Run the agent command to scaffold the component (see `SETUP.md`)
 3. Review the generated tests and implementation
 4. Iterate
 
@@ -47,4 +47,4 @@ Feature requirements live in `docs/features/`. Each feature doc links to the com
 
 ## Adding or removing an agent
 
-See `AGENTS.md` for instructions.
+See `SETUP.md` for instructions.
