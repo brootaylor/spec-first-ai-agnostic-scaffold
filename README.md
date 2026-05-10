@@ -1,4 +1,4 @@
-# Spec-First Scaffold for Any AI Agent
+# Spec-first Scaffold for any "Ai" Agent
 
 A starter template for building web applications with "Ai" agents using any large language model (LLM).
 
@@ -18,7 +18,9 @@ It also means the spec becomes the shared language between you and the agent —
 
 ## Choosing your stack
 
-[`docs/ai-context.md`](./docs/ai-context.md) includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool. The agent reads this before doing anything and uses it to make the right implementation decisions. Switching stack is as simple as changing the active selection.
+[`docs/ai-context.md`](./docs/ai-context.md) includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool.
+
+The agent reads this before doing anything and uses it to make the right implementation decisions. Switching stack is as simple as changing the active selection.
 
 ---
 
