@@ -6,7 +6,7 @@
 
 ## Purpose
 
-A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.
+> *A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.*
 
 A reusable, accessible button covering every interactive call-to-action across the application. Must support loading and disabled states and be usable by any team without additional configuration.
 

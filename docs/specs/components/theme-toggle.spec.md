@@ -6,7 +6,7 @@
 
 ## Purpose
 
-A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.
+> *A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.*
 
 A toggle control that allows users to switch between light and dark colour schemes. It reflects the current scheme and updates it immediately when activated. Used in the main navigation so it is accessible from every page.
 
