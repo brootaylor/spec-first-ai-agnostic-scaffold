@@ -17,10 +17,12 @@ my-project/
 │
 ├── docs/
 │   ├── ai-context.md                     # ← single source of truth for "Ai" agents
-│   ├── features/                         # ← user facing feature specs
+│   ├── features/                         # ← user-facing feature specs
 │   └── specs/
-│       ├── _component-template.spec.md
-│       └── components/                   # ← authoritative component specs
+│       ├── _component-template.spec.md   # ← spec template
+│       ├── components/                   # ← component specs
+│       ├── pages/                        # ← page / view specs
+│       └── layouts/                      # ← layout specs
 │
 └── .agents/                              # ← "Ai" agent config (see SETUP.md)
     ├── claude/
@@ -32,16 +34,18 @@ my-project/
 
 ## How it works
 
-Before any component is built, a spec is written that defines its interface, behaviour, states, and test cases. An "Ai" coding agent then uses that spec to generate the implementation.
+Before anything is built, a spec is written that defines its interface, behaviour, states, and test cases. An "Ai" coding agent then uses that spec to generate the implementation.
 
-The sequence for any new component is:
+This scaffold supports specs for features, components, pages, and layouts. Each type lives in its own directory under `docs/specs/`. See `docs/ai-context.md` for an explanation of each type and when to use it.
 
-1. Write a spec in `docs/specs/components/` using `docs/specs/_component-template.spec.md`
-2. Run the agent command to scaffold the component (see `SETUP.md`)
+The sequence for any new spec is:
+
+1. Write a spec using `docs/specs/_component-template.spec.md` as a starting point
+2. Run the agent command to scaffold the implementation (see `SETUP.md`)
 3. Review the generated tests and implementation
 4. Iterate
 
-Feature requirements live in `docs/features/`. Each feature doc links to the component specs it depends on, giving the agent the full picture before it writes a line of code.
+Feature requirements live in `docs/features/`. Each feature doc links to the specs it depends on, giving the agent the full picture before it writes a line of code.
 
 ---
 
