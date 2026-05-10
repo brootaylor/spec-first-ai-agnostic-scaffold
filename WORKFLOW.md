@@ -43,14 +43,20 @@ docs/specs/layouts/
 src/components/
 src/pages/
 src/layouts/
+src/scripts/
 .agents/claude/commands/
 .agents/cursor/
 .agents/copilot/
 ```
 
-You'll notice `package.json` is intentionally minimal — it contains only the project name and version.
+You'll notice `package.json` is intentionally minimal — it contains only the project name and version. Once you've chosen your stack in `docs/ai-context.md` (Step 3), the agent will populate it with the correct dependencies and generate any required config files (e.g. `vite.config.js`, `jest.config.js`) before writing any code.
 
-Once you've chosen your stack in `docs/ai-context.md` *(Step 3)*, the agent will populate it with the correct dependencies and generate any required config files (e.g. `vite.config.js`, `jest.config.js`) before writing any code.
+Two entry point files are included for the default Vanilla + Vite stack:
+
+- `src/index.html` — the HTML entry point Vite serves
+- `src/scripts/main.js` — the JavaScript entry point referenced by `index.html`
+
+If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own entry points.
 
 Commit everything to Git before you do anything else. This gives you a clean baseline to return to.
 

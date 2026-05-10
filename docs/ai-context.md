@@ -81,6 +81,12 @@ When the stack selection is read, the agent must complete the following before w
 2. Generate any required config files (e.g. `vite.config.js`, `jest.config.js`, `astro.config.mjs`) based on the active selections
 3. Do not install any dependencies not directly required by the active stack selections
 
+**Entry points:**
+
+- **Vanilla + Vite** — `src/index.html` and `src/scripts/main.js` are the entry points. Both are included in the scaffold as minimal stubs for the agent to build out
+- **Astro** — entry points are managed by Astro's own file-based routing. Remove `src/index.html` and `src/scripts/main.js` if switching to Astro
+- **Eleventy** — entry points are managed by Eleventy's own templating system. Remove `src/index.html` and `src/scripts/main.js` if switching to Eleventy
+
 ---
 
 ## Features and components
@@ -145,6 +151,8 @@ src/
       <LayoutName>.{js|ts}          # ← implementation
       <LayoutName>.{css|scss}       # ← styles
       <LayoutName>.spec.md          # ← co-located spec
+  scripts/
+    main.js                         # ← app entry point (Vanilla + Vite only)
   lib/                              # ← shared utilities
   types/                            # ← global types (TypeScript only)
 docs/
