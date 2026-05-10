@@ -25,46 +25,46 @@ Mark exactly one option per category as `[active]`. Leave all others blank.
 
 The core framework for this project. Pick one.
 
-| Framework | Active |
-|-----------|--------|
-| Eleventy (11ty) | |
-| Astro | |
-| Vanilla *(no framework)* | `[active]` |
+| Framework                  | Active     |
+|----------------------------|------------|
+| Eleventy (11ty)            |            |
+| Astro                      |            |
+| Vanilla *(no framework)*   | `[active]` |
 
 ### Language
 
-| Language | Active |
-|----------|--------|
-| TypeScript | |
-| JavaScript | `[active]` |
+| Language                   | Active     |
+|----------------------------|------------|
+| TypeScript                 |            |
+| JavaScript                 | `[active]` |
 
 ### Styles
 
-| Approach | Active |
-|----------|--------|
-| Plain CSS | `[active]` |
-| Sass | |
+| Approach                   | Active     |
+|----------------------------|------------|
+| Plain CSS                  | `[active]` |
+| Sass                       |            |
 
 ### Unit testing
 
-| Tool | Active |
-|------|--------|
-| Jest | `[active]` |
-| None | |
+| Tool                       | Active     |
+|----------------------------|------------|
+| Jest                       | `[active]` |
+| None                       |            |
 
 ### E2E testing
 
-| Tool | Active |
-|------|--------|
-| Playwright | |
-| None | `[active]` |
+| Tool                       | Active     |
+|----------------------------|------------|
+| Playwright                 |            |
+| None                       | `[active]` |
 
 ### Build
 
-| Tool | Active |
-|------|--------|
-| Vite | `[active]` |
-| None *(framework handles it)* | |
+| Tool                       | Active     |
+|----------------------------|------------|
+| Vite                       | `[active]` |
+| None *(uses framework)*    |            |
 
 ### Constraints
 
