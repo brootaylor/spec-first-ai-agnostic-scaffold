@@ -170,7 +170,7 @@ npm install
 npx @11ty/eleventy --serve
 ```
 
-For deployment, [Netlify](https://www.netlify.com) works well with all three. Connect your Git repository, set the build command and output directory for your stack, and Netlify handles the rest. Refer to your chosen framework's documentation for the exact build settings.
+> For deployment, [Netlify](https://www.netlify.com) works well with all three. Connect your Git repository, set the build command and output directory for your stack, and Netlify handles the rest. Refer to your chosen framework's documentation for the exact build settings.
 
 ---
 
