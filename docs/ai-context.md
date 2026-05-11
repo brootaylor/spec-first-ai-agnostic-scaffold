@@ -95,11 +95,11 @@ When the stack selection is read, the agent must complete the following before w
 
 **Entry points:**
 
-- **Vanilla + Vite** — `src/index.html` and `src/scripts/main.js` are the entry points. Both are included in the scaffold as minimal stubs for the agent to build out
-- **React** — `src/index.html` and `src/scripts/main.js` are the entry points. The agent should update `main.js` to mount the React app
-- **Svelte** — `src/index.html` and `src/scripts/main.js` are the entry points. The agent should update `main.js` to mount the Svelte app
-- **Astro** — entry points are managed by Astro's own file-based routing. Remove `src/index.html` and `src/scripts/main.js` if switching to Astro
-- **Eleventy** — entry points are managed by Eleventy's own templating system. Remove `src/index.html` and `src/scripts/main.js` if switching to Eleventy
+- **Vanilla + Vite** — `src/index.html` is the default home page and `src/scripts/main.js` is the JavaScript file it references. Both are included as minimal starting files for the agent to build out
+- **React** — `src/index.html` and `src/scripts/main.js` are the default starting files. The agent should update `main.js` to mount the React app
+- **Svelte** — `src/index.html` and `src/scripts/main.js` are the default starting files. The agent should update `main.js` to mount the Svelte app
+- **Astro** — pages and templating are managed by Astro's own file-based routing. Remove `src/index.html` and `src/scripts/main.js` if switching to Astro
+- **Eleventy** — pages and templating are managed by Eleventy's own templating system. Remove `src/index.html` and `src/scripts/main.js` if switching to Eleventy
 
 ---
 
@@ -166,7 +166,7 @@ src/
       <LayoutName>.{css|scss}       # ← styles
       <LayoutName>.spec.md          # ← co-located spec
   scripts/
-    main.js                         # ← app entry point (Vanilla + Vite only)
+    main.js                         # ← default starting file (Vanilla + Vite only)
   lib/                              # ← shared utilities
   types/                            # ← global types (TypeScript only)
 docs/
