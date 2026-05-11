@@ -11,7 +11,12 @@
 Claude Code expects to find this file at the project root as `CLAUDE.md`.
 It lives here instead at `.agents/claude/CLAUDE.md` as part of this project's
 agent-agnostic structure. Point Claude Code at this path when starting a session,
-or symlink it: `ln -s .agents/claude/CLAUDE.md CLAUDE.md`
+or try symlinking it — though this isn't guaranteed to work across all operating
+systems or tool versions:
+
+```bash
+ln -s .agents/claude/CLAUDE.md CLAUDE.md
+```
 
 ---
 
