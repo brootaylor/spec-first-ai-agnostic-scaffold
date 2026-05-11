@@ -27,9 +27,15 @@ The core framework for this project. Pick one.
 
 | Framework | Active |
 |-----------|--------|
-| Eleventy (11ty) | |
+| **Static Site Generators (SSG)** | |
+| Eleventy *(11ty)* | |
+| **Web Frameworks** | |
 | Astro | |
-| Vanilla (no framework) | `[active]` |
+| **Component Frameworks** | |
+| React | |
+| Svelte | |
+| **No framework** | |
+| Vanilla | `[active]` |
 
 ### Language
 
@@ -61,17 +67,23 @@ The core framework for this project. Pick one.
 
 ### Build
 
+Applies to **Vanilla only**. SSG, web, and component frameworks manage their own build pipeline.
+
 | Tool | Active |
 |------|--------|
 | Vite | `[active]` |
-| None (framework handles it) | |
+| None *(framework handles it)* | |
 
 ### Constraints
 
 Notes on combinations that don't make sense together.
 
-- **Astro** includes its own build pipeline — set Build to `None` when using Astro
-- **Eleventy** includes its own build pipeline — set Build to `None` when using Eleventy
+- **Eleventy** — includes its own build pipeline. Build selection does not apply
+- **Astro** — includes its own build pipeline. Build selection does not apply
+- **React** — pair with Vite for a simple setup, or Next.js for a full meta-framework. Build selection does not apply
+- **Svelte** — pair with Vite for a simple setup, or SvelteKit for a full meta-framework. Build selection does not apply
+- **React + Jest** — include `@testing-library/react` and `@testing-library/jest-dom` as dev dependencies
+- **Svelte + Jest** — include `@testing-library/svelte` as a dev dependency
 
 ### Agent instructions
 
@@ -84,6 +96,8 @@ When the stack selection is read, the agent must complete the following before w
 **Entry points:**
 
 - **Vanilla + Vite** — `src/index.html` and `src/scripts/main.js` are the entry points. Both are included in the scaffold as minimal stubs for the agent to build out
+- **React** — `src/index.html` and `src/scripts/main.js` are the entry points. The agent should update `main.js` to mount the React app
+- **Svelte** — `src/index.html` and `src/scripts/main.js` are the entry points. The agent should update `main.js` to mount the Svelte app
 - **Astro** — entry points are managed by Astro's own file-based routing. Remove `src/index.html` and `src/scripts/main.js` if switching to Astro
 - **Eleventy** — entry points are managed by Eleventy's own templating system. Remove `src/index.html` and `src/scripts/main.js` if switching to Eleventy
 

@@ -12,10 +12,10 @@ Before you begin, make sure you have the following installed:
 
 | Tool | Notes |
 |------|-------|
-| [Git](https://git-scm.com) | Version control |
+| [Git](https://git-scm.com) | Required to clone this scaffold. Recommended for version control throughout development |
 | [Node.js](https://nodejs.org) | Required by most tooling — install the LTS version |
 | [npm](https://www.npmjs.com) | Comes with Node.js |
-| A code editor | [VS Code](https://code.visualstudio.com) is recommended |
+| A code editor | [VS Code](https://code.visualstudio.com) is a good option |
 
 **Agent-specific:**
 
@@ -23,7 +23,7 @@ Before you begin, make sure you have the following installed:
 |-------|--------------|
 | Claude Code | Node.js + an [Anthropic API key](https://console.anthropic.com) |
 | Cursor | Download the [Cursor app](https://cursor.sh) |
-| GitHub Copilot | A GitHub account with [Copilot access](https://github.com/features/copilot) + the VS Code extension |
+| GitHub Copilot | A GitHub account with [Copilot access](https://github.com/features/copilot) + the relevant IDE's extension |
 
 **Stack-specific:**
 
@@ -56,7 +56,7 @@ Two entry point files are included for the default Vanilla + Vite stack:
 - `src/index.html` — the HTML entry point Vite serves
 - `src/scripts/main.js` — the JavaScript entry point referenced by `index.html`
 
-If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own entry points.
+React and Svelte also use these entry points — the agent will update `main.js` to mount the app correctly for the active framework. If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own entry points.
 
 Commit everything to Git before you do anything else. This gives you a clean baseline to return to.
 
@@ -82,13 +82,28 @@ Open `docs/ai-context.md` and do two things:
 
 **Describe your project** — replace the placeholder under "What this project is" with a plain description of what you're building and who it's for.
 
-**Choose your stack** — mark exactly one option per category as `[active]` in the Stack section. For example:
+**Choose your stack** — open `docs/ai-context.md` and mark exactly one option per category as `[active]`. Categories to configure:
 
-| Framework                | Active     |
-|--------------------------|------------|
-| Eleventy (11ty)          |            |
-| Astro                    |            |
-| Vanilla *(no framework)* | `[active]` |
+- Framework
+- Language
+- Styles
+- Unit testing
+- E2E testing
+- Build *(Vanilla only)*
+
+For example, the Framework category looks like this:
+
+| Framework | Active |
+|-----------|--------|
+| **Static Site Generators (SSG)** | |
+| Eleventy *(11ty)* | |
+| **Web Frameworks** | |
+| Astro | |
+| **Component Frameworks** | |
+| React | |
+| Svelte | |
+| **No framework** | |
+| Vanilla | `[active]` |
 
 This is the first thing the agent reads. Getting it right before writing any specs saves time later.
 
@@ -157,9 +172,37 @@ If something is wrong, update the spec first — then ask the agent to fix the i
 
 ## Step 8 — Run it locally or deploy
 
-How you run the project depends on your active stack selection in `docs/ai-context.md`.
+How you run the project depends on your active framework selection in `docs/ai-context.md`.
 
 **Vanilla + Vite:**
+
+```bash
+npm install
+npm run dev
+```
+
+**React + Vite:**
+
+```bash
+npm install
+npm run dev
+```
+
+**React + Next.js:**
+
+```bash
+npm install
+npm run dev
+```
+
+**Svelte + Vite:**
+
+```bash
+npm install
+npm run dev
+```
+
+**Svelte + SvelteKit:**
 
 ```bash
 npm install
@@ -180,7 +223,7 @@ npm install
 npx @11ty/eleventy --serve
 ```
 
-For deployment, [Netlify](https://www.netlify.com) works well with all three. Connect your Git repository, set the build command and output directory for your stack, and Netlify handles the rest. Refer to your chosen framework's documentation for the exact build settings.
+For deployment, [Netlify](https://www.netlify.com) works well with all of these frameworks. Connect your Git repository, set the build command and output directory for your framework, and Netlify handles the rest. Refer to your chosen framework's documentation for the exact build settings.
 
 ---
 
