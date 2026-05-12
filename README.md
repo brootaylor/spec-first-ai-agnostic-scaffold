@@ -61,7 +61,7 @@ The scaffold comes with a small set of working examples to illustrate the patter
 
 - **Feature:** Dark mode (`docs/features/dark-mode.md`)
 - **Components:** Button, ThemeToggle (`docs/specs/components/`)
-- **Page:** Dashboard (`docs/specs/pages/`)
+- **Page:** Home (`docs/specs/pages/`)
 - **Layout:** MainLayout (`docs/specs/layouts/`)
 
 These are real specs that follow the same conventions you would use in a production project. Use them as reference or replace them with your own.
