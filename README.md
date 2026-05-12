@@ -1,6 +1,6 @@
 # Tech-Agnostic Spec-First Development Scaffold
 
-A starter template for building web projects using a spec-first approach.
+A starter template for building web projects using a tech-agnostic spec-first approach.
 
 Write the spec first. Then build — by hand, with an AI agent, or both.
 
@@ -95,4 +95,6 @@ See [WORKFLOW.md](./WORKFLOW.md) for prerequisites and the full step-by-step gui
 
 ## Using an AI agent
 
-See [AGENTS.md](./AGENTS.md) for instructions on setting up and switching between agents.
+See [AGENTS.md](./AGENTS.md) for instructions on setting up and switching between agents. Each agent has its own strengths and weaknesses, so it's a matter of experimentation to see which one works best for you.
+
+When using an agent, the workflow is the same — write the spec first, then ask the agent to implement it. The agent will read the spec, understand what's required, and generate the code accordingly.
