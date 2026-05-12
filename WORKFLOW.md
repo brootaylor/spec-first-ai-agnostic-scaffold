@@ -136,7 +136,17 @@ This is the first thing the agent reads. Getting it right before writing any spe
 
 ---
 
-## Step 4 — Write a feature spec
+## Step 4 — Define your design tokens
+
+`docs/design-tokens.md` is a template for defining the visual language of your project — colours, spacing, typography, and other design constants.
+
+**If building by hand** — fill in `docs/design-tokens.md` with your token values, then implement them in `src/styles/tokens.scss` before writing any styles.
+
+**If using an AI agent** — the agent must read `docs/design-tokens.md` before writing any styles. If the file is empty, it will stop and ask you to fill it in first.
+
+---
+
+## Step 5 — Write a feature spec
 
 Pick the first feature you want to build. Create a spec for it in `docs/features/`.
 
@@ -146,7 +156,7 @@ Don't start writing component specs yet. Finish the feature spec first.
 
 ---
 
-## Step 5 — Write your specs
+## Step 6 — Write your specs
 
 Look at the "Components required" section of your feature spec. For each item listed, create a spec in the relevant directory using `docs/specs/_component-template.spec.md` as your starting point:
 
@@ -162,7 +172,7 @@ Set the status to `Draft` while writing. Change it to `Ready` only when every se
 
 ---
 
-## Step 6 — Build
+## Step 7 — Build
 
 Once the spec status is set to `Ready`, it's time to build.
 
@@ -187,9 +197,9 @@ If the agent stops and asks a question, that usually means the spec is ambiguous
 
 ---
 
-## Step 7 — Review the output
+## Step 8 — Review the output
 
-The generated code will appear in `src/` under the relevant directory *(see the table in Step 5)*. Check it against the spec:
+The generated code will appear in `src/` under the relevant directory *(see the table in Step 6)*. Check it against the spec:
 
 - Does every `TC-##` in the spec have a corresponding passing test?
 - Does the implementation match the behaviour described?
@@ -201,7 +211,7 @@ If something is wrong, update the spec first — then ask the agent to fix the i
 
 ---
 
-## Step 8 — Run it locally or deploy
+## Step 9 — Run it locally or deploy
 
 How you run the project depends on your active framework selection in `docs/project-brief.md`.
 
@@ -258,9 +268,9 @@ For deployment, [Netlify](https://www.netlify.com) works well with all of these 
 
 ---
 
-## Step 9 — Iterate
+## Step 10 — Iterate
 
-Repeat Steps 4–7 for each feature. As the project grows, update `docs/project-brief.md` with any new conventions or constraints the agent needs to know about.
+Repeat Steps 5–8 for each feature. As the project grows, update `docs/project-brief.md` with any new conventions or constraints the agent needs to know about.
 
 ---
 
