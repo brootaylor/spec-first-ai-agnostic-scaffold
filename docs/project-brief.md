@@ -1,8 +1,9 @@
-# AI Context
+# Project Brief
 
-This file is the single source of truth for "Ai" agent context.
+This file is the single source of truth for project context.
 
-It is agent-agnostic &mdash; do not add anything here that is specific to Claude Code, Cursor, Copilot, or any other agent/tool.
+It is tech-agnostic — do not add anything here that is specific to any particular
+tool, framework, or AI agent beyond what is selected in the Stack section below.
 
 Agent-specific configs live in `.agents/`.
 
@@ -170,7 +171,7 @@ src/
   lib/                              # ← shared utilities
   types/                            # ← global types (TypeScript only)
 docs/
-  ai-context.md                   # ← this file
+  project-brief.md                # ← this file
   features/                       # ← user-facing feature specs
   specs/
     _component-template.spec.md   # ← spec template
@@ -181,7 +182,7 @@ docs/
 
 ---
 
-## Where to look for more context
+## Where to look
 
 | Question | File |
 |----------|------|

@@ -26,7 +26,7 @@ Look for `docs/specs/components/<component-name>.spec.md`.
 
 ### Step 2 — Derive the interface
 
-From the spec's Props table. Use the active language selection in `docs/ai-context.md`
+From the spec's Props table. Use the active language selection in `docs/project-brief.md`
 to determine whether to generate a TypeScript interface or a JavaScript equivalent.
 Show it to the user and confirm before writing files.
 
@@ -41,7 +41,7 @@ Show it to the user and confirm before writing files.
 | `<ComponentName>.{css\|scss}` | Empty skeleton |
 | `<ComponentName>.spec.md` | Copy of `docs/specs/components/<name>.spec.md` |
 
-File extensions follow the active stack selection in `docs/ai-context.md`.
+File extensions follow the active stack selection in `docs/project-brief.md`.
 
 ### Step 4 — Write tests before implementation
 
@@ -53,7 +53,7 @@ Write until all tests pass.
 
 ### Step 6 — Run tests
 
-Run the test command for the active unit testing tool in `docs/ai-context.md`:
+Run the test command for the active unit testing tool in `docs/project-brief.md`:
 
 - **Jest** → `npm test`
 - **None** → skip this step
@@ -75,5 +75,5 @@ Confirm all tests pass before finishing.
 - Never skip Step 1
 - Never add props not listed in the spec
 - One `it()` per `TC-##` — IDs must match the spec exactly
-- File extensions must match the active stack selection in `docs/ai-context.md`
+- File extensions must match the active stack selection in `docs/project-brief.md`
 - Do not install new packages as part of this command

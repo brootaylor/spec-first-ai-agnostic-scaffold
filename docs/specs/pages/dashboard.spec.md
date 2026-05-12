@@ -3,7 +3,7 @@
 **Status:** Draft
 
 > *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
 
 ---
 
@@ -52,7 +52,6 @@ The components this page is composed of. Each must have a spec in
 How the page behaves on first load and in response to user interaction.
 
 ### Default / initial state
-
 Describe what the page renders and does when first visited by an authenticated user.
 
 ### States

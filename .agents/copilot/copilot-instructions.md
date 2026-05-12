@@ -1,6 +1,6 @@
 # GitHub Copilot — Agent Config
 
-> Read `docs/ai-context.md` before doing anything else.
+> Read `docs/project-brief.md` before doing anything else.
 > All project conventions, workflow rules, and context live there.
 > This file only contains additions specific to GitHub Copilot.
 
@@ -11,7 +11,7 @@
 Copilot expects this file at `.github/copilot-instructions.md`. It lives here
 instead at `.agents/copilot/copilot-instructions.md` as part of this project's
 agent-agnostic structure. Symlinking is one option, though it isn't guaranteed
-to work across all operating systems or tool versions:
+to work across all operating systems or agent versions:
 
 ```bash
 ln -s .agents/copilot/copilot-instructions.md .github/copilot-instructions.md

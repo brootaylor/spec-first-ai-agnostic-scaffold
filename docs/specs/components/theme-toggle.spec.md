@@ -3,7 +3,7 @@
 **Status:** Draft
 
 > *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
 
 ---
 
@@ -138,5 +138,5 @@ should be aware of before writing any code.
 - Read `docs/features/dark-mode.md` for full feature context before implementing
 - Apply the theme by setting `document.documentElement.setAttribute('data-theme', theme)`
 - All colour values in the app use CSS custom properties scoped to `[data-theme="light"]` and `[data-theme="dark"]` — this component only needs to toggle the attribute
-- CSS: import from `./ThemeToggle.css` or `./ThemeToggle.scss` depending on active styles selection in `docs/ai-context.md`
+- CSS: import from `./ThemeToggle.css` or `./ThemeToggle.scss` depending on active styles selection
 - No animation libraries — CSS transitions only

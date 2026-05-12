@@ -3,7 +3,7 @@
 **Status:** Ready
 
 > *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
 
 ---
 
@@ -50,7 +50,6 @@ How the component behaves on first render, across its different states, and in
 response to user interaction.
 
 ### Default / initial state
-
 Renders as a native `<button>` with `type="button"`, the `primary` variant class,
 and the `md` size class. Fully interactive.
 
@@ -65,7 +64,6 @@ and the `md` size class. Fully interactive.
 | loading | `loading={true}` | Spinner inline; `aria-busy="true"`; click blocked |
 
 ### Interaction rules
-
 - When `loading` is `true` → spinner shown; label remains visible but muted
 - When `disabled` OR `loading` → `onClick` must never fire
 - `type="submit"` inside a `<form>` → form submits normally via the browser
@@ -149,6 +147,6 @@ const deleteBtn = new Button({
 Additional context, constraints, and implementation guidance that the agent
 should be aware of before writing any code.
 
-- CSS: import from `./Button.css` or `./Button.scss` depending on active styles selection in `docs/ai-context.md`
+- CSS: import from `./Button.css` or `./Button.scss` depending on active styles selection
 - Spinner: `src/assets/spinner.svg` — import and inline; do not use `<img>`
 - No animation libraries — CSS only

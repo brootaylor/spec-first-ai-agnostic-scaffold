@@ -3,7 +3,7 @@
 **Status:** Draft
 
 > *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/ai-context.md`.*
+> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
 
 ---
 
@@ -82,4 +82,4 @@ Additional context, constraints, and implementation guidance that the agent
 should be aware of before writing any code.
 
 - The skip navigation link should point to `#main-content` and be visually hidden until focused
-- CSS: import from `./MainLayout.css` or `./MainLayout.scss` depending on active styles selection in `docs/ai-context.md`
+- CSS: import from `./MainLayout.css` or `./MainLayout.scss` depending on active styles selection
