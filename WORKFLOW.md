@@ -33,21 +33,44 @@ All stack dependencies are installed via `npm install`. Refer to your chosen fra
 
 ## Step 1 — Set up the scaffold
 
-Copy the scaffold into your project directory. Create any directories that don't exist yet:
+**Comes with the scaffold — no action needed:**
 
 ```bash
-docs/features/
-docs/specs/components/
-docs/specs/pages/
-docs/specs/layouts/
+README.md
+WORKFLOW.md
+AGENTS.md
+package.json
+.gitignore
+docs/project-brief.md
+docs/design-tokens.md
+docs/features/dark-mode.md
+docs/specs/_component-template.spec.md
+docs/specs/components/button.spec.md
+docs/specs/components/theme-toggle.spec.md
+docs/specs/pages/home.spec.md
+docs/specs/layouts/main-layout.spec.md
+src/index.html
+src/scripts/main.js
+src/styles/tokens.scss
+src/styles/main.scss
+.agents/claude/CLAUDE.md
+.agents/claude/settings.json
+.agents/claude/commands/create-component.md
+.agents/cursor/rules
+.agents/copilot/copilot-instructions.md
+```
+
+> The files above are part of the default scaffold. Many are placeholder examples — the spec files, feature docs, and style stubs are there to illustrate the patterns, not to be used as-is. Replace or modify them to suit your project.
+
+**If building by hand** — these directories can be created as needed:
+
+```bash
 src/components/
 src/pages/
 src/layouts/
-src/scripts/
-.agents/claude/commands/
-.agents/cursor/
-.agents/copilot/
 ```
+
+**If using an AI agent** — the agent will create any missing directories as needed when scaffolding components, pages, and layouts.
 
 You'll notice `package.json` is intentionally minimal — it contains only the project name and version. Once you've chosen your stack in `docs/project-brief.md` (Step 3), it needs to be populated with the correct dependencies for your chosen framework, language, testing tools, and build tool.
 
