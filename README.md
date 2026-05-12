@@ -10,7 +10,14 @@ Write the spec first. Then build — by hand, with an AI agent, or both.
 
 ## Getting started
 
-Click the **"Use this template"** button at the top of this repo to create a new repository with all the scaffold files as a clean starting point. From there, follow [WORKFLOW.md](./WORKFLOW.md) to set up your project.
+If you have a GitHub account, click the **"Use this template"** button at the top of this repo to create a new repository with all the scaffold files as a clean starting point.
+
+Alternatively:
+
+- **Clone it** — `git clone https://github.com/brootaylor/tech-agnostic-spec-first-dev-scaffold.git`
+- **Download as ZIP** — click **Code → Download ZIP** on the repo page
+
+From there, follow [WORKFLOW.md](./WORKFLOW.md) to set up your project.
 
 ---
 
@@ -88,6 +95,4 @@ See [WORKFLOW.md](./WORKFLOW.md) for prerequisites and the full step-by-step gui
 
 ## Using an AI agent
 
-See [AGENTS.md](./AGENTS.md) for instructions on setting up and switching between agents. Each agent has its own strengths and weaknesses, so it's a matter of experimentation to see which one works best for you.
-
-When using an agent, the workflow is the same — write the spec first, then ask the agent to implement it. The agent will read the spec, understand what's required, and generate the code accordingly.
+See [AGENTS.md](./AGENTS.md) for instructions on setting up and switching between agents.
