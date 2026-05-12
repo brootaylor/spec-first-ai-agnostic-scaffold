@@ -2,9 +2,6 @@
 
 **Status:** Draft
 
-> *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
-
 ---
 
 ## Purpose
@@ -20,20 +17,20 @@ activated. Used in the main navigation so it is accessible from every page.
 
 ## Interface
 
-The props, events, and public methods that define how this component is used.
-The agent will derive the interface directly from this section.
+The props, attributes, and events that define how this component is used.
+The agent will derive the implementation interface directly from this section.
 
-### Props / Parameters
+### Props / Attributes
 
-| Prop | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |------|------|:--------:|---------|-------------|
-| `initialTheme` | `'light' \| 'dark'` | | `'light'` | The theme to apply on first render if no stored preference exists |
+| `initialTheme` | `light` / `dark` | | `light` | The theme to apply on first render if no stored preference exists |
 
 ### Events / Callbacks
 
-| Event | Payload | Fires when |
-|-------|---------|------------|
-| `onChange` | `'light' \| 'dark'` | The user activates the toggle |
+| Event | Fires when |
+|-------|------------|
+| change / onChange / on:change | The user activates the toggle |
 
 ---
 
@@ -53,15 +50,15 @@ The current scheme is reflected visually in the toggle.
 
 | State | Trigger | Visual / functional result |
 |-------|---------|---------------------------|
-| light | Theme is `'light'` | Toggle reflects light mode is active |
-| dark | Theme is `'dark'` | Toggle reflects dark mode is active |
+| light | Theme is `light` | Toggle reflects light mode is active |
+| dark | Theme is `dark` | Toggle reflects dark mode is active |
 
 ### Interaction rules
 
 - When the user activates the toggle → the theme switches immediately
 - When the theme switches → `data-theme` on the root `<html>` element is updated
 - When the theme switches → the new preference is saved to `localStorage` under the key `color-scheme`
-- When the theme switches → `onChange` fires with the new theme value
+- When the theme switches → the change event fires with the new theme value
 
 ---
 
@@ -83,7 +80,7 @@ consider the component complete until all of these are satisfied.
 How the component should behave when something goes wrong.
 
 - If `localStorage` is unavailable, fall back to OS preference or `initialTheme` silently — do not throw
-- If an invalid `initialTheme` value is passed, fall back to `'light'` and emit a `console.warn` in development only
+- If an invalid `initialTheme` value is passed, fall back to `light` and emit a `console.warn` in development only
 
 ---
 
@@ -98,7 +95,7 @@ this spec and must match the test file exactly.
 - [ ] **TC-04** — Activating the toggle switches the theme
 - [ ] **TC-05** — Activating the toggle updates `data-theme` on the root `<html>` element
 - [ ] **TC-06** — Activating the toggle saves the new preference to `localStorage`
-- [ ] **TC-07** — `onChange` fires with the correct theme value when toggled
+- [ ] **TC-07** — Change event fires with the correct theme value when toggled
 - [ ] **TC-08** — `aria-label` reflects the current state correctly
 - [ ] **TC-09** — Falls back gracefully when `localStorage` is unavailable
 
@@ -117,15 +114,33 @@ helps the agent avoid building more than is required.
 
 ## Example usage
 
-A short code example showing how the component is used in practice.
+How this component is implemented depends on the active framework selection in
+`docs/project-brief.md`.
 
-```js
-import { ThemeToggle } from './ThemeToggle';
+**Vanilla:**
 
-const toggle = new ThemeToggle({
-  initialTheme: 'light',
-  onChange: (theme) => console.log('Theme changed to:', theme),
-});
+```html
+<button class="theme-toggle" aria-label="Switch to dark mode">
+  <!-- icon -->
+</button>
+```
+
+**Astro:**
+
+```astro
+<ThemeToggle initialTheme="light" />
+```
+
+**React:**
+
+```jsx
+<ThemeToggle initialTheme="light" onChange={(theme) => console.log(theme)} />
+```
+
+**Svelte:**
+
+```svelte
+<ThemeToggle initialTheme="light" on:change={(e) => console.log(e.detail)} />
 ```
 
 ---
@@ -136,7 +151,7 @@ Additional context, constraints, and implementation guidance that the agent
 should be aware of before writing any code.
 
 - Read `docs/features/dark-mode.md` for full feature context before implementing
-- Apply the theme by setting `document.documentElement.setAttribute('data-theme', theme)`
-- All colour values in the app use CSS custom properties scoped to `[data-theme="light"]` and `[data-theme="dark"]` — this component only needs to toggle the attribute
+- Apply the theme by setting `data-theme` on the root `<html>` element
+- All colour values should use CSS custom properties scoped to `[data-theme="light"]` and `[data-theme="dark"]` — this component only needs to toggle the attribute
 - CSS: import from `./ThemeToggle.css` or `./ThemeToggle.scss` depending on active styles selection
 - No animation libraries — CSS transitions only

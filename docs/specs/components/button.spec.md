@@ -2,9 +2,6 @@
 
 **Status:** Ready
 
-> *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
-
 ---
 
 ## Purpose
@@ -20,27 +17,25 @@ without additional configuration.
 
 ## Interface
 
-The props, events, and public methods that define how this component is used.
-The agent will derive the interface directly from this section.
+The props, attributes, and events that define how this component is used.
+The agent will derive the implementation interface directly from this section.
 
-### Props
+### Props / Attributes
 
-| Prop | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |------|------|:--------:|---------|-------------|
-| `label` | `string` | ✓ | — | Visible button text |
-| `variant` | `'primary' \| 'secondary' \| 'danger' \| 'ghost'` | | `'primary'` | Visual style |
-| `size` | `'sm' \| 'md' \| 'lg'` | | `'md'` | Size preset |
-| `disabled` | `boolean` | | `false` | Prevents interaction |
-| `loading` | `boolean` | | `false` | Shows spinner; prevents interaction |
-| `type` | `'button' \| 'submit' \| 'reset'` | | `'button'` | HTML button type |
-| `onClick` | function | | — | Click handler; receives the click event |
-| `ariaLabel` | `string` | | — | Overrides the accessible label |
+| `label` | string | ✓ | — | Visible button text |
+| `variant` | `primary` / `secondary` / `danger` / `ghost` | | `primary` | Visual style |
+| `size` | `sm` / `md` / `lg` | | `md` | Size preset |
+| `disabled` | boolean | | `false` | Prevents interaction |
+| `loading` | boolean | | `false` | Shows spinner; prevents interaction |
+| `type` | `button` / `submit` / `reset` | | `button` | HTML button type |
 
 ### Events / Callbacks
 
 | Event | Fires when |
 |-------|-----------|
-| `onClick` | User clicks and button is neither disabled nor loading |
+| click / onClick / on:click | User clicks and button is neither disabled nor loading |
 
 ---
 
@@ -51,8 +46,8 @@ response to user interaction.
 
 ### Default / initial state
 
-Renders as a native `<button>` with `type="button"`, the `primary` variant class,
-and the `md` size class. Fully interactive.
+Renders as a native `<button>` element with the `primary` variant and `md` size.
+Fully interactive.
 
 ### States
 
@@ -61,13 +56,13 @@ and the `md` size class. Fully interactive.
 | default | — | Fully interactive |
 | hover | Pointer over | Visual feedback; no layout shift |
 | focus | Keyboard focus | Visible ring (3:1 contrast min) |
-| disabled | `disabled={true}` | HTML `disabled` + `aria-disabled="true"`; click blocked |
-| loading | `loading={true}` | Spinner inline; `aria-busy="true"`; click blocked |
+| disabled | `disabled` is true | HTML `disabled` attr + `aria-disabled="true"`; click blocked |
+| loading | `loading` is true | Spinner inline; `aria-busy="true"`; click blocked |
 
 ### Interaction rules
 
-- When `loading` is `true` → spinner shown; label remains visible but muted
-- When `disabled` OR `loading` → `onClick` must never fire
+- When `loading` is true → spinner shown; label remains visible but muted
+- When `disabled` OR `loading` → click event must never fire
 - `type="submit"` inside a `<form>` → form submits normally via the browser
 
 ---
@@ -77,7 +72,7 @@ and the `md` size class. Fully interactive.
 The accessibility requirements this component must meet. The agent must not
 consider the component complete until all of these are satisfied.
 
-- Must use a native `<button>` — never a `<div>` or `<span>`
+- Must use a native `<button>` element — never a `<div>` or `<span>`
 - `disabled`: set both the HTML attribute AND `aria-disabled="true"`
 - `loading`: set `aria-busy="true"`
 - Focus ring: minimum 3:1 contrast (WCAG 2.1 AA)
@@ -89,8 +84,8 @@ consider the component complete until all of these are satisfied.
 
 How the component should behave when something goes wrong.
 
-- If `onClick` throws, do not catch — let the error bubble
-- Invalid `variant` falls back to `'primary'` with a `console.warn` in dev only
+- If the click handler throws, do not catch — let the error bubble
+- Invalid `variant` falls back to `primary` with a `console.warn` in dev only
 
 ---
 
@@ -99,14 +94,14 @@ How the component should behave when something goes wrong.
 The agent will generate one test function per entry. IDs must be unique within
 this spec and must match the test file exactly.
 
-- [ ] **TC-01** — Renders a `<button>` with only the required `label` prop
+- [ ] **TC-01** — Renders a `<button>` with only the required `label`
 - [ ] **TC-02** — Applies the correct CSS class for each `variant` value
 - [ ] **TC-03** — Applies the correct CSS class for each `size` value
-- [ ] **TC-04** — `onClick` fires when the button is enabled and clicked
-- [ ] **TC-05** — `onClick` does NOT fire when `disabled={true}`
-- [ ] **TC-06** — `onClick` does NOT fire when `loading={true}`
-- [ ] **TC-07** — Spinner rendered and `aria-busy="true"` set when `loading={true}`
-- [ ] **TC-08** — `aria-disabled="true"` present when `disabled={true}`
+- [ ] **TC-04** — Click event fires when the button is enabled
+- [ ] **TC-05** — Click event does NOT fire when `disabled` is true
+- [ ] **TC-06** — Click event does NOT fire when `loading` is true
+- [ ] **TC-07** — Spinner rendered and `aria-busy="true"` set when `loading` is true
+- [ ] **TC-08** — `aria-disabled="true"` present when `disabled` is true
 - [ ] **TC-09** — `type="submit"` triggers form submission
 - [ ] **TC-10** — `ariaLabel` prop sets `aria-label` on the element
 
@@ -125,21 +120,31 @@ helps the agent avoid building more than is required.
 
 ## Example usage
 
-A short code example showing how the component is used in practice.
+How this component is implemented depends on the active framework selection in
+`docs/project-brief.md`.
 
-```js
-import { Button } from './Button';
+**Vanilla:**
 
-const saveBtn = new Button({
-  label: 'Save changes',
-  onClick: (e) => handleSave(e),
-});
+```html
+<button class="btn btn--primary" type="button">Save changes</button>
+```
 
-const deleteBtn = new Button({
-  label: 'Delete account',
-  variant: 'danger',
-  loading: isDeleting,
-});
+**Astro:**
+
+```astro
+<Button label="Save changes" variant="primary" />
+```
+
+**React:**
+
+```jsx
+<Button label="Save changes" variant="primary" onClick={handleSave} />
+```
+
+**Svelte:**
+
+```svelte
+<Button label="Save changes" variant="primary" on:click={handleSave} />
 ```
 
 ---

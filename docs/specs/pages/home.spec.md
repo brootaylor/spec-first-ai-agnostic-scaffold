@@ -2,9 +2,6 @@
 
 **Status:** Draft
 
-> *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
-
 ---
 
 ## Purpose
@@ -75,6 +72,58 @@ The accessibility requirements this page must meet.
 - Page title must be set to reflect the current page
 - Landmark regions must be present (header, main, footer)
 - Focus must move to the main content area on navigation
+
+---
+
+## Example usage
+
+How this page is implemented depends on the active framework selection in
+`docs/project-brief.md`.
+
+**Vanilla:**
+
+```html
+<!-- src/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head><title>Home</title></head>
+  <body>…</body>
+</html>
+```
+
+**Astro:**
+
+```astro
+<!-- src/pages/index.astro -->
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+<MainLayout pageTitle="Home">
+  <!-- page content -->
+</MainLayout>
+```
+
+**React:**
+
+```jsx
+// src/pages/Home.jsx
+export function Home() {
+  return (
+    <MainLayout pageTitle="Home">
+      {/* page content */}
+    </MainLayout>
+  );
+}
+```
+
+**Svelte:**
+
+```svelte
+<!-- src/pages/Home.svelte -->
+<MainLayout pageTitle="Home">
+  <!-- page content -->
+</MainLayout>
+```
 
 ---
 

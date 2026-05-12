@@ -2,9 +2,6 @@
 
 **Status:** Draft
 
-> *Type annotations in this spec apply when TypeScript is the active language.
-> CSS imports are `.css` or `.scss` depending on the active styles selection in `docs/project-brief.md`.*
-
 ---
 
 ## Purpose
@@ -12,23 +9,23 @@
 > A single paragraph describing what problem this layout solves, who uses it,
 > and when. Avoid describing how it looks — describe why it exists.
 
-The primary layout wrapping all authenticated pages. Provides a consistent
-structure with a header, main content area, and footer so individual pages
-only need to concern themselves with their own content.
+The primary layout wrapping all pages. Provides a consistent structure with
+a header, main content area, and footer so individual pages only need to
+concern themselves with their own content.
 
 ---
 
 ## Interface
 
-The props that define how this layout is used.
-The agent will derive the interface directly from this section.
+The props and attributes that define how this layout is used.
+The agent will derive the implementation interface directly from this section.
 
-### Props / Parameters
+### Props / Attributes
 
-| Prop | Type | Required | Default | Description |
+| Name | Type | Required | Default | Description |
 |------|------|:--------:|---------|-------------|
-| `children` | element | ✓ | — | The page content to render in the main content area |
-| `pageTitle` | `string` | ✓ | — | Sets the page `<title>` and main heading |
+| `children` | element / slot | ✓ | — | The page content to render in the main content area |
+| `pageTitle` | string | ✓ | — | Sets the page `<title>` and main heading |
 
 ---
 
@@ -39,7 +36,7 @@ A description of the regions this layout renders and their purpose.
 | Region | Element | Purpose |
 |--------|---------|---------|
 | Header | `<header>` | Site navigation and global controls (e.g. theme toggle) |
-| Main | `<main>` | Page content passed via `children` |
+| Main | `<main>` | Page content passed via children / slot |
 | Footer | `<footer>` | Secondary navigation and legal links |
 
 ---
@@ -61,9 +58,8 @@ How the layout behaves on first render and in response to user interaction.
 
 ### Default / initial state
 
-Renders the header, main content area containing `children`, and footer.
-The `pageTitle` is applied to the document `<title>` and rendered as the
-main `<h1>` on the page.
+Renders the header, main content area, and footer. The `pageTitle` is applied
+to the document `<title>` and rendered as the main `<h1>` on the page.
 
 ---
 
@@ -74,6 +70,47 @@ The accessibility requirements this layout must meet.
 - Must use semantic HTML landmark elements (`<header>`, `<main>`, `<footer>`)
 - `pageTitle` must be reflected in both the document `<title>` and a visible `<h1>`
 - A skip navigation link must be present to allow keyboard users to bypass the header
+
+---
+
+## Example usage
+
+How this layout is implemented depends on the active framework selection in
+`docs/project-brief.md`.
+
+**Vanilla:**
+
+```html
+<div class="layout">
+  <header>…</header>
+  <main id="main-content">…</main>
+  <footer>…</footer>
+</div>
+```
+
+**Astro:**
+
+```astro
+<MainLayout pageTitle="Home">
+  <p>Page content goes here</p>
+</MainLayout>
+```
+
+**React:**
+
+```jsx
+<MainLayout pageTitle="Home">
+  <p>Page content goes here</p>
+</MainLayout>
+```
+
+**Svelte:**
+
+```svelte
+<MainLayout pageTitle="Home">
+  <p>Page content goes here</p>
+</MainLayout>
+```
 
 ---
 
