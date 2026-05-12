@@ -41,6 +41,7 @@ WORKFLOW.md
 AGENTS.md
 package.json
 .gitignore
+.nvmrc
 docs/project-brief.md
 docs/design-tokens.md
 docs/features/dark-mode.md
@@ -62,7 +63,7 @@ src/styles/main.scss
 
 > The files above are part of the default scaffold. Many are placeholder examples — the spec files, feature docs, and style stubs are there to illustrate the patterns, not to be used as-is. Replace or modify them to suit your project.
 
-**If building by hand** — these directories can be created as needed:
+**If building by hand:** these directories can be created as needed:
 
 ```bash
 src/components/
@@ -70,13 +71,27 @@ src/pages/
 src/layouts/
 ```
 
-**If using an AI agent** — the agent will create any missing directories as needed when scaffolding components, pages, and layouts.
+**If using an AI agent:** the agent will create any missing directories as needed when scaffolding components, pages, and layouts.
+
+---
 
 You'll notice `package.json` is intentionally minimal — it contains only the project name and version. Once you've chosen your stack in `docs/project-brief.md` (Step 3), it needs to be populated with the correct dependencies for your chosen framework, language, testing tools, and build tool.
 
-**If building by hand** — set up `package.json` and any required config files (e.g. `vite.config.js`, `jest.config.js`) yourself based on your stack selections. Also update the stack-specific section of `.gitignore` with any entries required by your chosen framework (e.g. `dist/` for Vite, `_site/` for Eleventy, `.astro/` for Astro). Refer to your chosen framework's documentation for the exact setup.
+**If building by hand:**
 
-**If using an AI agent** — the agent will populate `package.json` and generate any required config files before writing any code.
+- Set up `package.json` and any required config files (e.g. `vite.config.js`, `jest.config.js`) based on your stack selections
+- Check your chosen framework's documentation for the recommended Node.js version and update `.nvmrc` accordingly
+- Update the stack-specific section of `.gitignore` with any entries required by your chosen framework (e.g. `dist/` for Vite, `_site/` for Eleventy, `.astro/` for Astro)
+- Refer to your chosen framework's documentation for the exact setup
+
+**If using an AI agent:** the agent will:
+
+- Populate `package.json` with the correct scripts and dependencies
+- Generate any required config files
+- Populate `.nvmrc` with the correct Node.js version for the active framework
+- Update the stack-specific section of `.gitignore`
+
+---
 
 Two default starting files are included for the Vanilla + Vite stack:
 
@@ -140,9 +155,15 @@ This is the first thing the agent reads. Getting it right before writing any spe
 
 `docs/design-tokens.md` is a template for defining the visual language of your project — colours, spacing, typography, and other design constants.
 
-**If building by hand** — fill in `docs/design-tokens.md` with your token values, then implement them in `src/styles/tokens.scss` before writing any styles.
+**If building by hand:**
 
-**If using an AI agent** — the agent must read `docs/design-tokens.md` before writing any styles. If the file is empty, it will stop and ask you to fill it in first.
+- Fill in `docs/design-tokens.md` with your token values
+- Implement the values in `src/styles/tokens.scss` before writing any styles
+
+**If using an AI agent:**
+
+- The agent must read `docs/design-tokens.md` before writing any styles
+- If the file is empty, it will stop and ask you to fill it in first
 
 > **If using an AI agent:** once you've filled in `docs/project-brief.md` and `docs/design-tokens.md`, prompt the agent to begin setup: *"Read `docs/project-brief.md` and complete the initial project setup."*
 
@@ -178,9 +199,16 @@ Set the status to `Draft` while writing. Change it to `Ready` only when every se
 
 Once the spec status is set to `Ready`, it's time to build.
 
-**If building by hand** — use the spec as your blueprint. The interface, behaviour, states, accessibility requirements, and test cases are all defined. Work through them in order: interface first, tests next, then implementation.
+**If building by hand:**
 
-**If using an AI agent** — open your agent and ask it to scaffold the implementation based on the spec. If you're using Claude Code, a custom command is included:
+- Use the spec as your blueprint
+- The interface, behaviour, states, accessibility requirements, and test cases are all defined
+- Work through them in order: interface first, tests next, then implementation
+
+**If using an AI agent:**
+
+- Open your agent and ask it to scaffold the implementation based on the spec
+- If you're using Claude Code, a custom command is included:
 
 ```bash
 /create-component Button

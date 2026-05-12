@@ -90,17 +90,23 @@ Notes on combinations that don't make sense together.
 Before writing any implementation code, the project dependencies and config files
 need to be in place.
 
-**If building by hand** — set up `package.json` and any required config files
-(e.g. `vite.config.js`, `jest.config.js`) based on your active stack selections.
-Refer to your chosen framework's documentation for the exact setup.
+**If building by hand:**
 
-**If using an AI agent** — the agent must complete the following before writing
-any code:
+- Set up `package.json` and any required config files
+  (e.g. `vite.config.js`, `jest.config.js`) based on your active stack selections
+- Check your chosen framework's documentation for the recommended Node.js version
+  and update `.nvmrc` accordingly
+- Refer to your chosen framework's documentation for the exact setup
 
-1. Populate `package.json` with the correct scripts and dependencies for the active stack
-2. Generate any required config files based on the active selections
-3. Update the stack-specific section of `.gitignore` with any entries required by the active stack
-4. Do not install any dependencies not directly required by the active stack selections
+**If using an AI agent:**
+
+1. Check for the latest stable version of the active framework and use that version when populating `package.json`
+2. Check the active framework's Node.js requirements and use the recommended LTS version of Node
+3. Populate `package.json` with the correct scripts and dependencies for the active stack
+4. Generate any required config files based on the active selections
+5. Populate `.nvmrc` with the correct Node.js version for the active framework
+6. Update the stack-specific section of `.gitignore` with any entries required by the active stack
+7. Do not install any dependencies not directly required by the active stack selections
 
 ### Default starting files
 
@@ -151,9 +157,17 @@ than specs:
 
 > **Before writing any styles:**
 >
-> **If building by hand** — fill in `docs/design-tokens.md` with your token values, then implement them in `src/styles/tokens.scss`. All styles should reference tokens rather than hardcoded values.
+> **If building by hand:**
 >
-> **If using an AI agent** — the agent must read `docs/design-tokens.md` before writing any styles. If the file is empty, stop and ask the user to fill it in first. All styles must reference tokens — never hardcoded values.
+> - Fill in `docs/design-tokens.md` with your token values
+> - Implement the values in `src/styles/tokens.scss`
+> - All styles should reference tokens rather than hardcoded values
+>
+> **If using an AI agent:**
+>
+> - Read `docs/design-tokens.md` before writing any styles
+> - If the file is empty, stop and ask the user to fill it in first
+> - All styles must reference tokens — never hardcoded values
 
 ---
 
