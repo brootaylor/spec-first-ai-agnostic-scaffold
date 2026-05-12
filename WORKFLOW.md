@@ -144,6 +144,8 @@ This is the first thing the agent reads. Getting it right before writing any spe
 
 **If using an AI agent** — the agent must read `docs/design-tokens.md` before writing any styles. If the file is empty, it will stop and ask you to fill it in first.
 
+> **If using an AI agent:** once you've filled in `docs/project-brief.md` and `docs/design-tokens.md`, prompt the agent to begin setup: *"Read `docs/project-brief.md` and complete the initial project setup."*
+
 ---
 
 ## Step 5 — Write a feature spec
@@ -183,6 +185,14 @@ Once the spec status is set to `Ready`, it's time to build.
 ```bash
 /create-component Button
 ```
+
+> **If using an AI agent:**
+>
+> To scaffold a single spec:
+> *"Read `docs/specs/components/button.spec.md` and scaffold the implementation."*
+>
+> To scaffold all ready specs at once:
+> *"Read all specs in `docs/specs/` with a status of `Ready` and scaffold the implementation for each one."*
 
 > **Note:** `/create-component` is a Claude Code-specific custom command defined in `.agents/claude/commands/create-component.md`. Other agents don't have this command out of the box — you'll need to prompt them directly, for example: *"Read the spec at `docs/specs/components/button.spec.md` and scaffold the implementation."*
 
