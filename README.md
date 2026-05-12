@@ -76,10 +76,14 @@ my-project/
 
 This scaffold follows a spec-first workflow — specs are written before any code is produced. Each spec defines the interface, behaviour, states, and test cases for what's being built. From there, you build it yourself or hand it to an AI agent.
 
-See [WORKFLOW.md](./WORKFLOW.md) for prerequisites and the full step-by-step guide. The workflow covers how to choose your stack, write feature specs, write component/page/layout specs, and build by hand or with an AI agent. It also includes tips for writing good specs that lead to better output.
+See [WORKFLOW.md](./WORKFLOW.md) for prerequisites and the full step-by-step guide.
+
+> The workflow covers how to choose your stack, write feature specs, write component/page/layout specs, and build by hand or with an AI agent. It also includes tips for writing good specs that lead to better output.
 
 ---
 
 ## Using an AI agent
 
-See [AGENTS.md](./AGENTS.md) for instructions on setting up and switching between agents. Each agent has its own config file in `.agents/<agent-name>/` that tells it to read `docs/project-brief.md` for context. From there, the agent understands the project conventions and workflow without needing you to explain anything.
+See [AGENTS.md](./AGENTS.md) for instructions on setting up and switching between agents.
+
+> Each agent has its own config file in `.agents/<agent-name>/` that tells it to read `docs/project-brief.md` for context. From there, the agent understands the project conventions and workflow without needing you to explain anything.
