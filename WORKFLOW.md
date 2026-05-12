@@ -1,6 +1,6 @@
 # WORKFLOW.md
 
-A step-by-step guide to using this scaffold to build a web project with an "Ai" coding agent.
+A step-by-step guide to using this scaffold to build a web project — by hand or with an AI coding agent.
 
 ---
 
@@ -27,7 +27,7 @@ Before you begin, make sure you have the following installed:
 
 **Stack-specific:**
 
-All stack dependencies are installed via `npm install`. Refer to your chosen tool's documentation for any additional setup.
+All stack dependencies are installed via `npm install`. Refer to your chosen framework's documentation for any additional setup.
 
 ---
 
@@ -49,14 +49,18 @@ src/scripts/
 .agents/copilot/
 ```
 
-You'll notice `package.json` is intentionally minimal — it contains only the project name and version. Once you've chosen your stack in `docs/ai-context.md` (Step 3), the agent will populate it with the correct dependencies and generate any required config files (e.g. `vite.config.js`, `jest.config.js`) before writing any code.
+You'll notice `package.json` is intentionally minimal — it contains only the project name and version. Once you've chosen your stack in `docs/project-brief.md` (Step 3), it needs to be populated with the correct dependencies for your chosen framework, language, testing tools, and build tool.
+
+**If building by hand** — set up `package.json` and any required config files (e.g. `vite.config.js`, `jest.config.js`) yourself based on your stack selections. Refer to your chosen framework's documentation for the exact setup.
+
+**If using an AI agent** — the agent will populate `package.json` and generate any required config files before writing any code.
 
 Two default starting files are included for the Vanilla + Vite stack:
 
 - `src/index.html` — the default home page Vite serves
 - `src/scripts/main.js` — the JavaScript file referenced by `index.html`
 
-React and Svelte also use these files — the agent will update `main.js` to mount the app correctly for the active framework. If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own pages and templating.
+If building with React or Svelte, these files are also used — `main.js` needs to be updated to mount the app for the active framework. If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own pages and templating.
 
 Commit everything to Git before you do anything else. This gives you a clean baseline to return to.
 
@@ -64,7 +68,7 @@ Commit everything to Git before you do anything else. This gives you a clean bas
 
 ## Step 2 — Configure your agent
 
-Open `.agents/<your-agent>/` and follow the setup notes in that directory to point your tool at the config file.
+Open `.agents/<your-agent>/` and follow the setup notes in that directory to point your agent at the config file.
 
 For example, if you're using Claude Code:
 
@@ -72,17 +76,17 @@ For example, if you're using Claude Code:
 ln -s .agents/claude/CLAUDE.md CLAUDE.md
 ```
 
-See `SETUP.md` for a full explanation of how agents are configured in this scaffold.
+See `AGENTS.md` for a full explanation of how agents are configured in this scaffold.
 
 ---
 
-## Step 3 — Fill in `ai-context.md`
+## Step 3 — Fill in `project-brief.md`
 
-Open `docs/ai-context.md` and do two things:
+Open `docs/project-brief.md` and do two things:
 
 **Describe your project** — replace the placeholder under "What this project is" with a plain description of what you're building and who it's for.
 
-**Choose your stack** — open `docs/ai-context.md` and mark exactly one option per category as `[active]`. Categories to configure:
+**Choose your stack** — open `docs/project-brief.md` and mark exactly one option per category as `[active]`. Categories to configure:
 
 - Framework
 - Language
@@ -135,9 +139,13 @@ Set the status to `Draft` while writing. Change it to `Ready` only when every se
 
 ---
 
-## Step 6 — Run the agent
+## Step 6 — Build
 
-Open your agent tool and ask it to scaffold the implementation based on the spec. If you're using Claude Code, a custom command is included:
+Once the spec status is set to `Ready`, it's time to build.
+
+**If building by hand** — use the spec as your blueprint. The interface, behaviour, states, accessibility requirements, and test cases are all defined. Work through them in order: interface first, tests next, then implementation.
+
+**If using an AI agent** — open your agent and ask it to scaffold the implementation based on the spec. If you're using Claude Code, a custom command is included:
 
 ```bash
 /create-component Button
@@ -172,7 +180,7 @@ If something is wrong, update the spec first — then ask the agent to fix the i
 
 ## Step 8 — Run it locally or deploy
 
-How you run the project depends on your active framework selection in `docs/ai-context.md`.
+How you run the project depends on your active framework selection in `docs/project-brief.md`.
 
 **Vanilla + Vite:**
 
@@ -229,7 +237,7 @@ For deployment, [Netlify](https://www.netlify.com) works well with all of these 
 
 ## Step 9 — Iterate
 
-Repeat Steps 4–7 for each feature. As the project grows, update `docs/ai-context.md` with any new conventions or constraints the agent needs to know about.
+Repeat Steps 4–7 for each feature. As the project grows, update `docs/project-brief.md` with any new conventions or constraints the agent needs to know about.
 
 ---
 
