@@ -19,7 +19,7 @@ Agent-specific configs live in `.agents/`.
 
 ## Stack
 
-This section defines the framework and tooling the agent must use.
+This section defines the framework and tooling for the project.
 Mark exactly one option per category as `[active]`. Leave all others blank.
 
 ### Framework
@@ -86,19 +86,27 @@ Notes on combinations that don't make sense together.
 - **React + Jest** — include `@testing-library/react` and `@testing-library/jest-dom` as dev dependencies
 - **Svelte + Jest** — include `@testing-library/svelte` as a dev dependency
 
-### Agent instructions
+### Setup instructions
 
-When the stack selection is read, the agent must complete the following before writing any implementation code:
+Before writing any implementation code, the project dependencies and config files
+need to be in place.
+
+**If building by hand** — set up `package.json` and any required config files
+(e.g. `vite.config.js`, `jest.config.js`) based on your active stack selections.
+Refer to your chosen framework's documentation for the exact setup.
+
+**If using an AI agent** — the agent must complete the following before writing
+any code:
 
 1. Populate `package.json` with the correct scripts and dependencies for the active stack
-2. Generate any required config files (e.g. `vite.config.js`, `jest.config.js`, `astro.config.mjs`) based on the active selections
+2. Generate any required config files based on the active selections
 3. Do not install any dependencies not directly required by the active stack selections
 
-**Entry points:**
+### Default starting files
 
-- **Vanilla + Vite** — `src/index.html` is the default home page and `src/scripts/main.js` is the JavaScript file it references. Both are included as minimal starting files for the agent to build out
-- **React** — `src/index.html` and `src/scripts/main.js` are the default starting files. The agent should update `main.js` to mount the React app
-- **Svelte** — `src/index.html` and `src/scripts/main.js` are the default starting files. The agent should update `main.js` to mount the Svelte app
+- **Vanilla + Vite** — `src/index.html` is the default home page and `src/scripts/main.js` is the JavaScript file it references. Both are included as minimal starting files to build out
+- **React** — `src/index.html` and `src/scripts/main.js` are the default starting files. Update `main.js` to mount the React app
+- **Svelte** — `src/index.html` and `src/scripts/main.js` are the default starting files. Update `main.js` to mount the Svelte app
 - **Astro** — pages and templating are managed by Astro's own file-based routing. Remove `src/index.html` and `src/scripts/main.js` if switching to Astro
 - **Eleventy** — pages and templating are managed by Eleventy's own templating system. Remove `src/index.html` and `src/scripts/main.js` if switching to Eleventy
 
@@ -115,7 +123,7 @@ in terms of user stories and acceptance criteria.
 
 A **component** is a discrete, reusable piece of UI that implements part of a
 feature. Component specs live in `docs/specs/components/` and define the
-interface, behaviour, states, and test cases an agent needs to build it.
+interface, behaviour, states, and test cases needed to build it.
 
 A feature will typically depend on one or more components. The feature spec
 lists which components are required before implementation can begin.
@@ -171,13 +179,13 @@ src/
   lib/                              # ← shared utilities
   types/                            # ← global types (TypeScript only)
 docs/
-  project-brief.md                # ← this file
-  features/                       # ← user-facing feature specs
+  project-brief.md                  # ← this file
+  features/                         # ← user-facing feature specs
   specs/
-    _component-template.spec.md   # ← spec template
-    components/                   # ← authoritative component specs
-    pages/                        # ← page / view specs
-    layouts/                      # ← layout specs
+    _component-template.spec.md     # ← spec template
+    components/                     # ← authoritative component specs
+    pages/                          # ← page / view specs
+    layouts/                        # ← layout specs
 ```
 
 ---
