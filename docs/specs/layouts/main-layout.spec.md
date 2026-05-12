@@ -9,8 +9,8 @@
 
 ## Purpose
 
-A single paragraph describing what problem this layout solves, who uses it,
-and when. Avoid describing how it looks — describe why it exists.
+> A single paragraph describing what problem this layout solves, who uses it,
+> and when. Avoid describing how it looks — describe why it exists.
 
 The primary layout wrapping all authenticated pages. Provides a consistent
 structure with a header, main content area, and footer so individual pages

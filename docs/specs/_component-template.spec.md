@@ -19,7 +19,8 @@ The status of the spec determines whether an agent may proceed with implementati
 
 ## Purpose
 
-A single paragraph describing what problem this component solves, who uses it, and when. Avoid describing how it works — describe why it exists.
+> A single paragraph describing what problem this component solves, who uses it,
+> and when. Avoid describing how it works — describe why it exists.
 
 _Replace this with your component's purpose._
 

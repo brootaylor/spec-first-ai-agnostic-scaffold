@@ -6,7 +6,7 @@
 
 ## Overview
 
-A brief description of the feature and its purpose.
+> A brief description of the feature and its purpose.
 
 Allow users to switch between light and dark colour schemes. The preference should persist across sessions and respect the user's operating system setting by default.
 
