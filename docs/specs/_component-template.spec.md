@@ -8,19 +8,18 @@
 
 The status of this spec determines whether an agent may proceed with implementation.
 
-| Status | Meaning |
-|--------|---------|
-| `Draft` | Spec is incomplete — do not implement |
-| `Ready` | Spec is complete — agent may proceed |
-| `In progress` | Currently being implemented |
-| `Complete` | Implemented and tested |
+| Status | Meaning | Who acts on it |
+|--------|---------|----------------|
+| `Draft` | Spec is incomplete — do not implement | Human + agent |
+| `Ready` | Spec is complete — proceed with implementation | Human + agent |
+| `Complete` | Implemented and tested | Human only |
 
 ---
 
 ## Purpose
 
-A single paragraph describing what problem this component solves, who uses it,
-and when. Avoid describing how it works — describe why it exists.
+> A single paragraph describing what problem this component solves, who uses it,
+> and when. Avoid describing how it works — describe why it exists.
 
 _Replace this with your component's purpose._
 
