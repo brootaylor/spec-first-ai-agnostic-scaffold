@@ -45,6 +45,7 @@ package.json
 docs/project-brief.md
 docs/design-tokens.md
 docs/features/dark-mode.md
+docs/features/service-worker.md
 docs/specs/_component-template.spec.md
 docs/specs/components/button.spec.md
 docs/specs/components/theme-toggle.spec.md

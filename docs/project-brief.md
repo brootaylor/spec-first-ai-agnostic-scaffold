@@ -74,6 +74,19 @@ Applies to **Vanilla only**. SSG, web, and component frameworks manage their own
 | Vite | `[active]` |
 | None *(framework handles it)* | |
 
+### Service worker
+
+Optional. Leave blank if not required. See `docs/features/service-worker.md` for
+full details on caching strategies and framework-specific implementation notes.
+
+| Option | Active |
+|--------|--------|
+| None | `[active]` |
+| Cache first *(assets)* + Network first *(pages)* — recommended for static sites | |
+| Network first *(all)* — better for frequently updated content | |
+| Stale while revalidate — serves cache immediately, updates in the background | |
+| Custom — define your own strategy in `docs/features/service-worker.md` | |
+
 ### Constraints
 
 Notes on combinations that don't make sense together.
@@ -106,7 +119,8 @@ need to be in place.
 4. Generate any required config files based on the active selections
 5. Populate `.nvmrc` with the correct Node.js version for the active framework
 6. Update the stack-specific section of `.gitignore` with any entries required by the active stack
-7. Do not install any dependencies not directly required by the active stack selections
+7. If a service worker option is active, implement it following `docs/features/service-worker.md`
+8. Do not install any dependencies not directly required by the active stack selections
 
 ### Default starting files
 
