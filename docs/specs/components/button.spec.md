@@ -50,6 +50,7 @@ How the component behaves on first render, across its different states, and in
 response to user interaction.
 
 ### Default / initial state
+
 Renders as a native `<button>` with `type="button"`, the `primary` variant class,
 and the `md` size class. Fully interactive.
 
@@ -64,6 +65,7 @@ and the `md` size class. Fully interactive.
 | loading | `loading={true}` | Spinner inline; `aria-busy="true"`; click blocked |
 
 ### Interaction rules
+
 - When `loading` is `true` → spinner shown; label remains visible but muted
 - When `disabled` OR `loading` → `onClick` must never fire
 - `type="submit"` inside a `<form>` → form submits normally via the browser

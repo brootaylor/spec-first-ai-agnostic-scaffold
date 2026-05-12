@@ -1,2 +1,27 @@
-# Files to ignore
+# ── OS ──────────────────────────────────────────────────────────
 .DS_Store
+Thumbs.db
+
+# ── Dependencies ─────────────────────────────────────────────────
+node_modules/
+
+# ── Lock files ───────────────────────────────────────────────────
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ── Environment ──────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Stack-specific ───────────────────────────────────────────────
+# Add entries here based on your active stack selection in docs/project-brief.md.
+# The agent will update this section automatically.
+#
+# Common examples:
+#   dist/                 ← Vite, Astro, React, Svelte build output
+#   .astro/               ← Astro cache
+#   _site/                ← Eleventy build output
+#   coverage/             ← Jest coverage reports
+#   tsconfig.tsbuildinfo  ← TypeScript incremental build info

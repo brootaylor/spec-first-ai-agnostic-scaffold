@@ -47,6 +47,14 @@ This is the single source of truth for the project — both humans and agents re
 
 ---
 
+## Design tokens
+
+[`docs/design-tokens.md`](./docs/design-tokens.md) is a template for defining the visual language of your project — colours, spacing, typography, and other design constants.
+
+Fill it in before writing any styles. Both humans and agents use it as the reference for all style decisions. Values are implemented in `src/styles/tokens.scss` and referenced throughout the codebase as CSS custom properties.
+
+---
+
 ## Examples included
 
 The scaffold comes with a small set of working examples to illustrate the patterns:
@@ -70,6 +78,7 @@ my-project/
 │
 ├── docs/
 │   ├── project-brief.md                  # ← single source of truth for the project
+│   ├── design-tokens.md                  # ← design token definitions
 │   ├── features/                         # ← user-facing feature specs
 │   └── specs/
 │       ├── _component-template.spec.md   # ← spec template

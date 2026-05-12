@@ -12,8 +12,7 @@ Agent-specific configs live in `.agents/`.
 ## What this project is
 
 > *Describe your project here. For example:
-> "A customer facing web application for ABC Corp. Registered users can browse
-> a product catalogue, manage their account, and place orders."*
+> "A static informational website for a design system. It includes documentation, usage guidelines, and examples for the components and patterns in the design system. Users can browse the documentation, view code examples, and copy snippets for their own projects."*
 
 ---
 
@@ -100,7 +99,8 @@ any code:
 
 1. Populate `package.json` with the correct scripts and dependencies for the active stack
 2. Generate any required config files based on the active selections
-3. Do not install any dependencies not directly required by the active stack selections
+3. Update the stack-specific section of `.gitignore` with any entries required by the active stack
+4. Do not install any dependencies not directly required by the active stack selections
 
 ### Default starting files
 
@@ -149,6 +149,12 @@ than specs:
 | Services / API | `docs/services.md` | How the frontend communicates with the backend |
 | Design tokens | `docs/design-tokens.md` | Colours, spacing, typography, and other design constants |
 
+> **Before writing any styles:**
+>
+> **If building by hand** — fill in `docs/design-tokens.md` with your token values, then implement them in `src/styles/tokens.scss`. All styles should reference tokens rather than hardcoded values.
+>
+> **If using an AI agent** — the agent must read `docs/design-tokens.md` before writing any styles. If the file is empty, stop and ask the user to fill it in first. All styles must reference tokens — never hardcoded values.
+
 ---
 
 ## File & folder conventions
@@ -176,10 +182,14 @@ src/
       <LayoutName>.spec.md          # ← co-located spec
   scripts/
     main.js                         # ← default starting file (Vanilla + Vite only)
+  styles/
+    tokens.scss                     # ← design token values (see docs/design-tokens.md)
+    main.scss                       # ← global styles, imports tokens.scss
   lib/                              # ← shared utilities
   types/                            # ← global types (TypeScript only)
 docs/
   project-brief.md                  # ← this file
+  design-tokens.md                  # ← design token definitions
   features/                         # ← user-facing feature specs
   specs/
     _component-template.spec.md     # ← spec template

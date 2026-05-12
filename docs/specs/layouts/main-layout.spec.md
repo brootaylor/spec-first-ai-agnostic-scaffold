@@ -60,6 +60,7 @@ The components this layout depends on. Each must have a spec in
 How the layout behaves on first render and in response to user interaction.
 
 ### Default / initial state
+
 Renders the header, main content area containing `children`, and footer.
 The `pageTitle` is applied to the document `<title>` and rendered as the
 main `<h1>` on the page.

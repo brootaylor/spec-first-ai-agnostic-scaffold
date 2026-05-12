@@ -51,7 +51,7 @@ src/scripts/
 
 You'll notice `package.json` is intentionally minimal — it contains only the project name and version. Once you've chosen your stack in `docs/project-brief.md` (Step 3), it needs to be populated with the correct dependencies for your chosen framework, language, testing tools, and build tool.
 
-**If building by hand** — set up `package.json` and any required config files (e.g. `vite.config.js`, `jest.config.js`) yourself based on your stack selections. Refer to your chosen framework's documentation for the exact setup.
+**If building by hand** — set up `package.json` and any required config files (e.g. `vite.config.js`, `jest.config.js`) yourself based on your stack selections. Also update the stack-specific section of `.gitignore` with any entries required by your chosen framework (e.g. `dist/` for Vite, `_site/` for Eleventy, `.astro/` for Astro). Refer to your chosen framework's documentation for the exact setup.
 
 **If using an AI agent** — the agent will populate `package.json` and generate any required config files before writing any code.
 
