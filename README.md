@@ -29,6 +29,7 @@ From there, follow [WORKFLOW.md](./WORKFLOW.md) to set up your project.
 - **AI agent agnostic** — not tied to any specific AI agent. Includes config for Claude Code, Cursor, and GitHub Copilot out of the box, with a clear pattern for adding others
 - **Design token foundation** — a template and file structure for defining the visual language of a project before writing any styles
 - **Service worker support** — optional offline and caching support, with a strategy selector and framework-specific guidance built in
+- **Storybook support** — optional component development and documentation environment. Develop and showcase UI components in isolation, with setup guidance covering React, Svelte, and plain JavaScript
 - **Living documentation** — specs double as project documentation. Keep them up to date and the whole project stays coherent for humans and agents alike
 
 ---
@@ -53,7 +54,7 @@ Both paths follow the same workflow and use the same specs.
 
 ## Choosing your stack
 
-[`docs/project-brief.md`](./docs/project-brief.md) includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool. It also includes an optional service worker selector for projects that need offline support and caching.
+[`docs/project-brief.md`](./docs/project-brief.md) includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool. It also includes optional selectors for a service worker and Storybook for projects that need them.
 
 This is the single source of truth for the project — both humans and agents refer to it before doing anything.
 
@@ -91,7 +92,7 @@ my-project/
 ├── docs/
 │   ├── project-brief.md                  # ← single source of truth for the project
 │   ├── design-tokens.md                  # ← design token definitions
-│   ├── features/                         # ← user-facing feature specs
+│   ├── features/                         # ← feature specs (user-facing and optional technical features)
 │   └── specs/
 │       ├── _component-template.spec.md   # ← spec template
 │       ├── components/                   # ← component specs

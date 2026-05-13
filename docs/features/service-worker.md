@@ -87,13 +87,13 @@ Notes on caching strategy choices and framework-specific considerations.
 - **Stale while revalidate** — good balance for content that changes occasionally —
   serves cache immediately and updates in the background
 
-**Framework-specific notes:**
+**Setup notes by framework and approach:**
 
 - **Astro** — use `@astrojs/service-worker` or a community PWA plugin
 - **Eleventy** — use Workbox or a manual `sw.js` file registered in the base layout
 - **React + Vite** — use `vite-plugin-pwa`
 - **Svelte + SvelteKit** — SvelteKit has built-in service worker support via `src/service-worker.js`
-- **Vanilla + Vite** — use `vite-plugin-pwa` or a manual `sw.js` file
+- **Plain JavaScript + Vite** — use `vite-plugin-pwa` or a manual `sw.js` file
 
 ---
 
@@ -104,4 +104,4 @@ Notes on caching strategy choices and framework-specific considerations.
   control the entire site scope
 - Register the service worker in the root layout or main entry file
 - Always include a fallback offline page at `src/offline.html` (or framework equivalent)
-- Do not cache API responses unless explicitly specified in the caching strategy
+- Do not cache API responses unless explicitly specified

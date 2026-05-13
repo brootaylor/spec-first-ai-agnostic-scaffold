@@ -76,7 +76,7 @@ Applies to **Vanilla only**. SSG, web, and component frameworks manage their own
 
 ### Service worker
 
-Optional. Leave blank if not required. See `docs/features/service-worker.md` for
+Optional. Defaults to `None`. See `docs/features/service-worker.md` for
 full details on caching strategies and framework-specific implementation notes.
 
 | Option | Active |
@@ -86,6 +86,16 @@ full details on caching strategies and framework-specific implementation notes.
 | Network first *(all)* — better for frequently updated content | |
 | Stale while revalidate — serves cache immediately, updates in the background | |
 | Custom — define your own strategy in `docs/features/service-worker.md` | |
+
+### Storybook
+
+Optional. Defaults to `None`. See `docs/features/storybook.md` for
+setup instructions and framework-specific implementation notes.
+
+| Option | Active |
+|--------|--------|
+| None | `[active]` |
+| Storybook | |
 
 ### Constraints
 
@@ -120,7 +130,8 @@ need to be in place.
 5. Populate `.nvmrc` with the correct Node.js version for the active framework
 6. Update the stack-specific section of `.gitignore` with any entries required by the active stack
 7. If a service worker option is active, implement it following `docs/features/service-worker.md`
-8. Do not install any dependencies not directly required by the active stack selections
+8. If Storybook is active, set it up following `docs/features/storybook.md`
+9. Do not install any dependencies not directly required by the active stack selections
 
 ### Default starting files
 
@@ -218,7 +229,7 @@ src/
 docs/
   project-brief.md                  # ← this file
   design-tokens.md                  # ← design token definitions
-  features/                         # ← user-facing feature specs
+  features/                         # ← feature specs (user-facing and optional technical features)
   specs/
     _component-template.spec.md     # ← spec template
     components/                     # ← authoritative component specs
