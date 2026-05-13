@@ -53,7 +53,7 @@ Both paths follow the same workflow and use the same specs.
 
 ## Choosing your stack
 
-[`docs/project-brief.md`](./docs/project-brief.md) includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool.
+[`docs/project-brief.md`](./docs/project-brief.md) includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool. It also includes an optional service worker selector for projects that need offline support and caching.
 
 This is the single source of truth for the project — both humans and agents refer to it before doing anything.
 
