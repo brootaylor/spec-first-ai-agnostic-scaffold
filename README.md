@@ -4,7 +4,7 @@ A starter template for building web projects using a tech-agnostic spec-first ap
 
 Write the spec first. Then build — by hand, with an AI agent, or both.
 
-> **NOTE:** *This is a work in progress and will be updated over time as I learn more about what works best.*
+> **NOTE:** *This is a work in progress and will be updated over time as I figure out what seems to work best.*
 
 ---
 
