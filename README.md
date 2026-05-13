@@ -21,6 +21,18 @@ From there, follow [WORKFLOW.md](./WORKFLOW.md) to set up your project.
 
 ---
 
+## Features
+
+- **Spec-first workflow** — specs are written before any code is produced. The spec is the source of truth throughout, for humans and agents alike
+- **Two ways to build** — handcrafted or AI-assisted. Both paths use the same specs and workflow
+- **Tech-agnostic** — works with Vanilla, Astro, Eleventy, React, or Svelte out of the box. Framework, language, styles, testing tools, and build tool are all configurable via a simple stack selector in `docs/project-brief.md` — and new options can be added to suit any project
+- **AI agent agnostic** — not tied to any specific AI agent. Includes config for Claude Code, Cursor, and GitHub Copilot out of the box, with a clear pattern for adding others
+- **Design token foundation** — a template and file structure for defining the visual language of a project before writing any styles
+- **Service worker support** — optional offline and caching support, with a strategy selector and framework-specific guidance built in
+- **Living documentation** — specs double as project documentation. Keep them up to date and the whole project stays coherent for humans and agents alike
+
+---
+
 ## Why spec-first?
 
 Writing specs before code forces clarity. Before anyone — human or agent — writes a single line of implementation, the spec defines exactly what a component should do, what states it has, how it should behave, and what tests it needs to pass. This reduces guesswork, prevents scope creep, and makes it easier to review what gets produced.
