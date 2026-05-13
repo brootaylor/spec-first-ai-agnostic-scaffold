@@ -1,7 +1,5 @@
 # Feature: Service Worker
 
-**Status:** Draft
-
 ---
 
 ## Overview

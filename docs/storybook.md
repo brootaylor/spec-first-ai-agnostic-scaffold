@@ -1,7 +1,5 @@
 # Feature: Storybook
 
-**Status:** Draft
-
 ---
 
 ## Overview
