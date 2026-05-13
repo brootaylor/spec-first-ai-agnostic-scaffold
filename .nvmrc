@@ -1,10 +1,1 @@
-# .nvmrc
-# Specifies the Node.js version for this project.
-# Used automatically by nvm (Node Version Manager) when you cd into the project.
-# See https://github.com/nvm-sh/nvm for setup instructions.
-#
-# This file is populated by the agent based on the active framework's
-# Node.js requirements. If building by hand, replace this comment with
-# the correct Node.js version number. For example:
-#
-# 24.15.0
+24.15.0

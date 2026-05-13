@@ -39,9 +39,11 @@ All stack dependencies are installed via `npm install`. Refer to your chosen fra
 README.md
 WORKFLOW.md
 AGENTS.md
+LICENSE
 package.json
 .gitignore
 .nvmrc
+.markdownlint.json
 docs/project-brief.md
 docs/design-tokens.md
 docs/service-worker.md
