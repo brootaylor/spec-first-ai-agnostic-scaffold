@@ -44,8 +44,9 @@ package.json
 .nvmrc
 docs/project-brief.md
 docs/design-tokens.md
+docs/service-worker.md
+docs/storybook.md
 docs/features/dark-mode.md
-docs/features/service-worker.md
 docs/specs/_component-template.spec.md
 docs/specs/components/button.spec.md
 docs/specs/components/theme-toggle.spec.md
@@ -133,6 +134,8 @@ Open `docs/project-brief.md` and do two things:
 - Unit testing
 - E2E testing
 - Build *(Vanilla only)*
+- Service worker *(optional — defaults to None)*
+- Storybook *(optional — defaults to None)*
 
 For example, the Framework category looks like this:
 
@@ -175,6 +178,8 @@ This is the first thing the agent reads. Getting it right before writing any spe
 Pick the first feature you want to build. Create a spec for it in `docs/features/`.
 
 A feature describes what a user can do, not how it's built. Use `docs/features/dark-mode.md` as a reference for the format — it covers the overview, user stories, acceptance criteria, and which components are required.
+
+> **Note:** `docs/features/` is for user-facing feature specs only. Technical configuration docs like service worker and Storybook live directly in `docs/`.
 
 Don't start writing component specs yet. Finish the feature spec first.
 

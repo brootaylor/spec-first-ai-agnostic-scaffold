@@ -76,7 +76,7 @@ Applies to **Vanilla only**. SSG, web, and component frameworks manage their own
 
 ### Service worker
 
-Optional. Defaults to `None`. See `docs/features/service-worker.md` for
+Optional. Defaults to `None`. See `docs/service-worker.md` for
 full details on caching strategies and framework-specific implementation notes.
 
 | Option | Active |
@@ -85,11 +85,11 @@ full details on caching strategies and framework-specific implementation notes.
 | Cache first *(assets)* + Network first *(pages)* — recommended for static sites | |
 | Network first *(all)* — better for frequently updated content | |
 | Stale while revalidate — serves cache immediately, updates in the background | |
-| Custom — define your own strategy in `docs/features/service-worker.md` | |
+| Custom — define your own strategy in `docs/service-worker.md` | |
 
 ### Storybook
 
-Optional. Defaults to `None`. See `docs/features/storybook.md` for
+Optional. Defaults to `None`. See `docs/storybook.md` for
 setup instructions and framework-specific implementation notes.
 
 | Option | Active |
@@ -129,8 +129,8 @@ need to be in place.
 4. Generate any required config files based on the active selections
 5. Populate `.nvmrc` with the correct Node.js version for the active framework
 6. Update the stack-specific section of `.gitignore` with any entries required by the active stack
-7. If a service worker option is active, implement it following `docs/features/service-worker.md`
-8. If Storybook is active, set it up following `docs/features/storybook.md`
+7. If a service worker option is active, implement it following `docs/service-worker.md`
+8. If Storybook is active, set it up following `docs/storybook.md`
 9. Do not install any dependencies not directly required by the active stack selections
 
 ### Default starting files
@@ -229,7 +229,9 @@ src/
 docs/
   project-brief.md                  # ← this file
   design-tokens.md                  # ← design token definitions
-  features/                         # ← feature specs (user-facing and optional technical features)
+  service-worker.md                 # ← service worker configuration
+  storybook.md                      # ← storybook configuration
+  features/                         # ← user-facing feature specs
   specs/
     _component-template.spec.md     # ← spec template
     components/                     # ← authoritative component specs
@@ -247,3 +249,6 @@ docs/
 | What should a component do? | `docs/specs/components/<name>.spec.md` |
 | What should a page look like? | `docs/specs/pages/<name>.spec.md` |
 | What should a layout do? | `docs/specs/layouts/<name>.spec.md` |
+| What are the design tokens? | `docs/design-tokens.md` |
+| How is the service worker configured? | `docs/service-worker.md` |
+| How is Storybook configured? | `docs/storybook.md` |

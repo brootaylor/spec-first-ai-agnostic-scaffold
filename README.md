@@ -68,6 +68,22 @@ Fill it in before writing any styles. Both humans and agents use it as the refer
 
 ---
 
+## Service worker
+
+[`docs/service-worker.md`](./docs/service-worker.md) is an optional configuration doc for adding offline support and caching to your project.
+
+Choose a caching strategy in `docs/project-brief.md` and the agent will implement it based on the guidance in this doc. If building by hand, the doc covers the available strategies and setup notes for each framework and approach.
+
+---
+
+## Storybook
+
+[`docs/storybook.md`](./docs/storybook.md) is an optional configuration doc for adding Storybook to your project — a development and documentation environment for building and showcasing UI components in isolation.
+
+Enable it in `docs/project-brief.md` and the agent will set it up based on the guidance in this doc. If building by hand, the doc covers setup and usage for React, Svelte, and plain JavaScript, with notes on configuring it for other approaches.
+
+---
+
 ## Examples included
 
 The scaffold comes with a small set of working examples to illustrate the patterns:
@@ -92,7 +108,9 @@ my-project/
 ├── docs/
 │   ├── project-brief.md                  # ← single source of truth for the project
 │   ├── design-tokens.md                  # ← design token definitions
-│   ├── features/                         # ← feature specs (user-facing and optional technical features)
+│   ├── service-worker.md                 # ← service worker configuration
+│   ├── storybook.md                      # ← storybook configuration
+│   ├── features/                         # ← user-facing feature specs
 │   └── specs/
 │       ├── _component-template.spec.md   # ← spec template
 │       ├── components/                   # ← component specs
