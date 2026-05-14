@@ -1,18 +1,9 @@
 # Component Spec: [ComponentName]
 
 **Status:** Draft
+**Last updated:** <!-- e.g. 2025-01-15 -->
 
----
-
-## Status key
-
-The status of this spec determines whether an agent may proceed with implementation.
-
-| Status | Meaning | Who acts on it |
-|--------|---------|----------------|
-| `Draft` | Spec is incomplete — do not implement | Human + agent |
-| `Ready` | Spec is complete — proceed with implementation | Human + agent |
-| `Complete` | Implemented and tested | Human only |
+> See `docs/project-brief.md` → Spec conventions for the full status key and agent behaviour rules.
 
 ---
 
@@ -22,6 +13,23 @@ The status of this spec determines whether an agent may proceed with implementat
 > and when. Avoid describing how it works — describe why it exists.
 
 _Replace this with your component's purpose._
+
+---
+
+## Dependencies
+
+Components, utilities, assets, or design token categories this component relies on.
+List anything an agent would need to locate or implement before building this component.
+
+| Type | Name | Location |
+|------|------|----------|
+| Component | `[ComponentName]` | `src/components/[ComponentName]/` |
+| Utility | `[helperName]` | `src/lib/[helperName].js` |
+| Asset | `[filename]` | `src/assets/[filename]` |
+| Tokens | Colour | `docs/design-tokens.md#colour` |
+| Tokens | Spacing | `docs/design-tokens.md#spacing` |
+
+> _Remove any rows that don't apply. Add rows as needed._
 
 ---
 
@@ -39,9 +47,9 @@ The agent will derive the implementation interface directly from this section.
 
 ### Events / Callbacks
 
-| Event | Fires when |
-|-------|------------|
-| change / onChange / on:change | … |
+| Event | Fires when | Payload |
+|-------|------------|---------|
+| change / onChange / on:change | … | `{ value: string }` |
 
 ### Public methods _(if applicable)_
 
@@ -94,13 +102,38 @@ How the component should behave when something goes wrong.
 
 ---
 
+## Styling notes
+
+Token categories and CSS patterns specific to this component.
+The agent must read `docs/design-tokens.md` before writing any styles.
+
+- **Tokens used** — list the token categories this component draws from (e.g. colour, spacing, typography)
+- **CSS patterns** — note any conventions specific to this component (e.g. BEM modifier names, custom properties)
+- **Dark mode** — note any theme-specific overrides if applicable
+
+---
+
 ## Test cases
 
 The agent will generate one test function per entry. IDs must be unique within
 this spec and must match the test file exactly.
 
+### Render
+
 - [ ] **TC-01** — Renders with only required props
 - [ ] **TC-02** — …
+
+### Interaction
+
+- [ ] **TC-03** — …
+
+### Accessibility
+
+- [ ] **TC-04** — …
+
+### Edge cases
+
+- [ ] **TC-05** — …
 
 ---
 
@@ -115,8 +148,8 @@ helps the agent avoid building more than is required.
 
 ## Example usage
 
-How this component is implemented depends on the active framework selection in
-`docs/project-brief.md`.
+Include only the example for your active framework. Check `docs/project-brief.md` → Stack
+for the active selection.
 
 **Vanilla:**
 
@@ -124,6 +157,7 @@ How this component is implemented depends on the active framework selection in
 <div class="component-name">…</div>
 ```
 
+<!--
 **Astro:**
 
 ```astro
@@ -141,6 +175,7 @@ How this component is implemented depends on the active framework selection in
 ```svelte
 <ComponentName prop1="value" on:change={handleChange} />
 ```
+-->
 
 ---
 
@@ -149,4 +184,25 @@ How this component is implemented depends on the active framework selection in
 Additional context, constraints, and implementation guidance that the agent
 should be aware of before writing any code.
 
-- Gotchas, specific helper files to use, CSS class naming conventions, links to related specs.
+- **CSS** — import from `./[ComponentName].css` or `./[ComponentName].scss` depending on the active styles selection in `docs/project-brief.md`
+- **Assets** — note any SVGs or other assets to inline rather than reference via `<img>`
+- **Related specs** — link to any specs this component appears in or depends on
+- **Gotchas** — anything non-obvious about the implementation that the agent should know upfront
+
+---
+
+## Draft → Ready checklist
+
+Complete every item before changing the status to `Ready`.
+**Agents must not begin implementation until the status is `Ready`.**
+
+- [ ] Purpose describes the *why*, not the *how*
+- [ ] All props are named, typed, and have a default where applicable
+- [ ] All events include a payload description
+- [ ] Every meaningful state is listed in the States table
+- [ ] Interaction rules cover all non-obvious behaviours
+- [ ] Accessibility requirements are specific, not generic
+- [ ] At least one test case exists per behaviour and state
+- [ ] Out of scope section is filled in
+- [ ] Example usage matches the active framework
+- [ ] Notes for AI implementation are complete
