@@ -1,12 +1,11 @@
 # Feature: Dark Mode
 
 **Status:** Draft
+**Last updated:** <!-- e.g. 2025-01-15 -->
 
 ---
 
 ## Overview
-
-> A brief description of the feature and its purpose.
 
 Allow users to switch between light and dark colour schemes. The preference should persist across sessions and respect the user's operating system setting by default.
 
@@ -69,9 +68,22 @@ Explicitly listing what this feature does NOT cover prevents scope creep and hel
 
 The following components must have a spec in `docs/specs/components/` before an agent can begin implementation.
 
-| Component | Spec |
-|-----------|------|
-| `ThemeToggle` | `docs/specs/components/theme-toggle.spec.md` |
+| Component | Spec | Status |
+|-----------|------|--------|
+| `ThemeToggle` | `docs/specs/components/theme-toggle.spec.md` | Draft — must be `Ready` before implementation begins |
+
+---
+
+## Implementation notes
+
+These are authoritative decisions that component specs and implementation code must follow. Do not redefine these values elsewhere — reference this file instead.
+
+| Decision | Value |
+|----------|-------|
+| Theme attribute | `data-theme` on the root `<html>` element |
+| Attribute values | `"light"` and `"dark"` |
+| localStorage key | `color-scheme` |
+| Priority order | Stored preference → OS preference → default (`light`) |
 
 ---
 
@@ -79,8 +91,7 @@ The following components must have a spec in `docs/specs/components/` before an 
 
 Additional context, constraints, and implementation guidance that the agent should be aware of before writing any code.
 
-- Colour scheme should be applied via a `data-theme` attribute on the root
-  `<html>` element, toggled between `"light"` and `"dark"`
-- All colour values should reference CSS custom properties — no hardcoded
-  colours anywhere in the codebase
+- Colour scheme is applied via a `data-theme` attribute on the root `<html>` element, toggled between `"light"` and `"dark"`
+- All colour values must reference CSS custom properties — no hardcoded colours anywhere in the codebase
 - The toggle must be keyboard accessible and meet WCAG 2.1 AA contrast requirements
+- The `color-scheme` localStorage key is defined here and is the single source of truth — component specs must reference this file rather than redefine the key

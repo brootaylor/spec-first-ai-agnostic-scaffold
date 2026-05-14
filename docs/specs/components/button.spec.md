@@ -1,6 +1,9 @@
 # Component Spec: Button
 
 **Status:** Ready
+**Last updated:** <!-- e.g. 2025-01-15 -->
+
+> See `docs/project-brief.md` → Spec conventions for the full status key and agent behaviour rules.
 
 ---
 
@@ -12,6 +15,20 @@
 A reusable, accessible button covering every interactive call-to-action across the
 application. Must support loading and disabled states and be usable by any team
 without additional configuration.
+
+---
+
+## Dependencies
+
+Components, utilities, assets, or design token categories this component relies on.
+List anything an agent would need to locate or implement before building this component.
+
+| Type | Name | Location |
+|------|------|----------|
+| Asset | `spinner.svg` | `src/assets/spinner.svg` |
+| Tokens | Colour | `docs/design-tokens.md#colour` |
+| Tokens | Spacing | `docs/design-tokens.md#spacing` |
+| Tokens | Typography | `docs/design-tokens.md#typography` |
 
 ---
 
@@ -30,12 +47,17 @@ The agent will derive the implementation interface directly from this section.
 | `disabled` | boolean | | `false` | Prevents interaction |
 | `loading` | boolean | | `false` | Shows spinner; prevents interaction |
 | `type` | `button` / `submit` / `reset` | | `button` | HTML button type |
+| `ariaLabel` | string | | — | Overrides the accessible label when the visible text is insufficient |
 
 ### Events / Callbacks
 
-| Event | Fires when |
-|-------|-----------|
-| click / onClick / on:click | User clicks and button is neither disabled nor loading |
+| Event | Fires when | Payload |
+|-------|-----------|---------|
+| click / onClick / on:click | User clicks and button is neither disabled nor loading | `MouseEvent` |
+
+### Public methods _(if applicable)_
+
+None.
 
 ---
 
@@ -89,21 +111,44 @@ How the component should behave when something goes wrong.
 
 ---
 
+## Styling notes
+
+Token categories and CSS patterns specific to this component.
+The agent must read `docs/design-tokens.md` before writing any styles.
+
+- **Tokens used** — colour, spacing, typography
+- **CSS patterns** — BEM: `.btn` (block), `.btn--primary` / `.btn--secondary` / `.btn--danger` / `.btn--ghost` (variant modifiers), `.btn--sm` / `.btn--lg` (size modifiers), `.btn--loading` (state modifier)
+- **Dark mode** — button colours must reference CSS custom properties scoped to `[data-theme]` — no hardcoded values
+
+---
+
 ## Test cases
 
 The agent will generate one test function per entry. IDs must be unique within
 this spec and must match the test file exactly.
 
+### Render
+
 - [ ] **TC-01** — Renders a `<button>` with only the required `label`
 - [ ] **TC-02** — Applies the correct CSS class for each `variant` value
 - [ ] **TC-03** — Applies the correct CSS class for each `size` value
+
+### Interaction
+
 - [ ] **TC-04** — Click event fires when the button is enabled
 - [ ] **TC-05** — Click event does NOT fire when `disabled` is true
 - [ ] **TC-06** — Click event does NOT fire when `loading` is true
-- [ ] **TC-07** — Spinner rendered and `aria-busy="true"` set when `loading` is true
-- [ ] **TC-08** — `aria-disabled="true"` present when `disabled` is true
-- [ ] **TC-09** — `type="submit"` triggers form submission
+- [ ] **TC-07** — `type="submit"` triggers form submission
+
+### Accessibility
+
+- [ ] **TC-08** — Spinner is rendered and `aria-busy="true"` is set when `loading` is true
+- [ ] **TC-09** — `aria-disabled="true"` is present when `disabled` is true
 - [ ] **TC-10** — `ariaLabel` prop sets `aria-label` on the element
+
+### Edge cases
+
+- [ ] **TC-11** — Falls back to `primary` variant and emits `console.warn` when an invalid `variant` value is passed
 
 ---
 
@@ -154,6 +199,25 @@ How this component is implemented depends on the active framework selection in
 Additional context, constraints, and implementation guidance that the agent
 should be aware of before writing any code.
 
-- CSS: import from `./Button.css` or `./Button.scss` depending on active styles selection
-- Spinner: `src/assets/spinner.svg` — import and inline; do not use `<img>`
-- No animation libraries — CSS only
+- **CSS** — import from `./Button.css` or `./Button.scss` depending on active styles selection in `docs/project-brief.md`
+- **Assets** — `src/assets/spinner.svg` must be imported and inlined; do not use `<img>`
+- **Related specs** — this component is used in `docs/specs/layouts/main-layout.spec.md`
+- **Gotchas** — no animation libraries; CSS only for all transitions and spinner animation
+
+---
+
+## Draft → Ready checklist
+
+Complete every item before changing the status to `Ready`.
+**Agents must not begin implementation until the status is `Ready`.**
+
+- [x] Purpose describes the *why*, not the *how*
+- [x] All props are named, typed, and have a default where applicable
+- [x] All events include a payload description
+- [x] Every meaningful state is listed in the States table
+- [x] Interaction rules cover all non-obvious behaviours
+- [x] Accessibility requirements are specific, not generic
+- [x] At least one test case exists per behaviour and state
+- [x] Out of scope section is filled in
+- [x] Example usage matches the active framework
+- [x] Notes for AI implementation are complete

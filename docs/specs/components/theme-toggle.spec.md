@@ -1,6 +1,9 @@
 # Component Spec: ThemeToggle
 
 **Status:** Draft
+**Last updated:** <!-- e.g. 2025-01-15 -->
+
+> See `docs/project-brief.md` → Spec conventions for the full status key and agent behaviour rules.
 
 ---
 
@@ -12,6 +15,22 @@
 A toggle control that allows users to switch between light and dark colour
 schemes. It reflects the current scheme and updates it immediately when
 activated. Used in the main navigation so it is accessible from every page.
+
+---
+
+## Dependencies
+
+Components, utilities, assets, or design token categories this component relies on.
+List anything an agent would need to locate or implement before building this component.
+
+| Type | Name | Location |
+|------|------|----------|
+| Asset | `icon-sun.svg` | `src/assets/icon-sun.svg` |
+| Asset | `icon-moon.svg` | `src/assets/icon-moon.svg` |
+| Tokens | Colour | `docs/design-tokens.md#colour` |
+| Tokens | Spacing | `docs/design-tokens.md#spacing` |
+
+> The icon assets above are placeholders — replace with the actual filenames once chosen. Both must be inlined, not referenced via `<img>`.
 
 ---
 
@@ -28,9 +47,13 @@ The agent will derive the implementation interface directly from this section.
 
 ### Events / Callbacks
 
-| Event | Fires when |
-|-------|------------|
-| change / onChange / on:change | The user activates the toggle |
+| Event | Fires when | Payload |
+|-------|------------|---------|
+| change / onChange / on:change | The user activates the toggle | `'light' \| 'dark'` — the new theme value as a plain string |
+
+### Public methods _(if applicable)_
+
+None.
 
 ---
 
@@ -84,19 +107,41 @@ How the component should behave when something goes wrong.
 
 ---
 
+## Styling notes
+
+Token categories and CSS patterns specific to this component.
+The agent must read `docs/design-tokens.md` before writing any styles.
+
+- **Tokens used** — colour, spacing
+- **CSS patterns** — BEM: `.theme-toggle` (block); state communicated via `aria-label` and icon swap, not CSS class modifiers
+- **Dark mode** — all colours must reference CSS custom properties scoped to `[data-theme="light"]` and `[data-theme="dark"]`; this component toggles the attribute but does not define the colour values
+
+---
+
 ## Test cases
 
 The agent will generate one test function per entry. IDs must be unique within
 this spec and must match the test file exactly.
 
+### Render
+
 - [ ] **TC-01** — Renders with no props and defaults to `initialTheme`
 - [ ] **TC-02** — Applies stored `localStorage` preference on first render
 - [ ] **TC-03** — Applies OS `prefers-color-scheme` when no stored preference exists
+
+### Interaction
+
 - [ ] **TC-04** — Activating the toggle switches the theme
 - [ ] **TC-05** — Activating the toggle updates `data-theme` on the root `<html>` element
 - [ ] **TC-06** — Activating the toggle saves the new preference to `localStorage`
-- [ ] **TC-07** — Change event fires with the correct theme value when toggled
-- [ ] **TC-08** — `aria-label` reflects the current state correctly
+- [ ] **TC-07** — Change event fires with the correct theme string (`'light'` or `'dark'`) when toggled
+
+### Accessibility
+
+- [ ] **TC-08** — `aria-label` reflects the current state correctly (e.g. `"Switch to dark mode"` when light is active)
+
+### Edge cases
+
 - [ ] **TC-09** — Falls back gracefully when `localStorage` is unavailable
 
 ---
@@ -150,8 +195,28 @@ How this component is implemented depends on the active framework selection in
 Additional context, constraints, and implementation guidance that the agent
 should be aware of before writing any code.
 
-- Read `docs/features/dark-mode.md` for full feature context before implementing
-- Apply the theme by setting `data-theme` on the root `<html>` element
-- All colour values should use CSS custom properties scoped to `[data-theme="light"]` and `[data-theme="dark"]` — this component only needs to toggle the attribute
-- CSS: import from `./ThemeToggle.css` or `./ThemeToggle.scss` depending on active styles selection
-- No animation libraries — CSS transitions only
+- **Read first** — `docs/features/dark-mode.md` for full feature context before implementing
+- **Theme application** — set `data-theme` on the root `<html>` element; this component does not define colour values, only toggles the attribute
+- **localStorage key** — the canonical key is `color-scheme`, defined in `docs/features/dark-mode.md`
+- **CSS** — import from `./ThemeToggle.css` or `./ThemeToggle.scss` depending on active styles selection in `docs/project-brief.md`
+- **Assets** — icon SVGs must be inlined, not referenced via `<img>`; see Dependencies above for asset locations
+- **Related specs** — used in `docs/specs/layouts/main-layout.spec.md`
+- **Gotchas** — TC-03 requires mocking `window.matchMedia` in tests; no animation libraries — CSS transitions only
+
+---
+
+## Draft → Ready checklist
+
+Complete every item before changing the status to `Ready`.
+**Agents must not begin implementation until the status is `Ready`.**
+
+- [x] Purpose describes the *why*, not the *how*
+- [x] All props are named, typed, and have a default where applicable
+- [x] All events include a payload description
+- [x] Every meaningful state is listed in the States table
+- [x] Interaction rules cover all non-obvious behaviours
+- [x] Accessibility requirements are specific, not generic
+- [x] At least one test case exists per behaviour and state
+- [x] Out of scope section is filled in
+- [ ] Example usage matches the active framework
+- [x] Notes for AI implementation are complete
