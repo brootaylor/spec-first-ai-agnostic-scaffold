@@ -1,48 +1,29 @@
 # Tech-Agnostic Spec-First Development Scaffold
 
-A starter template for building web projects using a tech-agnostic spec-first approach.
+A starter template for building web projects — tech-agnostic, spec-first, and works whether you build by hand, use an AI agent, or both.
 
-Write the spec first. Then build — by hand, with an AI agent, or both.
+## Quick start
 
-> **NOTE:** *This is a work in progress and will be updated over time as I figure out what seems to work best.*
+```bash
+git clone https://github.com/brootaylor/tech-agnostic-spec-first-dev-scaffold.git my-project
+cd my-project
+```
 
----
+Then follow [WORKFLOW.md](./WORKFLOW.md) for the full setup guide. For AI agent setup, see [AGENTS.md](./AGENTS.md).
 
-## Getting started
-
-If you have a GitHub account, click the **"Use this template"** button at the top of this repo to create a new repository with all the scaffold files as a clean starting point.
-
-Alternatively:
-
-- **Clone it** — `git clone https://github.com/brootaylor/tech-agnostic-spec-first-dev-scaffold.git`
-- **Download as ZIP** — click **Code → Download ZIP** on the repo page
-
-From there, follow [WORKFLOW.md](./WORKFLOW.md) to set up your project.
-
----
-
-## Features
-
-- **Spec-first workflow** — specs are written before any code is produced. The spec is the source of truth throughout, for humans and agents alike
-- **Two ways to build** — handcrafted or AI-assisted. Both paths use the same specs and workflow
-- **Tech-agnostic** — works with Vanilla, Astro, Eleventy, React, or Svelte out of the box. Framework, language, styles, testing tools, and build tool are all configurable via a simple stack selector in `docs/project-brief.md` — and new options can be added to suit any project
-- **AI agent agnostic** — not tied to any specific AI agent. Includes config for Claude Code, Cursor, and GitHub Copilot out of the box, with a clear pattern for adding others
-- **Design token foundation** — a template and file structure for defining the visual language of a project before writing any styles
-- **Service worker support** — optional offline and caching support, with a strategy selector and framework-specific guidance built in
-- **Storybook support** — optional component development and documentation environment. Develop and showcase UI components in isolation, with setup guidance covering React, Svelte, and plain JavaScript
-- **Living documentation** — specs double as project documentation. Keep them up to date and the whole project stays coherent for humans and agents alike
+If you have a GitHub account, you can also click the **"Use this template"** button at the top of the repo to create a new repository with all the scaffold files as a clean starting point.
 
 ---
 
 ## Why spec-first?
 
-Writing specs before code forces clarity. Before anyone — human or agent — writes a single line of implementation, the spec defines exactly what a component should do, what states it has, how it should behave, and what tests it needs to pass. This reduces guesswork, prevents scope creep, and makes it easier to review what gets produced.
+Writing specs before code forces clarity. Before anyone — human or agent — writes a single line of implementation, the spec defines exactly what a component should do, what states it has, how it should behave, and what tests it needs to pass.
 
-The spec becomes the shared language for the project — if the output isn't right, the spec is the first place to look.
+The spec becomes the shared language for the project. If the output isn't right, the spec is the first place to look.
 
 ---
 
-## Two ways to use this scaffold
+## Two ways to build
 
 **Handcrafted** — use the specs and workflow as directions for building the project yourself. The specs tell you exactly what to build and the workflow guides you through the process.
 
@@ -52,48 +33,30 @@ Both paths follow the same workflow and use the same specs.
 
 ---
 
+## Features
+
+- **Spec-first workflow** — specs are written before any code is produced. The spec is the source of truth throughout, for humans and agents alike
+- **Tech-agnostic** — works with Vanilla, Astro, Eleventy, React, or Svelte out of the box. Framework, language, styles, testing tools, and build tool are all configurable via a simple stack selector in `docs/project-brief.md`
+- **AI agent agnostic** — not tied to any specific AI agent. Includes config for Claude Code, Cursor, and GitHub Copilot out of the box, with a clear pattern for adding others
+- **Optional: service worker** — offline and caching support with a strategy selector and framework-specific guidance
+- **Optional: Storybook** — component development and documentation environment, with setup guidance for React, Svelte, and plain JavaScript
+- **Living documentation** — specs double as project documentation. Keep them up to date and the whole project stays coherent for humans and agents alike
+
+---
+
 ## Choosing your stack
 
-[`docs/project-brief.md`](./docs/project-brief.md) includes a stack selector where you can mark your preferred framework, language, styles, testing tools, and build tool. It also includes optional selectors for a service worker and Storybook for projects that need them.
-
-This is the single source of truth for the project — both humans and agents refer to it before doing anything.
+[`docs/project-brief.md`](./docs/project-brief.md) is the single source of truth for the project. It includes a stack selector where you mark your preferred framework, language, styles, testing tools, and build tool. Both humans and agents read it before doing anything.
 
 ---
 
-## Design tokens
+## Optional configuration
 
-[`docs/design-tokens.md`](./docs/design-tokens.md) is a template for defining the visual language of your project — colours, spacing, typography, and other design constants.
-
-Fill it in before writing any styles. Both humans and agents use it as the reference for all style decisions. Values are implemented in `src/styles/tokens.scss` and referenced throughout the codebase as CSS custom properties.
-
----
-
-## Service worker
-
-[`docs/service-worker.md`](./docs/service-worker.md) is an optional configuration doc for adding offline support and caching to your project.
-
-Choose a caching strategy in `docs/project-brief.md` and the agent will implement it based on the guidance in this doc. If building by hand, the doc covers the available strategies and setup notes for each framework and approach.
-
----
-
-## Storybook
-
-[`docs/storybook.md`](./docs/storybook.md) is an optional configuration doc for adding Storybook to your project — a development and documentation environment for building and showcasing UI components in isolation.
-
-Enable it in `docs/project-brief.md` and the agent will set it up based on the guidance in this doc. If building by hand, the doc covers setup and usage for React, Svelte, and plain JavaScript, with notes on configuring it for other approaches.
-
----
-
-## Examples included
-
-The scaffold comes with a small set of working examples to illustrate the patterns:
-
-- **Feature:** Dark mode (`docs/features/dark-mode.md`)
-- **Components:** Button, ThemeToggle (`docs/specs/components/`)
-- **Page:** Home (`docs/specs/pages/`)
-- **Layout:** MainLayout (`docs/specs/layouts/`)
-
-These are real specs that follow the same conventions you would use in a production project. Use them as reference or replace them with your own.
+| Doc | Purpose | How to enable |
+|-----|---------|---------------|
+| [`docs/design-tokens.md`](./docs/design-tokens.md) | Define colours, spacing, and typography before writing any styles. Values are implemented in `src/styles/tokens.scss` and referenced throughout the codebase as CSS custom properties | Fill in directly before writing any styles |
+| [`docs/service-worker.md`](./docs/service-worker.md) | Offline support and caching strategy, with framework-specific implementation notes | Set active strategy in `docs/project-brief.md` |
+| [`docs/storybook.md`](./docs/storybook.md) | Component development and documentation environment | Enable in `docs/project-brief.md` |
 
 ---
 
@@ -103,38 +66,43 @@ These are real specs that follow the same conventions you would use in a product
 my-project/
 ├── README.md                             # ← you are here
 ├── WORKFLOW.md                           # ← step-by-step guide to using this scaffold
-├── AGENTS.md                             # ← optional AI agent setup
+├── AGENTS.md                             # ← AI agent setup
 │
 ├── docs/
-│   ├── project-brief.md                  # ← single source of truth for the project
-│   ├── design-tokens.md                  # ← design token definitions
-│   ├── service-worker.md                 # ← service worker configuration
-│   ├── storybook.md                      # ← storybook configuration
-│   ├── features/                         # ← user-facing feature specs
+│   ├── project-brief.md                  # ← single source of truth: stack, conventions, agent rules
+│   ├── design-tokens.md                  # ← colour, spacing, and typography definitions
+│   ├── service-worker.md                 # ← optional: caching strategy configuration
+│   ├── storybook.md                      # ← optional: component documentation environment
+│   ├── features/
+│   │   └── dark-mode.md                  # ← example feature spec
 │   └── specs/
 │       ├── _component-template.spec.md   # ← spec template
-│       ├── components/                   # ← component specs
-│       ├── pages/                        # ← page / view specs
-│       └── layouts/                      # ← layout specs
+│       ├── components/
+│       │   ├── button.spec.md            # ← example component spec
+│       │   └── theme-toggle.spec.md      # ← example component spec
+│       ├── pages/
+│       │   └── home.spec.md              # ← example page spec
+│       └── layouts/
+│           └── main-layout.spec.md       # ← example layout spec
 │
-└── .agents/                              # ← optional AI agent config (see AGENTS.md)
+└── .agents/                              # ← AI agent config (see AGENTS.md)
     ├── claude/
     ├── cursor/
     └── copilot/
 ```
 
----
-
-## How it works
-
-This scaffold follows a spec-first workflow — specs are written before any code is produced. Each spec defines the interface, behaviour, states, and test cases for what's being built. From there, you build it yourself or hand it to an AI agent.
-
-See [WORKFLOW.md](./WORKFLOW.md) for prerequisites and the full step-by-step guide.
+The example specs are real, working examples that follow the same conventions you'd use in a production project. Use them as a reference or replace them with your own.
 
 ---
 
-## Using an AI agent
+## How specs work
 
-See [AGENTS.md](./AGENTS.md) for instructions on setting up and switching between agents. Each agent has its own strengths and weaknesses, so it's a matter of experimentation to see which one works best for you.
+Each spec defines the interface, behaviour, states, accessibility requirements, and test cases for what's being built. A status field on every spec controls whether an agent may act on it:
 
-When using an agent, the workflow is the same — write the spec first, then ask the agent to implement it. The agent will read the spec, understand what's required, and generate the code accordingly.
+| Status | Meaning |
+|--------|---------|
+| `Draft` | Incomplete — do not implement |
+| `Ready` | Complete — proceed with implementation |
+| `Complete` | Implemented and tested |
+
+See [WORKFLOW.md](./WORKFLOW.md) for the full step-by-step guide from scaffold setup through to deployment.
