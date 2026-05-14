@@ -24,6 +24,8 @@ Before you begin, make sure you have the following installed:
 
 ## Step 1 — Set up the scaffold
 
+> **Before doing anything else — commit everything to Git.** This gives you a clean baseline to return to.
+
 **Comes with the scaffold — no action needed:**
 
 ```bash
@@ -67,8 +69,6 @@ src/layouts/
 ```
 
 **If using an AI agent:** the agent will create any missing directories as needed when scaffolding components, pages, and layouts.
-
-> **Before doing anything else — commit everything to Git.** This gives you a clean baseline to return to.
 
 ---
 
@@ -129,7 +129,9 @@ For example, the Framework category looks like this:
 
 This is the first thing the agent reads. Getting it right before writing any specs saves time later.
 
-### Complete your project setup
+---
+
+## Step 4 — Complete your project setup
 
 Now that your stack is selected, `package.json` needs to be populated with the correct dependencies.
 
@@ -144,7 +146,7 @@ Now that your stack is selected, `package.json` needs to be populated with the c
 
 *"Read `docs/project-brief.md` and complete the initial project setup."*
 
-> This covers `package.json`, config files, `.nvmrc`, and `.gitignore` only. Design tokens and specs come later.
+> **Note:** This covers `package.json`, config files, `.nvmrc`, and `.gitignore` only. Design tokens and specs come later.
 
 The agent will:
 
@@ -160,9 +162,11 @@ Two default starting files are included for the Vanilla + Vite stack:
 
 If building with React or Svelte, these files are also used — `main.js` needs to be updated to mount the app for the active framework. If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own pages and templating.
 
+> **Commit your work.** Once setup is complete and dependencies are in place, commit before moving on.
+
 ---
 
-## Step 4 — Define your design tokens
+## Step 5 — Define your design tokens
 
 `docs/design-tokens.md` is a template for defining the visual language of your project — colours, spacing, typography, and other design constants.
 
@@ -173,12 +177,15 @@ If building with React or Svelte, these files are also used — `main.js` needs 
 
 **If using an AI agent:**
 
-- The agent must read `docs/design-tokens.md` before writing any styles
-- If the file is empty, it will stop and ask you to fill it in first
+- Fill in `docs/design-tokens.md` with your token values first
+- Then prompt the agent: *"Read `docs/design-tokens.md` and implement the values in `src/styles/tokens.scss`."*
+- If the file is empty, the agent will stop and ask you to fill it in first
+
+> **Commit your work.** Once your tokens are defined and implemented, commit before moving on.
 
 ---
 
-## Step 5 — Write a feature spec
+## Step 6 — Write a feature spec
 
 Pick the first feature you want to build. Create a spec for it in `docs/features/`.
 
@@ -190,7 +197,7 @@ Don't start writing component specs yet. Finish the feature spec first.
 
 ---
 
-## Step 6 — Write your specs
+## Step 7 — Write your specs
 
 Look at the "Components required" section of your feature spec. For each item listed, create a spec in the relevant directory using `docs/specs/_component-template.spec.md` as your starting point:
 
@@ -206,7 +213,7 @@ Set the status to `Draft` while writing. Change it to `Ready` only when every se
 
 ---
 
-## Step 7 — Build
+## Step 8 — Build
 
 Once the spec status is set to `Ready`, it's time to build.
 
@@ -218,22 +225,21 @@ Once the spec status is set to `Ready`, it's time to build.
 
 **If using an AI agent:**
 
-- Open your agent and ask it to scaffold the implementation based on the spec
-- If you're using Claude Code, a custom command is included:
+To scaffold a single spec, prompt the agent:
+
+*"Read `docs/specs/components/button.spec.md` and scaffold the implementation."*
+
+To scaffold all ready specs at once:
+
+*"Read all specs in `docs/specs/` with a status of `Ready` and scaffold the implementation for each one."*
+
+If you're using Claude Code, a custom command is also available as a shorthand:
 
 ```bash
 /create-component Button
 ```
 
-> **If using an AI agent:**
->
-> To scaffold a single spec:
-> *"Read `docs/specs/components/button.spec.md` and scaffold the implementation."*
->
-> To scaffold all ready specs at once:
-> *"Read all specs in `docs/specs/` with a status of `Ready` and scaffold the implementation for each one."*
-
-> **Note:** `/create-component` is a Claude Code-specific custom command defined in `.agents/claude/commands/create-component.md`. Other agents don't have this command out of the box — you'll need to prompt them directly, for example: *"Read the spec at `docs/specs/components/button.spec.md` and scaffold the implementation."*
+> **Note:** `/create-component` is a Claude Code-specific custom command defined in `.agents/claude/commands/create-component.md`. Other agents don't support it — use the prompt examples above instead.
 
 The agent will:
 
@@ -246,60 +252,32 @@ If the agent stops and asks a question, that usually means the spec is ambiguous
 
 ---
 
-## Step 8 — Review the output
+## Step 9 — Review the output
 
-The generated code will appear in `src/` under the relevant directory *(see the table in Step 6)*. Check it against the spec:
+The generated code will appear in `src/` under the relevant directory *(see the table in Step 7)*. Check it against the spec:
 
 - Does every `TC-##` in the spec have a corresponding passing test?
 - Does the implementation match the behaviour described?
 - Are the accessibility requirements met?
 
-If something is wrong, update the spec first — then ask the agent to fix the implementation.
+**If something is wrong**, there are two likely causes:
 
-> ***NB**: Don't edit the implementation directly without updating the spec, or the two will drift apart. The spec is the source of truth, and the agent relies on it to generate the correct code. If they get out of sync, the agent's output becomes unpredictable.*
+- **The spec is ambiguous** — update the spec first to clarify, then ask the agent to fix the implementation.
+- **The spec is clear but the output is incorrect** — re-prompt the agent with the relevant section highlighted: *"Re-read the Behaviour section of `docs/specs/components/button.spec.md` and correct the implementation."*
+
+> **Note:** Don't edit the implementation directly without updating the spec, or the two will drift apart. The spec is the source of truth, and the agent relies on it to generate correct code. If they get out of sync, the agent's output becomes unpredictable.
+
+Once everything checks out, update the spec status to `Complete`.
+
+> **Commit your work.** Once the spec is marked `Complete` and all tests are passing, commit before moving on.
 
 ---
 
-## Step 9 — Run it locally or deploy
+## Step 10 — Run it locally or deploy
 
-How you run the project depends on your active framework selection in `docs/project-brief.md`. All stack dependencies are installed via `npm install` — refer to your chosen framework's documentation for any additional setup.
+All frameworks install dependencies via `npm install`. Most are then started with `npm run dev` — Eleventy is the exception:
 
-**Vanilla + Vite:**
-
-```bash
-npm install
-npm run dev
-```
-
-**React + Vite:**
-
-```bash
-npm install
-npm run dev
-```
-
-**React + Next.js:**
-
-```bash
-npm install
-npm run dev
-```
-
-**Svelte + Vite:**
-
-```bash
-npm install
-npm run dev
-```
-
-**Svelte + SvelteKit:**
-
-```bash
-npm install
-npm run dev
-```
-
-**Astro:**
+**Most frameworks (Vanilla + Vite, React, Svelte, Astro):**
 
 ```bash
 npm install
@@ -313,19 +291,20 @@ npm install
 npx @11ty/eleventy --serve
 ```
 
-For deployment, [Netlify](https://www.netlify.com) works well with all of these frameworks. Connect your Git repository, set the build command and output directory for your framework, and Netlify handles the rest. Refer to your chosen framework's documentation for the exact build settings.
+For deployment, [Netlify](https://www.netlify.com) and [Vercel](https://vercel.com) both work well with all of these frameworks. Connect your Git repository, set the build command and output directory for your framework, and they handle the rest. Refer to your chosen framework's documentation for the exact build settings.
 
 ---
 
-## Step 10 — Iterate
+## Step 11 — Iterate
 
-Repeat Steps 5–8 for each feature. As the project grows, update `docs/project-brief.md` with any new conventions or constraints the agent needs to know about.
+Once a spec is marked `Complete` and committed, return to Step 6 and repeat the cycle for the next feature — writing the feature spec, then the component specs, building, and reviewing.
+
+As the project grows, update `docs/project-brief.md` with any new conventions or constraints the agent needs to know about.
 
 ---
 
-> ### The spec is the source of truth
->
-> The spec files are the living documentation of your project.
-> **Keep them up to date and the agent stays useful. Let them drift and the agent becomes unpredictable.**
->
-> If the output isn't right, the spec is always the first place to look.
+## The spec is the source of truth
+
+The spec files are the living documentation of your project. **Keep them up to date and the agent stays useful. Let them drift and the agent becomes unpredictable.**
+
+If the output isn't right, the spec is always the first place to look.
