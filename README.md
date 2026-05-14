@@ -40,6 +40,7 @@ Both paths follow the same workflow and use the same specs.
 - **AI agent agnostic** — not tied to any specific AI agent. Includes config for Claude Code, Cursor, and GitHub Copilot out of the box, with a clear pattern for adding others
 - **Optional: service worker** — offline and caching support with a strategy selector and framework-specific guidance
 - **Optional: Storybook** — component development and documentation environment, with setup guidance for React, Svelte, and plain JavaScript
+- **Optional: security guidelines** — configurable security measures and best practices to follow during development, with framework-specific notes
 - **Living documentation** — specs double as project documentation. Keep them up to date and the whole project stays coherent for humans and agents alike
 
 ---
@@ -57,6 +58,7 @@ Both paths follow the same workflow and use the same specs.
 | [`docs/design-tokens.md`](./docs/design-tokens.md) | Define colours, spacing, and typography before writing any styles. Values are implemented in `src/styles/tokens.scss` and referenced throughout the codebase as CSS custom properties | Fill in directly before writing any styles |
 | [`docs/service-worker.md`](./docs/service-worker.md) | Offline support and caching strategy, with framework-specific implementation notes | Set active strategy in `docs/project-brief.md` |
 | [`docs/storybook.md`](./docs/storybook.md) | Component development and documentation environment | Enable in `docs/project-brief.md` |
+| [`docs/security.md`](./docs/security.md) | Security guidelines and best practices to follow during development | Set active security measures in `docs/project-brief.md` |
 
 ---
 
@@ -73,6 +75,7 @@ my-project/
 │   ├── design-tokens.md                  # ← colour, spacing, and typography definitions
 │   ├── service-worker.md                 # ← optional: caching strategy configuration
 │   ├── storybook.md                      # ← optional: component documentation environment
+│   ├── security.md                       # ← optional: security guidelines and best practices
 │   ├── features/
 │   │   └── dark-mode.md                  # ← example feature spec
 │   └── specs/

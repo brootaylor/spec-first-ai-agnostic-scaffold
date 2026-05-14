@@ -39,6 +39,7 @@ package.json
 .markdownlint.json
 docs/project-brief.md
 docs/design-tokens.md
+docs/security.md
 docs/service-worker.md
 docs/storybook.md
 docs/features/dark-mode.md
@@ -110,6 +111,8 @@ Open `docs/project-brief.md` and do two things:
 - Build *(Vanilla only)*
 - Service worker *(optional — defaults to None)*
 - Storybook *(optional — defaults to None)*
+- Linting *(optional — defaults to None)*
+- Security *(optional — defaults to None)*
 
 For example, the Framework category looks like this:
 

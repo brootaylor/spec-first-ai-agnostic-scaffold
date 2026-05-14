@@ -125,6 +125,28 @@ setup instructions and framework-specific implementation notes.
 | None | `[active]` |
 | Storybook | |
 
+### Linting
+
+Optional. Defaults to `None`. When active, ESLint is configured with rules that
+catch both code quality issues and common security vulnerabilities. See
+`docs/security.md` for the secure coding rules that linting enforces.
+
+| Option | Active |
+|--------|--------|
+| None | `[active]` |
+| ESLint | |
+
+### Security
+
+Optional. Defaults to `None`. See `docs/security.md` for header definitions,
+CSP configuration, and framework-specific setup guidance.
+
+| Option | Active |
+|--------|--------|
+| None | `[active]` |
+| Headers only | |
+| Headers + CSP | |
+
 ---
 
 ## Stack compatibility notes
@@ -142,6 +164,8 @@ Notes on combinations that require care or don't make sense together.
 - **Vanilla + Vite + Jest** — Jest requires additional config to handle ESM modules in a Vite project. Prefer Vitest for Vite-based stacks to avoid this complexity
 - **Tailwind** — requires PostCSS config. Install `tailwindcss`, `postcss`, and `autoprefixer` as dev dependencies and generate `tailwind.config.js`
 - **CSS Modules** — supported natively by Vite, Next.js, and SvelteKit. No additional config needed for those stacks. For Vanilla without Vite, additional build config is required
+- **ESLint + TypeScript** — add `@typescript-eslint/parser` and `@typescript-eslint/eslint-plugin` as dev dependencies alongside ESLint
+- **ESLint + Svelte** — add `eslint-plugin-svelte` as a dev dependency
 
 ---
 
@@ -168,7 +192,9 @@ need to be in place.
 6. Update the stack-specific section of `.gitignore` with any entries required by the active stack
 7. If a service worker option is active, implement it following `docs/service-worker.md`
 8. If Storybook is active, set it up following `docs/storybook.md`
-9. Do not install any dependencies not directly required by the active stack selections
+9. If ESLint is active, install ESLint and the plugins listed in `docs/security.md` and generate `.eslintrc`
+10. If a security option is active, apply the configuration following `docs/security.md`
+11. Do not install any dependencies not directly required by the active stack selections
 
 ---
 
@@ -273,6 +299,16 @@ language. Agents must follow them when generating any file.
 - No hardcoded colour values anywhere in stylesheets — always reference a CSS custom property
 - Prefer explicit over implicit — if something isn't obvious from the surrounding code, name it
 
+### Secure coding
+
+- Never use `eval()`, `new Function()`, or pass a string as the first argument to `setTimeout` or `setInterval` — these execute arbitrary code and are flagged by the linter
+- Never use `innerHTML` with any value that originates from user input or an external source — use `textContent` or DOM methods instead
+- Never hardcode API keys, tokens, or credentials in source files — use environment variables, and never commit `.env` files containing real values
+- Never store sensitive data (tokens, passwords, personally identifiable information) in `localStorage` or `sessionStorage`
+- If a component or feature needs to load a resource from an external origin, declare it in the component's Dependencies table and update the CSP exceptions table in `docs/security.md` before marking the component `Complete`
+
+These rules are enforced by ESLint when the Linting option is active. See `docs/security.md` for plugin and rule details.
+
 > *Adjust or extend these conventions to match your team's preferences. Keeping them
 > here means all agents pick them up automatically.*
 
@@ -291,6 +327,7 @@ They apply regardless of which agent is used.
 - **Do not delete files without confirmation** — always ask before removing any file that was not created in the current session
 - **Do not install unlisted dependencies** — only install packages directly required by the active stack selections or an explicit spec requirement
 - **Design tokens before styles** — read `docs/design-tokens.md` before writing any CSS. If the file is empty or incomplete, stop and ask the user to fill it in
+- **Read security config before generating HTML or deployment config** — read `docs/security.md` before generating `index.html`, `_headers`, `vercel.json`, or any middleware file. The header values and CSP directives defined there are the source of truth
 - **Tests before implementation** — write tests first, then implement until they pass
 - **One spec at a time** — unless explicitly asked to scaffold multiple specs at once, implement one spec per session and confirm before moving to the next
 - **Ask, don't assume** — if a spec is ambiguous, a constraint is unclear, or a decision would affect the whole project, ask rather than guess
@@ -402,3 +439,4 @@ docs/
 | What are the design tokens? | `docs/design-tokens.md` |
 | How is the service worker configured? | `docs/service-worker.md` |
 | How is Storybook configured? | `docs/storybook.md` |
+| What are the security headers and CSP? | `docs/security.md` |
