@@ -7,12 +7,37 @@ tool, framework, or AI agent beyond what is selected in the Stack section below.
 
 Agent-specific configs live in `.agents/`.
 
+**Last updated:** <!-- e.g. 2025-01-15 — update whenever a meaningful change is made -->
+
 ---
 
 ## What this project is
 
-> *Describe your project here. For example:
-> "A static informational website for a design system. It includes documentation, usage guidelines, and examples for the components and patterns in the design system. Users can browse the documentation, view code examples, and copy snippets for their own projects."*
+> *Fill in each field below. The more specific you are, the more useful this file
+> is as a reference — for you and for any AI agent working on the project.*
+
+**What it is:**
+> *One or two sentences describing the product. For example: "A static documentation
+> site for a component library. It covers usage guidelines, code examples, and
+> design principles."*
+
+**Who it's for:**
+> *Who uses it and in what context. For example: "Front-end developers at the company
+> who need a reference when building new features."*
+
+**Key goals:**
+> *What does success look like? For example: "Fast load times, accessible to WCAG 2.1 AA,
+> easy to update without a developer."*
+
+**Known constraints:**
+> *Anything that limits what can be built or how. This includes technical constraints,
+> business rules, and environmental requirements. For example:*
+>
+> - *"Must work without JavaScript enabled for core content"*
+> - *"No external analytics or third-party scripts"*
+> - *"Must support Safari 15 and above due to the user base — note any required polyfills in the Browser support section"*
+> - *"Cannot use a CDN — all assets must be self-hosted"*
+> - *"Bundle size must stay under 100kb uncompressed"*
 
 ---
 
@@ -49,12 +74,15 @@ The core framework for this project. Pick one.
 | Approach | Active |
 |----------|--------|
 | Plain CSS | `[active]` |
+| CSS Modules | |
 | Sass | |
+| Tailwind | |
 
 ### Unit testing
 
 | Tool | Active |
 |------|--------|
+| Vitest | |
 | Jest | `[active]` |
 | None | |
 
@@ -97,18 +125,27 @@ setup instructions and framework-specific implementation notes.
 | None | `[active]` |
 | Storybook | |
 
-### Constraints
+---
 
-Notes on combinations that don't make sense together.
+## Stack compatibility notes
+
+Notes on combinations that require care or don't make sense together.
 
 - **Eleventy** — includes its own build pipeline. Build selection does not apply
 - **Astro** — includes its own build pipeline. Build selection does not apply
 - **React** — pair with Vite for a simple setup, or Next.js for a full meta-framework. Build selection does not apply
 - **Svelte** — pair with Vite for a simple setup, or SvelteKit for a full meta-framework. Build selection does not apply
 - **React + Jest** — include `@testing-library/react` and `@testing-library/jest-dom` as dev dependencies
+- **React + Vitest** — include `@testing-library/react` and `@testing-library/jest-dom` as dev dependencies
 - **Svelte + Jest** — include `@testing-library/svelte` as a dev dependency
+- **Svelte + Vitest** — include `@testing-library/svelte` as a dev dependency
+- **Vanilla + Vite + Jest** — Jest requires additional config to handle ESM modules in a Vite project. Prefer Vitest for Vite-based stacks to avoid this complexity
+- **Tailwind** — requires PostCSS config. Install `tailwindcss`, `postcss`, and `autoprefixer` as dev dependencies and generate `tailwind.config.js`
+- **CSS Modules** — supported natively by Vite, Next.js, and SvelteKit. No additional config needed for those stacks. For Vanilla without Vite, additional build config is required
 
-### Setup instructions
+---
+
+## Setup instructions
 
 Before writing any implementation code, the project dependencies and config files
 need to be in place.
@@ -133,13 +170,130 @@ need to be in place.
 8. If Storybook is active, set it up following `docs/storybook.md`
 9. Do not install any dependencies not directly required by the active stack selections
 
-### Default starting files
+---
 
-- **Vanilla + Vite** — `src/index.html` is the default home page and `src/scripts/main.js` is the JavaScript file it references. Both are included as minimal starting files to build out
-- **React** — `src/index.html` and `src/scripts/main.js` are the default starting files. Update `main.js` to mount the React app
-- **Svelte** — `src/index.html` and `src/scripts/main.js` are the default starting files. Update `main.js` to mount the Svelte app
-- **Astro** — pages and templating are managed by Astro's own file-based routing. Remove `src/index.html` and `src/scripts/main.js` if switching to Astro
-- **Eleventy** — pages and templating are managed by Eleventy's own templating system. Remove `src/index.html` and `src/scripts/main.js` if switching to Eleventy
+## Browser support
+
+The following defines the minimum browser targets for this project. These targets
+determine which JavaScript and CSS features are safe to use without polyfills or
+fallbacks.
+
+| Target | Version |
+|--------|---------|
+| Chrome | Latest 2 versions |
+| Firefox | Latest 2 versions |
+| Safari | Latest 2 versions |
+| Edge | Latest 2 versions |
+
+> *Update this table to reflect the actual support requirements for your project.
+> For example, if legacy browser support is required, note the specific versions here
+> and add any polyfill or transpilation requirements to the **Known constraints** field
+> in "What this project is" above.*
+
+- No Internet Explorer support unless explicitly listed above
+- Agents must not use browser APIs or CSS features that fall outside these targets
+  without flagging it first
+
+---
+
+## Accessibility standard
+
+All components, pages, and layouts produced for this project must meet
+**WCAG 2.1 Level AA** as a minimum.
+
+This applies to:
+
+- Colour contrast (text and interactive elements)
+- Keyboard navigation and focus management
+- Screen reader support (semantic HTML, ARIA roles, labels, and live regions)
+- Motion (respect `prefers-reduced-motion` where animations are used)
+
+Individual specs may define accessibility requirements beyond this baseline.
+Agents must not consider a component complete until its spec's accessibility
+requirements are met and the project-wide standard is satisfied.
+
+---
+
+## Spec conventions
+
+Specs use a status field to communicate whether they are ready for implementation.
+
+| Status | Meaning | Who acts on it |
+|--------|---------|----------------|
+| `Draft` | Spec is incomplete — do not implement | Human only |
+| `Ready` | Spec is complete — proceed with implementation | Human + agent |
+| `Complete` | Implemented and tested | Human only |
+
+**Agents must not implement a spec whose status is `Draft`.**
+
+**Agents must not re-implement or overwrite a spec whose status is `Complete`.** If
+changes are needed to a completed component, the human must first update the spec
+and reset its status to `Ready` before asking the agent to revise the implementation.
+
+If an agent encounters a `Draft` spec that is required by a feature it is working
+on, it should stop and ask the user to complete the spec before continuing.
+
+The spec template lives at `docs/specs/_component-template.spec.md`. All new
+specs must follow this template.
+
+---
+
+## Coding conventions
+
+These conventions apply across the whole codebase regardless of framework or
+language. Agents must follow them when generating any file.
+
+### Naming
+
+- **Component files and folders** — PascalCase: `Button/Button.js`
+- **Page and layout files and folders** — PascalCase: `Home/Home.js`
+- **Utility / helper files** — camelCase: `formatDate.js`
+- **Style files** — match the component they belong to: `Button.css`
+- **Test files** — match the file under test with a `.test` suffix: `Button.test.js`
+- **CSS class names** — BEM: `.btn`, `.btn--primary`, `.btn__label`
+- **CSS custom properties** — kebab-case with semantic prefix: `--color-primary`, `--space-md`
+- **JavaScript variables and functions** — camelCase
+- **TypeScript types and interfaces** — PascalCase
+
+### Imports
+
+- External dependencies first, then internal modules, then relative imports
+- No default exports from utility files — named exports only
+- Components may use default exports
+
+### Comments
+
+- Prefer self-documenting code over inline comments
+- Use comments to explain *why*, not *what*
+- JSDoc comments on any exported function or component that isn't self-evident
+
+### General
+
+- No raw values without a name — any number, size, duration, or colour used in code must be extracted to a named constant or design token so its purpose is clear and it can be changed in one place. For example, use `var(--space-md)` rather than `24px`, and `const retryDelayMs = 5000` rather than `5000`
+- No hardcoded colour values anywhere in stylesheets — always reference a CSS custom property
+- Prefer explicit over implicit — if something isn't obvious from the surrounding code, name it
+
+> *Adjust or extend these conventions to match your team's preferences. Keeping them
+> here means all agents pick them up automatically.*
+
+---
+
+## Agent behaviour rules
+
+These rules govern how agents must behave when working on this project.
+They apply regardless of which agent is used.
+
+- **Read this file first** — before doing anything else, read `docs/project-brief.md` in full
+- **Read the spec before implementing** — never generate implementation code without first reading the relevant spec
+- **Do not implement `Draft` specs** — see Spec conventions above
+- **Do not re-implement `Complete` specs** — if a spec is marked `Complete`, skip it. If changes are needed, the human must update the spec and reset its status to `Ready` first
+- **Do not modify spec files** — specs are written by humans. Agents read them; they do not edit them. If a spec is ambiguous or incomplete, stop and ask
+- **Do not delete files without confirmation** — always ask before removing any file that was not created in the current session
+- **Do not install unlisted dependencies** — only install packages directly required by the active stack selections or an explicit spec requirement
+- **Design tokens before styles** — read `docs/design-tokens.md` before writing any CSS. If the file is empty or incomplete, stop and ask the user to fill it in
+- **Tests before implementation** — write tests first, then implement until they pass
+- **One spec at a time** — unless explicitly asked to scaffold multiple specs at once, implement one spec per session and confirm before moving to the next
+- **Ask, don't assume** — if a spec is ambiguous, a constraint is unclear, or a decision would affect the whole project, ask rather than guess
 
 ---
 
@@ -180,20 +334,6 @@ than specs:
 | Services / API | `docs/services.md` | How the frontend communicates with the backend |
 | Design tokens | `docs/design-tokens.md` | Colours, spacing, typography, and other design constants |
 
-> **Before writing any styles:**
->
-> **If building by hand:**
->
-> - Fill in `docs/design-tokens.md` with your token values
-> - Implement the values in `src/styles/tokens.scss`
-> - All styles should reference tokens rather than hardcoded values
->
-> **If using an AI agent:**
->
-> - Read `docs/design-tokens.md` before writing any styles
-> - If the file is empty, stop and ask the user to fill it in first
-> - All styles must reference tokens — never hardcoded values
-
 ---
 
 ## File & folder conventions
@@ -204,40 +344,49 @@ File extensions follow the active stack selection in the Stack section above.
 src/
   components/
     <ComponentName>/
-      <ComponentName>.{js|ts}       # ← implementation
-      <ComponentName>.test.{js|ts}  # ← unit tests
-      <ComponentName>.{css|scss}    # ← styles
-      <ComponentName>.spec.md       # ← co-located spec
+      <ComponentName>.{js|ts|jsx|tsx|svelte}  # ← implementation
+      <ComponentName>.test.{js|ts}            # ← unit tests
+      <ComponentName>.{css|scss}              # ← styles (extension matches active Styles selection)
+      <ComponentName>.spec.md                 # ← co-located spec (copied from docs/specs/components/)
   pages/
     <PageName>/
-      <PageName>.{js|ts}            # ← implementation
-      <PageName>.test.{js|ts}       # ← unit tests
-      <PageName>.{css|scss}         # ← styles
-      <PageName>.spec.md            # ← co-located spec
+      <PageName>.{js|ts|jsx|tsx|svelte}       # ← implementation
+      <PageName>.test.{js|ts}                 # ← unit tests
+      <PageName>.{css|scss}                   # ← styles
+      <PageName>.spec.md                      # ← co-located spec
   layouts/
     <LayoutName>/
-      <LayoutName>.{js|ts}          # ← implementation
-      <LayoutName>.{css|scss}       # ← styles
-      <LayoutName>.spec.md          # ← co-located spec
+      <LayoutName>.{js|ts|jsx|tsx|svelte}     # ← implementation
+      <LayoutName>.{css|scss}                 # ← styles
+      <LayoutName>.spec.md                    # ← co-located spec
   scripts/
-    main.js                         # ← default starting file (Vanilla + Vite only)
+    main.js                                   # ← default starting file (Vanilla + Vite only)
   styles/
-    tokens.scss                     # ← design token values (see docs/design-tokens.md)
-    main.scss                       # ← global styles, imports tokens.scss
-  lib/                              # ← shared utilities
-  types/                            # ← global types (TypeScript only)
+    tokens.{css|scss}                         # ← design token values (extension matches active Styles selection)
+    main.{css|scss}                           # ← global styles, imports tokens
+  lib/                                        # ← shared utilities
+  types/                                      # ← global types (TypeScript only)
 docs/
-  project-brief.md                  # ← this file
-  design-tokens.md                  # ← design token definitions
-  service-worker.md                 # ← service worker configuration
-  storybook.md                      # ← storybook configuration
-  features/                         # ← user-facing feature specs
+  project-brief.md                            # ← this file
+  design-tokens.md                            # ← design token definitions
+  service-worker.md                           # ← service worker configuration
+  storybook.md                                # ← storybook configuration
+  features/                                   # ← user-facing feature specs
   specs/
-    _component-template.spec.md     # ← spec template
-    components/                     # ← authoritative component specs
-    pages/                          # ← page / view specs
-    layouts/                        # ← layout specs
+    _component-template.spec.md               # ← spec template
+    components/                               # ← authoritative component specs
+    pages/                                    # ← page / view specs
+    layouts/                                  # ← layout specs
+    hooks/                                    # ← hook specs
 ```
+
+### Default starting files
+
+- **Vanilla + Vite** — `src/index.html` is the default home page and `src/scripts/main.js` is the JavaScript file it references. Both are included as minimal starting files to build out
+- **React** — `src/index.html` and `src/scripts/main.js` are the default starting files. Update `main.js` to mount the React app
+- **Svelte** — `src/index.html` and `src/scripts/main.js` are the default starting files. Update `main.js` to mount the Svelte app
+- **Astro** — pages and templating are managed by Astro's own file-based routing. Remove `src/index.html` and `src/scripts/main.js` if switching to Astro
+- **Eleventy** — pages and templating are managed by Eleventy's own templating system. Remove `src/index.html` and `src/scripts/main.js` if switching to Eleventy
 
 ---
 
@@ -249,6 +398,7 @@ docs/
 | What should a component do? | `docs/specs/components/<name>.spec.md` |
 | What should a page look like? | `docs/specs/pages/<name>.spec.md` |
 | What should a layout do? | `docs/specs/layouts/<name>.spec.md` |
+| What does a hook do? | `docs/specs/hooks/<name>.spec.md` |
 | What are the design tokens? | `docs/design-tokens.md` |
 | How is the service worker configured? | `docs/service-worker.md` |
 | How is Storybook configured? | `docs/storybook.md` |
