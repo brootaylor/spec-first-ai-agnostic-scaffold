@@ -1,4 +1,4 @@
-# Feature: Storybook
+# Storybook
 
 ---
 
@@ -75,10 +75,9 @@ helps the agent avoid building more than is required.
 
 ## Setup guidance
 
-The following covers React, Svelte, and plain JavaScript as worked examples. Storybook
-supports other options too — refer to the
+The following covers React, Svelte, and plain JavaScript as worked examples. For Astro,
+Eleventy, or any other framework, refer to the
 [Storybook documentation](https://storybook.js.org/docs) for setup instructions.
-A handcrafted Storybook instance can also be configured independently of these examples.
 
 ### React
 
@@ -90,9 +89,12 @@ Storybook detects React automatically. Stories use `.stories.jsx` or `.stories.t
 
 ```jsx
 // src/components/Button/Button.stories.jsx
+import Button from './Button';
+
 export default {
   title: 'Components/Button',
   component: Button,
+  tags: ['autodocs'],
 };
 
 export const Primary = {
@@ -115,6 +117,7 @@ import Button from './Button.svelte';
 export default {
   title: 'Components/Button',
   component: Button,
+  tags: ['autodocs'],
 };
 
 export const Primary = {
@@ -128,28 +131,137 @@ export const Primary = {
 npx storybook@latest init --type html
 ```
 
-Stories use `.stories.js` and return HTML strings or DOM elements.
+Stories use `.stories.js` and use a `render` function to map args to an HTML string or
+DOM element. This is how interactive controls work in the `@storybook/html` format.
 
 ```js
 // src/components/Button/Button.stories.js
 export default {
   title: 'Components/Button',
+  tags: ['autodocs'],
+  argTypes: {
+    label: { control: 'text' },
+    variant: {
+      control: 'select',
+      options: ['primary', 'secondary', 'danger', 'ghost'],
+    },
+  },
 };
 
-export const Primary = () => `
-  <button class="btn btn--primary">Click me</button>
-`;
+export const Primary = {
+  args: { label: 'Click me', variant: 'primary' },
+  render: (args) => `
+    <button class="btn btn--${args.variant}">${args.label}</button>
+  `,
+};
 ```
+
+---
+
+## Storybook configuration
+
+Storybook's config lives in a `.storybook/` directory at the project root. The two
+files that always need attention are `main.js` and `preview.js`. The `init` command
+generates both — the notes below cover what to add to each after setup.
+
+### `main.js`
+
+Controls which files Storybook treats as stories. Verify the `stories` glob matches
+the project's file layout. For this scaffold it should be:
+
+```js
+stories: ['../src/**/*.stories.{js,jsx,ts,tsx,svelte}'],
+```
+
+### `preview.js`
+
+Runs before every story. This is where global styles and decorators are registered.
+
+**Import global styles** so design tokens are available inside the Storybook canvas:
+
+```js
+// .storybook/preview.js
+import '../src/styles/main.css';
+```
+
+Without this, every story renders with unstyled components because the Storybook
+canvas is a separate iframe with its own `<html>` document — it does not inherit
+styles from the main application.
+
+**Add a theme decorator** so the `data-theme` attribute is applied to the story
+root, matching the mechanism used by the `ThemeToggle` component in the main app:
+
+```js
+// .storybook/preview.js
+import '../src/styles/main.css';
+
+export const decorators = [
+  (Story, context) => {
+    const theme = context.globals.theme ?? 'light';
+    const wrapper = document.createElement('div');
+    wrapper.setAttribute('data-theme', theme);
+    const story = Story();
+    wrapper.appendChild(typeof story === 'string'
+      ? Object.assign(document.createElement('div'), { innerHTML: story })
+      : story
+    );
+    return wrapper;
+  },
+];
+
+export const globalTypes = {
+  theme: {
+    name: 'Theme',
+    defaultValue: 'light',
+    toolbar: {
+      icon: 'circlehollow',
+      items: ['light', 'dark'],
+      showName: true,
+    },
+  },
+};
+```
+
+This adds a Theme switcher to the Storybook toolbar so stories can be previewed in
+both light and dark mode. The decorator applies `data-theme` to a wrapper element
+rather than directly to `document.documentElement` to keep stories isolated from
+each other.
+
+> **Note:** The decorator above is written for the `@storybook/html` (Vanilla) format.
+> For React and Svelte, the `Story` return value is a component, not a string — wrap
+> it in a container element with `data-theme` set instead. The `globalTypes` block is
+> identical across all three.
 
 ---
 
 ## Notes for AI agents
 
 - Run `npx storybook@latest init` and let Storybook auto-detect the active framework
-- If auto-detection fails, pass the `--type` flag manually based on the active framework selection in `docs/project-brief.md`
-- Add a `storybook-static/` entry to `.gitignore` after setup
+- If auto-detection fails, pass the `--type` flag manually based on the active framework
+  selection in `docs/project-brief.md`:
+
+  | Framework (project-brief.md) | `--type` value |
+  |------------------------------|----------------|
+  | Vanilla | `html` |
+  | React | `react` |
+  | Svelte | `svelte` |
+  | Astro | see Storybook docs — do not guess |
+  | Eleventy | see Storybook docs — do not guess |
+
+- For **Astro** and **Eleventy**, do not adapt the React or Vanilla examples — consult
+  the [Storybook documentation](https://storybook.js.org/docs) for the correct setup
+  for those frameworks before proceeding
+- After init, configure `.storybook/preview.js` following the **Storybook configuration**
+  section above — this is required for design tokens and dark mode to work in stories
+- Verify the `stories` glob in `.storybook/main.js` matches the project's file layout
+  (see Storybook configuration above)
+- Add `storybook-static/` to `.gitignore` — this is the build output directory and
+  must not be committed. Do not add `.storybook/` to `.gitignore` — that is the config
+  directory and must be committed
 - Add the following scripts to `package.json`:
   - `"storybook": "storybook dev -p 6006"`
   - `"build-storybook": "storybook build"`
 - Write at least one story per component that has a spec with status `Ready` or `Complete`
 - Story files should be co-located with the component: `src/components/<Name>/<Name>.stories.{js|jsx|ts|tsx|svelte}`
+- Include `tags: ['autodocs']` in every story's default export to enable automatic
+  documentation page generation
