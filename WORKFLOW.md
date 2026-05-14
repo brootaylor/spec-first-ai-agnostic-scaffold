@@ -8,26 +8,17 @@ A step-by-step guide to using this scaffold to build a web project — by hand o
 
 Before you begin, make sure you have the following installed:
 
+> **Note:** A GitHub account is required if you want to use the "Use this template" button on the repository page. Cloning or downloading the ZIP does not require one.
+
 **Always required:**
 
 | Tool | Notes |
 |------|-------|
+| A terminal | Required to run commands throughout this workflow. macOS and Linux have one built in. On Windows, [Git Bash](https://gitforwindows.org) or [Windows Terminal](https://aka.ms/terminal) are good options |
 | [Git](https://git-scm.com) | Required to clone this scaffold. Recommended for version control throughout development |
 | [Node.js](https://nodejs.org) | Required by most tooling — install the LTS version |
 | [npm](https://www.npmjs.com) | Comes with Node.js |
 | A code editor | [VS Code](https://code.visualstudio.com) is a good option |
-
-**Agent-specific:**
-
-| Agent | Prerequisites |
-|-------|--------------|
-| Claude Code | Node.js + an [Anthropic API key](https://console.anthropic.com) |
-| Cursor | Download the [Cursor app](https://cursor.sh) |
-| GitHub Copilot | A GitHub account with [Copilot access](https://github.com/features/copilot) + the relevant IDE's extension |
-
-**Stack-specific:**
-
-All stack dependencies are installed via `npm install`. Refer to your chosen framework's documentation for any additional setup.
 
 ---
 
@@ -77,38 +68,21 @@ src/layouts/
 
 **If using an AI agent:** the agent will create any missing directories as needed when scaffolding components, pages, and layouts.
 
----
-
-You'll notice `package.json` is intentionally minimal — it contains only the project name and version. Once you've chosen your stack in `docs/project-brief.md` (Step 3), it needs to be populated with the correct dependencies for your chosen framework, language, testing tools, and build tool.
-
-**If building by hand:**
-
-- Set up `package.json` and any required config files (e.g. `vite.config.js`, `jest.config.js`) based on your stack selections
-- Check your chosen framework's documentation for the recommended Node.js version and update `.nvmrc` accordingly
-- Update the stack-specific section of `.gitignore` with any entries required by your chosen framework (e.g. `dist/` for Vite, `_site/` for Eleventy, `.astro/` for Astro)
-- Refer to your chosen framework's documentation for the exact setup
-
-**If using an AI agent:** the agent will:
-
-- Populate `package.json` with the correct scripts and dependencies
-- Generate any required config files
-- Populate `.nvmrc` with the correct Node.js version for the active framework
-- Update the stack-specific section of `.gitignore`
-
----
-
-Two default starting files are included for the Vanilla + Vite stack:
-
-- `src/index.html` — the default home page Vite serves
-- `src/scripts/main.js` — the JavaScript file referenced by `index.html`
-
-If building with React or Svelte, these files are also used — `main.js` needs to be updated to mount the app for the active framework. If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own pages and templating.
-
-Commit everything to Git before you do anything else. This gives you a clean baseline to return to.
+> **Before doing anything else — commit everything to Git.** This gives you a clean baseline to return to.
 
 ---
 
 ## Step 2 — Configure your agent
+
+> If you're not using an agent, skip this step.
+
+Before setting up your agent, make sure you have what it needs:
+
+| Agent | Prerequisites |
+|-------|--------------|
+| Claude Code | Node.js + an [Anthropic API key](https://console.anthropic.com) |
+| Cursor | Download the [Cursor app](https://cursor.sh) |
+| GitHub Copilot | A GitHub account with [Copilot access](https://github.com/features/copilot) + the relevant IDE's extension |
 
 Open `.agents/<your-agent>/` and follow the setup notes in that directory to point your agent at the config file.
 
@@ -128,7 +102,7 @@ Open `docs/project-brief.md` and do two things:
 
 **Describe your project** — replace the placeholder under "What this project is" with a plain description of what you're building and who it's for.
 
-**Choose your stack** — open `docs/project-brief.md` and mark exactly one option per category as `[active]`. Categories to configure:
+**Choose your stack** — mark exactly one option per category as `[active]`. Categories to configure:
 
 - Framework
 - Language
@@ -155,6 +129,37 @@ For example, the Framework category looks like this:
 
 This is the first thing the agent reads. Getting it right before writing any specs saves time later.
 
+### Complete your project setup
+
+Now that your stack is selected, `package.json` needs to be populated with the correct dependencies.
+
+**If building by hand:**
+
+- Set up `package.json` and any required config files (e.g. `vite.config.js`, `jest.config.js`) based on your active stack selections
+- Check your chosen framework's documentation for the recommended Node.js version and update `.nvmrc` accordingly
+- Update the stack-specific section of `.gitignore` with any entries required by your chosen framework (e.g. `dist/` for Vite, `_site/` for Eleventy, `.astro/` for Astro)
+- Refer to your chosen framework's documentation for the exact setup
+
+**If using an AI agent:** prompt the agent to begin setup:
+
+*"Read `docs/project-brief.md` and complete the initial project setup."*
+
+> This covers `package.json`, config files, `.nvmrc`, and `.gitignore` only. Design tokens and specs come later.
+
+The agent will:
+
+- Populate `package.json` with the correct scripts and dependencies
+- Generate any required config files
+- Populate `.nvmrc` with the correct Node.js version for the active framework
+- Update the stack-specific section of `.gitignore`
+
+Two default starting files are included for the Vanilla + Vite stack:
+
+- `src/index.html` — the default home page Vite serves
+- `src/scripts/main.js` — the JavaScript file referenced by `index.html`
+
+If building with React or Svelte, these files are also used — `main.js` needs to be updated to mount the app for the active framework. If you switch to Astro or Eleventy, remove these two files — those frameworks manage their own pages and templating.
+
 ---
 
 ## Step 4 — Define your design tokens
@@ -170,8 +175,6 @@ This is the first thing the agent reads. Getting it right before writing any spe
 
 - The agent must read `docs/design-tokens.md` before writing any styles
 - If the file is empty, it will stop and ask you to fill it in first
-
-> **If using an AI agent:** once you've filled in `docs/project-brief.md` and `docs/design-tokens.md`, prompt the agent to begin setup: *"Read `docs/project-brief.md` and complete the initial project setup."*
 
 ---
 
@@ -259,7 +262,7 @@ If something is wrong, update the spec first — then ask the agent to fix the i
 
 ## Step 9 — Run it locally or deploy
 
-How you run the project depends on your active framework selection in `docs/project-brief.md`.
+How you run the project depends on your active framework selection in `docs/project-brief.md`. All stack dependencies are installed via `npm install` — refer to your chosen framework's documentation for any additional setup.
 
 **Vanilla + Vite:**
 
