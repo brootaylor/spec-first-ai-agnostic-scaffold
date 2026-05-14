@@ -49,8 +49,6 @@ docs/specs/pages/home.spec.md
 docs/specs/layouts/main-layout.spec.md
 src/index.html
 src/scripts/main.js
-src/styles/tokens.scss
-src/styles/main.scss
 .agents/claude/CLAUDE.md
 .agents/claude/settings.json
 .agents/claude/commands/create-component.md
@@ -58,7 +56,7 @@ src/styles/main.scss
 .agents/copilot/copilot-instructions.md
 ```
 
-> The files above are part of the default scaffold. Many are placeholder examples — the spec files, feature docs, and style stubs are there to illustrate the patterns, not to be used as-is. Replace or modify them to suit your project.
+> The files above are part of the default scaffold. Many are placeholder examples — the spec files and feature docs are there to illustrate the patterns, not to be used as-is. Replace or modify them to suit your project.
 
 **If building by hand:** these directories can be created as needed:
 
@@ -170,16 +168,17 @@ If building with React or Svelte, these files are also used — `main.js` needs 
 
 `docs/design-tokens.md` is a template for defining the visual language of your project — colours, spacing, typography, and other design constants.
 
+Fill in `docs/design-tokens.md` with your token values first. Then:
+
 **If building by hand:**
 
-- Fill in `docs/design-tokens.md` with your token values
-- Implement the values in `src/styles/tokens.scss` before writing any styles
+- Create `src/styles/tokens.css` (or `tokens.scss` if Sass is active) and implement the values from `docs/design-tokens.md`
+- Create `src/styles/main.css` (or `main.scss`) and import the token file at the top
 
 **If using an AI agent:**
 
-- Fill in `docs/design-tokens.md` with your token values first
-- Then prompt the agent: *"Read `docs/design-tokens.md` and implement the values in `src/styles/tokens.scss`."*
-- If the file is empty, the agent will stop and ask you to fill it in first
+- Prompt the agent: *"Read `docs/design-tokens.md` and create the token and main style files."*
+- If `docs/design-tokens.md` is empty, the agent will stop and ask you to fill it in first
 
 > **Commit your work.** Once your tokens are defined and implemented, commit before moving on.
 
