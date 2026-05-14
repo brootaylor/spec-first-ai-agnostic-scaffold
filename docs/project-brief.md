@@ -408,6 +408,7 @@ docs/
   design-tokens.md                            # ← design token definitions
   service-worker.md                           # ← service worker configuration
   storybook.md                                # ← storybook configuration
+  security.md                                 # ← security headers and CSP configuration
   features/                                   # ← user-facing feature specs
   specs/
     _component-template.spec.md               # ← spec template
