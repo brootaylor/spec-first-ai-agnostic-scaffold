@@ -51,11 +51,16 @@ Both paths follow the same workflow and use the same specs.
 
 ---
 
+## Design tokens
+
+[`docs/design-tokens.md`](./docs/design-tokens.md) defines the colours, spacing, and typography for your project. Fill it in before writing any styles — agents will stop and ask if it's empty. Values are implemented in `src/styles/tokens.{css|scss}` and referenced throughout the codebase as CSS custom properties.
+
+---
+
 ## Optional configuration
 
 | Doc | Purpose | How to enable |
 |-----|---------|---------------|
-| [`docs/design-tokens.md`](./docs/design-tokens.md) | Define colours, spacing, and typography before writing any styles. Values are implemented in `src/styles/tokens.scss` and referenced throughout the codebase as CSS custom properties | Fill in directly before writing any styles |
 | [`docs/service-worker.md`](./docs/service-worker.md) | Offline support and caching strategy, with framework-specific implementation notes | Set active strategy in `docs/project-brief.md` |
 | [`docs/storybook.md`](./docs/storybook.md) | Component development and documentation environment | Enable in `docs/project-brief.md` |
 | [`docs/security.md`](./docs/security.md) | Security guidelines and best practices to follow during development | Set active security measures in `docs/project-brief.md` |
