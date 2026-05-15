@@ -55,6 +55,7 @@ Write until all tests pass.
 
 Run the test command for the active unit testing tool in `docs/project-brief.md`:
 
+- **Vitest** → `npx vitest run`
 - **Jest** → `npm test`
 - **None** → skip this step
 

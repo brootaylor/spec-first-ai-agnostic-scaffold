@@ -53,7 +53,25 @@ The agent will derive the implementation interface directly from this section.
 
 ### Public methods _(if applicable)_
 
-Document any methods exposed via a ref or returned from the constructor.
+Some components expose methods that a parent can call directly — for example, a `Modal` that exposes `open()` and `close()`, an `Input` that exposes `focus()`, or a `Form` that exposes `reset()`. How these are accessed depends on the active framework:
+
+- **Vanilla / plain JS** — returned from the component's constructor or initialisation function
+- **React** — exposed via `useImperativeHandle` and accessed through a `ref`
+- **Svelte** — exported functions accessed via `bind:this`
+
+If this component exposes no public methods, write `None` so it is clear the question was considered. Omit the section only if this is a layout or page spec where the concept does not apply.
+
+**Example — methods present:**
+
+| Method | Description | Parameters | Returns |
+|--------|-------------|------------|---------|
+| `open()` | Opens the modal | — | `void` |
+| `close()` | Closes the modal | — | `void` |
+| `focus()` | Moves focus to the first input | — | `void` |
+
+**Example — no methods:**
+
+None.
 
 ---
 

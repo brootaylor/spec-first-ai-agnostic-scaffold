@@ -44,6 +44,10 @@ The agent will derive the implementation interface directly from this section.
 | `children` | element / slot | ✓ | — | The page content to render in the main content area |
 | `pageTitle` | string | ✓ | — | Sets the page `<title>` and main heading |
 
+### Events / Callbacks
+
+None — this layout emits no events. Interactivity is handled by child components.
+
 ---
 
 ## Structure
@@ -208,7 +212,7 @@ Complete every item before changing the status to `Ready`.
 
 - [x] Purpose describes the *why*, not the *how*
 - [x] All props are named, typed, and have a default where applicable
-- [ ] All events include a payload description
+- [x] All events include a payload description
 - [x] Every meaningful state is listed in the States table
 - [x] Interaction rules cover all non-obvious behaviours
 - [x] Accessibility requirements are specific, not generic
