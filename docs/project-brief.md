@@ -11,6 +11,17 @@ Agent-specific configs live in `.agents/`.
 
 ---
 
+## Your setup checklist
+
+These are the only sections you need to fill in before starting. Everything else is reference material — for you to read if you need it, and for any AI agent working on the project.
+
+- [ ] **What this project is** — describe the project, who it's for, its goals, and any known constraints
+- [ ] **Stack** — mark one option per category as `[active]`
+- [ ] **Browser support** — update the targets table if the defaults don't match your project
+- [ ] **Accessibility standard** — review the default and update it if your project has different requirements
+
+---
+
 ## What this project is
 
 > *Fill in each field below. The more specific you are, the more useful this file
@@ -169,35 +180,6 @@ Notes on combinations that require care or don't make sense together.
 
 ---
 
-## Setup instructions
-
-Before writing any implementation code, the project dependencies and config files
-need to be in place.
-
-**If building by hand:**
-
-- Set up `package.json` and any required config files
-  (e.g. `vite.config.js`, `jest.config.js`) based on your active stack selections
-- Check your chosen framework's documentation for the recommended Node.js version
-  and update `.nvmrc` accordingly
-- Refer to your chosen framework's documentation for the exact setup
-
-**If using an AI agent:**
-
-1. Check for the latest stable version of the active framework and use that version when populating `package.json`
-2. Check the active framework's Node.js requirements and use the recommended LTS version of Node
-3. Populate `package.json` with the correct scripts and dependencies for the active stack
-4. Generate any required config files based on the active selections
-5. Populate `.nvmrc` with the correct Node.js version for the active framework
-6. Update the stack-specific section of `.gitignore` with any entries required by the active stack
-7. If a service worker option is active, implement it following `docs/service-worker.md`
-8. If Storybook is active, set it up following `docs/storybook.md`
-9. If ESLint is active, install ESLint and the plugins listed in `docs/security.md` and generate `.eslintrc`
-10. If a security option is active, apply the configuration following `docs/security.md`
-11. Do not install any dependencies not directly required by the active stack selections
-
----
-
 ## Browser support
 
 The following defines the minimum browser targets for this project. These targets
@@ -224,6 +206,8 @@ fallbacks.
 
 ## Accessibility standard
 
+> *Review the standard below and update it if your project has different requirements. The default is WCAG 2.1 AA.*
+
 All components, pages, and layouts produced for this project must meet
 **WCAG 2.1 Level AA** as a minimum.
 
@@ -237,6 +221,35 @@ This applies to:
 Individual specs may define accessibility requirements beyond this baseline.
 Agents must not consider a component complete until its spec's accessibility
 requirements are met and the project-wide standard is satisfied.
+
+---
+
+## Setup instructions
+
+Before writing any implementation code, the project dependencies and config files
+need to be in place.
+
+**If building by hand:**
+
+- Set up `package.json` and any required config files
+  (e.g. `vite.config.js`, `jest.config.js`) based on your active stack selections
+- Check your chosen framework's documentation for the recommended Node.js version
+  and update `.nvmrc` accordingly
+- Refer to your chosen framework's documentation for the exact setup
+
+**If using an AI agent:**
+
+1. Check for the latest stable version of the active framework and use that version when populating `package.json`
+2. Check the active framework's Node.js requirements and use the recommended LTS version of Node
+3. Populate `package.json` with the correct scripts and dependencies for the active stack
+4. Generate any required config files based on the active selections
+5. Populate `.nvmrc` with the correct Node.js version for the active framework
+6. Update the stack-specific section of `.gitignore` with any entries required by the active stack
+7. If a service worker option is active, implement it following `docs/service-worker.md`
+8. If Storybook is active, set it up following `docs/storybook.md`
+9. If ESLint is active, install ESLint and the plugins listed in `docs/security.md` and generate `.eslintrc`
+10. If a security option is active, apply the configuration following `docs/security.md`
+11. Do not install any dependencies not directly required by the active stack selections
 
 ---
 
@@ -276,6 +289,7 @@ language. Agents must follow them when generating any file.
 - **Utility / helper files** — camelCase: `formatDate.js`
 - **Style files** — match the component they belong to: `Button.css`
 - **Test files** — match the file under test with a `.test` suffix: `Button.test.js`
+- **Asset files** — kebab-case: `icon-sun.svg`, `hero-image.webp`
 - **CSS class names** — BEM: `.btn`, `.btn--primary`, `.btn__label`
 - **CSS custom properties** — kebab-case with semantic prefix: `--color-primary`, `--space-md`
 - **JavaScript variables and functions** — camelCase
@@ -401,6 +415,9 @@ src/
   styles/
     tokens.{css|scss}                         # ← design token values (extension matches active Styles selection)
     main.{css|scss}                           # ← global styles, imports tokens
+  assets/
+    icons/                                    # ← SVG icons (inlined in components, not via <img>)
+    images/                                   # ← raster images (png, jpg, webp) referenced via <img>
   lib/                                        # ← shared utilities
   types/                                      # ← global types (TypeScript only)
 docs/
@@ -417,6 +434,12 @@ docs/
     layouts/                                  # ← layout specs
     hooks/                                    # ← hook specs
 ```
+
+### Assets
+
+- **SVG icons** — place in `src/assets/icons/` and inline them directly in the component. Do not reference via `<img>`
+- **Raster images** — place in `src/assets/images/` and reference via `<img>` with appropriate `alt` text
+- Do not place assets directly in `src/assets/` root — always use the subdirectories above
 
 ### Default starting files
 
