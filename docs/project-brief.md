@@ -162,21 +162,99 @@ CSP configuration, and framework-specific setup guidance.
 
 ## Stack compatibility notes
 
-Notes on combinations that require care or don't make sense together.
+Notes on combinations that require specific setup steps or additional packages
+beyond the defaults. Agents must read the relevant note below before generating
+any config file for that combination.
 
 - **Eleventy** — includes its own build pipeline. Build selection does not apply
 - **Astro** — includes its own build pipeline. Build selection does not apply
 - **React** — pair with Vite for a simple setup, or Next.js for a full meta-framework. Build selection does not apply
 - **Svelte** — pair with Vite for a simple setup, or SvelteKit for a full meta-framework. Build selection does not apply
-- **React + Jest** — include `@testing-library/react` and `@testing-library/jest-dom` as dev dependencies
-- **React + Vitest** — include `@testing-library/react` and `@testing-library/jest-dom` as dev dependencies
-- **Svelte + Jest** — include `@testing-library/svelte` as a dev dependency
-- **Svelte + Vitest** — include `@testing-library/svelte` as a dev dependency
 - **Vanilla + Vite + Jest** — Jest requires additional config to handle ESM modules in a Vite project. Prefer Vitest for Vite-based stacks to avoid this complexity
 - **Tailwind** — requires PostCSS config. Install `tailwindcss`, `postcss`, and `autoprefixer` as dev dependencies and generate `tailwind.config.js`
+- **Tailwind + Astro** — use the official `@astrojs/tailwind` integration (`npx astro add tailwind`) rather than configuring PostCSS manually; the integration handles the config automatically
 - **CSS Modules** — supported natively by Vite, Next.js, and SvelteKit. No additional config needed for those stacks. For Vanilla without Vite, additional build config is required
+- **CSS Modules + Eleventy** — Eleventy has no native CSS Modules support. A separate bundler is required, which significantly complicates the setup. Consider plain CSS unless there is a strong reason to use modules
 - **ESLint + TypeScript** — add `@typescript-eslint/parser` and `@typescript-eslint/eslint-plugin` as dev dependencies alongside ESLint
 - **ESLint + Svelte** — add `eslint-plugin-svelte` as a dev dependency
+- **ESLint + Astro** — add `eslint-plugin-astro` and `astro-eslint-parser` as dev dependencies. The `.eslintrc` must set `astro-eslint-parser` as the parser for `.astro` files
+
+### Framework-specific testing setup
+
+Testing tools require framework-specific wiring that goes beyond a standard
+install. Read the relevant note below before generating any test config file.
+
+**React + Vitest**
+- Install `@testing-library/react`, `@testing-library/jest-dom`, and `jsdom`
+- `vitest.config.ts` must include the `react()` plugin from `@vitejs/plugin-react`
+- Set `environment: 'jsdom'` in the Vitest config
+- Set `globals: true` to avoid importing `describe`, `it`, and `expect` in every test file
+
+**React + Jest**
+- Install `@testing-library/react`, `@testing-library/jest-dom`, `babel-jest`, and `@babel/preset-react`
+- Configure Jest to use `jsdom` as the test environment
+- A Babel config is required to transform JSX
+
+**Svelte + Vitest**
+- Install `@testing-library/svelte`, `@testing-library/jest-dom`, and `jsdom`
+- `vitest.config.ts` must include the `svelte()` plugin from `@sveltejs/vite-plugin-svelte`
+- Set `environment: 'jsdom'` in the Vitest config
+
+**Svelte + Jest**
+- Install `@testing-library/svelte` and configure Jest to transform `.svelte` files using `svelte-jester`
+
+**Astro + Vitest**
+- Do not create a standalone `vitest.config.ts` — Astro must supply its Vite plugin chain to
+  Vitest or component rendering will fail
+- Use `getViteConfig` from `astro/config` as the base config:
+  ```ts
+  // vitest.config.ts
+  import { getViteConfig } from 'astro/config';
+  export default getViteConfig({ test: { environment: 'jsdom' } });
+  ```
+- Install `vitest` and `jsdom` as dev dependencies
+- For TypeScript, also install `@astrojs/check` — this handles type checking of `.astro` files
+  separately from Vitest, which only runs `.ts` and `.js` unit tests
+
+**Eleventy + Vitest**
+- Eleventy manages its own build; Vitest is configured independently with no special integration needed
+- Vitest will only run tests against JS/TS utility modules — it cannot test Eleventy templates directly
+
+### Framework-specific TypeScript setup
+
+**Astro + TypeScript**
+- Install `@astrojs/check` and `typescript` as dev dependencies
+- `tsconfig.json` must extend Astro's preset — do not write one from scratch:
+  ```json
+  { "extends": "astro/tsconfigs/strict" }
+  ```
+- Use `@astrojs/check` for type checking (it understands `.astro` files); `tsc` alone does not
+
+**Eleventy + TypeScript**
+- Eleventy does not natively process TypeScript source files
+- A separate compilation step is required — compile `src/` with `tsc` and point Eleventy at
+  the output, or use a bundler plugin
+- This significantly increases setup complexity. If TypeScript is only needed for the Eleventy
+  config file itself, use a `.eleventy.ts` approach with `ts-node` instead
+
+### Framework-specific Sass setup
+
+**Astro + Sass**
+- Install `sass` only — Astro's Vite integration handles compilation automatically. No PostCSS
+  or additional config is needed
+
+**Eleventy + Sass**
+- Eleventy does not process Sass natively. A separate watch script or build step is required
+  (e.g. the `sass` CLI with `--watch`, or a Gulp task). Add the compiled CSS output directory
+  to `.gitignore` and to Eleventy's passthrough copy config
+
+### Storybook compatibility
+
+**Astro + Storybook** and **Eleventy + Storybook**
+- Do not run `npx storybook@latest init` without checking compatibility first — support for
+  these frameworks is evolving and auto-detection may produce an incorrect setup
+- Consult the [Storybook documentation](https://storybook.js.org/docs) for the current
+  recommended approach before generating any Storybook config
 
 ---
 
@@ -344,6 +422,8 @@ They apply regardless of which agent is used.
 - **Read security config before generating HTML or deployment config** — read `docs/security.md` before generating `index.html`, `_headers`, `vercel.json`, or any middleware file. The header values and CSP directives defined there are the source of truth
 - **Tests before implementation** — write tests first, then implement until they pass
 - **One spec at a time** — unless explicitly asked to scaffold multiple specs at once, implement one spec per session and confirm before moving to the next
+- **Read compatibility notes before setup** — before generating any config file, check the Stack compatibility notes section above for the active stack combination and follow any instructions there
+- **Stop and report when setup fails** — if initial project setup produces errors or a tool cannot be configured correctly after a single attempt, stop immediately. Report exactly what failed, the full error message, and what was tried. Do not attempt further fixes in a loop. Wait for the human to review and advise before continuing
 - **Ask, don't assume** — if a spec is ambiguous, a constraint is unclear, or a decision would affect the whole project, ask rather than guess
 
 ---
